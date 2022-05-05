@@ -1,0 +1,73 @@
+
+TD.HeaderRiskName {
+	font-family: "Times New Roman";
+	font-size: 16pt;
+	font-weight: bold;
+}
+
+/*--ͷ����������ʽ--*/
+TD.PolicyNo {
+	font-size: 10.5pt; 
+	font-family: "Times New Roman";
+}
+
+/*--TD��ʽ--*/
+TD.commonText1 {
+	font-size: 10.5pt;
+	font-family: "Times New Roman";
+	line-height: 15pt;
+	height: 30;
+}
+TD.commonText2 {
+	font-size: 10.5pt;
+	font-family: "Times New Roman";
+	line-height: 15pt;
+	height: 25;
+}
+TD.commonText3 {
+	font-size: 10.5pt;
+	font-family: "Times New Roman";
+	height: 20;
+}
+/*--����ϸ���������ֵ���ʽ--*/
+TD.commonDetail {
+	font-size: 14pt; 
+	font-family: "Times New Roman";
+	font-weight: bold;
+}
+TD.commonText23 {
+	font-size: 10.5pt;
+	font-family: "Times New Roman";
+	line-height: 15pt;
+	height: 20;
+}
+TD.commonText18 {
+	font-size: 10.5pt;
+	font-family: "Times New Roman";
+	line-height: 10.5pt;
+	height: 18;
+}
+TD.commonText19 {
+	font-size: 10.5pt;
+	font-family: "Times New Roman";
+	line-height: 10.5pt;
+	height: 19;
+}
+TD.commonText20 {
+	font-size: 10.5pt;
+	font-family: "����";
+	line-height: 15pt;
+	height: 30;
+}
+TD.commonText21 {
+	font-size: 10.5pt;
+	font-family: "����";
+	line-height: 15pt;
+	height: 60;
+}
+TD.commonText22 {
+	font-size: 10.5pt;
+	font-family: "����";
+	line-height: 15pt;
+	height: 90;
+}

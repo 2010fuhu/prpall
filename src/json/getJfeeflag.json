@@ -1,0 +1,16 @@
+{   
+    "paypremium": "10.00",
+    "makecom": "13000001",
+    "startdate": "2021-11-17",
+    "enddate": "2025-11-16",
+    "riskcode": "0101",
+    "currency": "CNY",
+    "businessnature": "91",
+    "currency1": "CNY",
+    "currency2": "CNY",
+    "reqheaddto": {
+        "interfcode": "0",
+        "transno": "1",
+        "channelcode": "66"
+    }
+}

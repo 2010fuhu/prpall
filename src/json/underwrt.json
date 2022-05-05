@@ -1,0 +1,29 @@
+{
+    "reqHeader":{
+        "channelCode":"1",
+        "sign":"PRPALL",
+        "sysPassWord":"abc",
+        "sysUserCode":"abc",
+        "transDate":"2021-09-03",
+        "transNo":"",
+        "transTime":""
+    },
+    "undwrtMainInfoReq":{
+        "undwrtInfoReqList":[
+            {
+                "businessID":0,
+                "businessNo":"",
+                "businessTable":"prptmain",
+                "businessType":"T",
+                "comCode":"",
+                "curName":"UnderwriteOne",
+                "flag":"1",
+                "inKey":"",
+                "makeCom":"",
+                "riskCode":"",
+                "userCode":"",
+                "valid":""
+            }
+        ]
+    }
+}

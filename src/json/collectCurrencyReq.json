@@ -1,0 +1,17 @@
+{
+    "collectCurrencyMainInfoReq": {
+        "currency1":"",
+        "currency2":"",
+        "exchangeDate":"",
+        "itemKindFeeVoList": []
+    },
+    "reqHeader": {
+        "channelCode": "0",
+        "sign": "1",
+        "password": "7777",
+        "userCode": "0000049",
+        "transDate": "2021-10-29",
+        "transNo": "12344444",
+        "transTime": "10:33"
+    }
+}

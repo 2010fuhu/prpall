@@ -1,0 +1,37 @@
+{
+    "agencyFeeMainInfoReq": {
+        "agentRate": "",
+        "agreementNo": "",
+        "businessType": "",
+        "comCode": "",
+        "currency": "",
+        "disPayFeeWay": "",
+        "endDate": "",
+        "endorType": "",
+        "isRation": "",
+		"isCoreCargo":"",
+		"minPremium":"",
+        "policyNo": "",
+        "riskCode": "2611",
+        "startDate": "2021-11-17",
+        "transId": "",
+        "kindInfoVoList": [
+        {
+            "chgPremium":"",
+            "currency": "",
+            "exchangeRate":"",
+            "kindCode":"",
+            "premium": ""
+        }
+        ]
+    },
+    "reqHeader": {
+        "channelCode": "0",
+        "sign": "1",
+        "sysPassWord": "7777",
+        "sysUserCode": "0000049",
+        "transDate": "2021-10-29",
+        "transNo": "12344444",
+        "transTime": "10:33"
+    }
+}

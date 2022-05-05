@@ -1,0 +1,1137 @@
+
+  BODY.logon {
+    BORDER-TOP-WIDTH: 0px;
+    BORDER-LEFT-WIDTH: 0px; 
+    BORDER-BOTTOM-WIDTH: 0px;
+    BORDER-RIGHT-WIDTH: 0px;
+    SCROLLBAR-FACE-COLOR:#FFFFFF;
+    SCROLLBAR-HIGHLIGHT-COLOR:#999999;
+    SCROLLBAR-SHADOW-COLOR:#999999;
+    SCROLLBAR-3DLIGHT-COLOR:#FFFFFF;
+    SCROLLBAR-ARROW-COLOR:#FFFFFF;
+    SCROLLBAR-TRACK-COLOR:#FFFFFF;
+    SCROLLBAR-DARKSHADOW-COLOR:#FFFFFF;
+    background-image:url(../images/Bg.gif);
+    font-size: 9pt;
+}
+
+  BODY{
+    BORDER-TOP-WIDTH: 0px;
+    BORDER-LEFT-WIDTH: 0px; 
+    BORDER-BOTTOM-WIDTH: 0px;
+    BORDER-RIGHT-WIDTH: 0px;
+    SCROLLBAR-FACE-COLOR:#ffffff;
+    SCROLLBAR-HIGHLIGHT-COLOR:#278c6c;
+    SCROLLBAR-SHADOW-COLOR:#278c6c;
+    SCROLLBAR-3DLIGHT-COLOR:#FFFFFF;
+    SCROLLBAR-ARROW-COLOR:#ffffff;
+    SCROLLBAR-TRACK-COLOR:#FFFFFF;
+    SCROLLBAR-DARKSHADOW-COLOR:#FFFFFF;
+    font-size: 9pt;
+}
+  BODY.interface{
+
+    margin-top:0px ;
+    margin-right:0px;
+    margin-bottom:5px
+}
+
+   table{  color:#000000;
+           font-size:9pt;}
+
+  TABLE.common
+  {
+  width: 100%;
+  font-size: 9pt;
+  style-align: center;
+  background-color: #ffffff;
+  }
+  /*--TABLE�Ĳ˵���ʽ�����ֵ�Ĭ����ʽ9�Ŵ�С������98%--*/
+  TABLE.menu
+  {
+    width: 98%;
+    font-size: 9pt;
+    style-align: center;
+    background-color: #EFF1FA;
+  }
+   /*--TABLE�Ĳ˵���ʽ�����ֵ�Ĭ����ʽ9�Ŵ�С������98%--*/
+  TABLE.menutwo
+  {
+    width: 100%;
+    font-size: 9pt;
+    style-align: center;
+    background-color: #ffffff;
+  }
+/*--TABLE���ӱ���ʽ�����ֵ�Ĭ����ʽ9�Ŵ�С������95%��ͨ�����ڰ�����TABLE�е�TABLE--*/
+  TABLE.sub
+  {
+    width: 95%;
+    font-size:9pt;
+    style-align: center;
+  }
+/*--TABLE��������ʽ�����ֵ�Ĭ����ʽ9�Ŵ�С������70%��ͨ����������BUTTON���ŵ�TABLE--*/
+  TABLE.three
+  {
+    width: 70%;
+    font-size: 9pt;
+    style-align: center;
+  }
+/*--TABLE�Ķ�����ʽ�����ֵ�Ĭ����ʽ9�Ŵ�С������60%��ͨ�����ڶ���BUTTON���ŵ�TABLE--*/
+  TABLE.two
+  {
+    width: 100%;
+    font-size: 9pt;
+    style-align: center;
+    height:35px
+  }
+/*--TABLE���б���ʽ�����ֵ�Ĭ����ʽ9�Ŵ�С������90%��ͨ�����ڲ�ѯ�����TABLE--*/
+  TABLE.tablelist
+  {
+    width: 90%;
+    font-size: 9pt;
+    border: #F1F1F1 1px;
+    cellpadding:1;
+    cellspacing:1;
+    style-align: center;
+  }
+/*--TABLE�Ĵ�ӡ��ʽ�����ֵ�Ĭ����ʽ9�Ŵ�С������Ϊ���壬����98%��Ԫ���ܱ߿ո�Ϊ0���߿�Ϊ0--*/
+  TABLE.print,tr.print,td.print
+  {
+    width: 98%;
+    font-size:9pt;
+    font-family:"����";
+    margin:0cm;
+    border:0;
+    cellpadding:0;
+    cellspacing:0;
+  }
+
+
+  TR
+  {
+    font-size: 9pt;
+  }
+
+/*--TR���б���ʽ--*/
+  TR.listtitle
+  {
+    font-size: 9pt;
+    background:#1b8362;
+    color:#ffffff;
+    height:25px;
+    text-align: center;
+  }
+/*--TR���б���ʽ--*/
+  TR.common
+  {
+    font-size: 9pt;
+    background:#F7F7F7;
+    color:#000000;
+    text-align: center;
+  }
+  
+
+/*-------------------------------------------------------------------------*/
+/*                                TD��ʽ                                   */
+/*-------------------------------------------------------------------------*/
+/*--TD�İ�ɫ��ʽ�����ֵ�Ĭ����ʽ9�Ŵ�С����ɫ--*/
+  TD.white
+  {
+    color:#ffffff
+  }
+/*--TD��һ����ʽ�����ֵ�Ĭ����ʽ9�Ŵ�С����ɫ--*/
+  td.common{ font-size: 9pt;
+		            color:#555555}
+		            
+/*--TD�ı�����ʽ�����ֵ�Ĭ����ʽ9�Ŵ�С����ɫ--*/
+  TD.title5
+  {
+    width:50%;
+    font-size: 9pt;
+    background-color:#F7F7F7;
+    color:#000000
+  }
+  TD.title2
+  {
+    width:30%;
+    font-size: 9pt;
+    background-color:#F7F7F7;
+    color:#000000
+  }
+/*--TD��¼������ʽ�����ֵ�Ĭ����ʽ9�Ŵ�С����ɫ--*/
+  TD.input2
+  {
+    width:70%;
+    font-size: 9pt;
+    background-color:#F7F7F7;
+    color:#000000
+  }
+/*--TD�ı�����ʽ�����ֵ�Ĭ����ʽ9�Ŵ�С����ɫ--*/
+  TD.title3
+  {
+    width:11%;
+    font-size: 9pt;
+    background-color:#F7F7F7;
+    color:#000000
+  }
+ 
+/*--TD��¼������ʽ�����ֵ�Ĭ����ʽ9�Ŵ�С����ɫ--*/
+  TD.input3
+  {
+    width:22%;
+    font-size: 9pt;
+    background-color:#F7F7F7;
+    color:#000000
+  }
+/*--TD�ı�����ʽ�����ֵ�Ĭ����ʽ9�Ŵ�С����ɫ--*/
+  TD.title4
+  {
+    width:20%;
+    font-size: 9pt;
+    background-color:#F7F7F7;
+    color:#000000
+  }
+/*--TD��¼������ʽ�����ֵ�Ĭ����ʽ9�Ŵ�С����ɫ--*/
+  TD.input4
+  {
+    width:30%;
+    font-size: 9pt;
+    background-color:#F7F7F7;
+    color:#000000
+  }
+/*--TD�ĵ�¼ҳ�·���˾������ʽ��9�Ŵ�С����ɫ���и�20����������--*/
+  TD.logon1
+  {
+    font-size: 9pt;
+    color: #ffffff;
+    background-color:#C52620;
+    height:20px
+  }
+/*--TD�ĵ�¼ҳ��¼������������ʽ��9�Ŵ�С�����ɫ���и�25--*/
+  TD.logon2
+  {
+    font-size: 9pt;
+    height:25px
+  }
+/*--TD����ҳ�Ϸ��û������š����ڵ���ʽ��9�Ŵ�С����ɫ--*/
+  TD.top
+  {
+    font-size: 9pt;
+    color: #ffffff
+  }
+
+/*--TD�Ĳ˵������ֵ���ʽ��9�Ŵ�С�����ɫ���и�25--*/
+  TD.menu
+  {
+    font-size: 9pt;
+    height:25px
+  }
+/*--TD�Ĳ˵������µ�¼���޸��������ʽ��9�Ŵ�С���и�25������ɫ--*/
+  TD.menu-red
+  {
+    font-size: 9pt;
+    color: #339900;
+    height: 25px;
+    padding-left: 5;
+  }
+  TD.menu-two
+  {
+    font-size: 9pt;
+    color: #339900;
+    height: 25px;
+    padding-left: 10;
+  }
+  td.formtitlename
+  {
+    font-size: 14pt;
+    font-family:"����";
+    font-style:oblique;
+    color:#828282;
+    height:20px;
+    text-decoration:blink;
+  }
+  td.formtitleline
+  {
+    background-image:url(../images/cpBrokenLine.gif);
+    height:1px
+  }
+td.centertitle {
+                 font-size: 9pt;
+                 color:#000000;
+                 text-align: center;
+                  }
+  td.itemNoPermission {text-align:left;
+				                 background-color:#ffffff;
+				                 color: #828282;}
+  a.menuenohref
+  {
+       cursor:hand;
+       font-size: 9pt;
+       height:25px;
+     
+  }
+  a.visited 
+  {
+    text-decoration:none; 
+    color: #000000;
+  }
+  a.active 
+  {
+    text-decoration:none;
+    color: #000000;
+  }
+  a.hover 
+  {
+    color: #000000;
+    text-decoration: none; 
+  }
+  a.link 
+  {
+    text-decoration: none; 
+    color:#000000;
+  }
+  TD.menuenohrefafter
+  {
+
+       font-size: 9pt;
+       height:25px;
+   
+  }
+
+  <!-- a.link {
+    text-decoration: none;
+    color:#6080F0;
+   }-->
+  
+  TD.white
+             {color:#ffffff}
+
+    td {font-size: 9pt;
+         }
+
+    td.common{ font-size: 9pt;
+                color:#000000}
+
+    TD.white
+             {
+               color:#ffffff
+             }
+
+  td.formtitle { font-size: 9pt;
+                 background:#1b8362;
+                 color:#ffffff;
+                 height:30px;
+                 text-align: center;
+                }
+                   
+                   
+    td.title { background-color: #F7F7F7;
+               text-align: left;
+               width: 20%;
+               color: #000000 }
+
+    td.subformtitle { font-size: 9pt;
+                   background:#1b8362;
+                   color:#ffffff;
+                   height:30px;
+                   text-align: center; }
+
+    td.centertitle { font-size: 9pt;
+                   background:#1b8362;
+                   color:#ffffff;
+                   height:30px;
+                   text-align: center; }
+
+    td.input { background-color: #F7F7F7;
+               width: 30% }
+
+    td.page { background-color: #F7F7F7;  }
+
+    td.input1 { background-color: #ffffff}
+
+    td.titletop { color:#000000;
+                  text-align:center;}
+
+    td.inputfree { background-color: #ffffff; }
+
+    td.text  { background-color: #ffffff;
+               color: #000000 }
+
+    td.lefttitle { background-color: #6699CC;
+                   text-align:left;
+                   color: #FFFFFF }
+
+    td.titleLink {cursor: hand;
+                  color: #000000;}
+
+    td.titleLink2{text-align:left;
+                  cursor: hand;
+                  color: #396690}
+
+    td.titleLink3{text-align:left;
+                  cursor: hand;
+                  color: #ffaa00}
+
+    td.itemLink {text-align:left;
+                 cursor: hand;
+                 color: #000000;
+                 height:25px}
+
+    td.itemNoPermission {text-align:left;
+                         color: #666600;}
+
+
+    td.button { background-color: #ffffff;
+                text-align: center;
+                color: #000000 }
+
+    td.label_cn { font-size:24px;
+                   font-family:����;
+                   font-weight:bold;
+                   text-align:center;}
+
+    td.detail_cn { font-size:16px;
+                   font-family:����_GB2312;}
+
+    td.tk_cn {font-size:10.5pt;
+              font-family:����_GB2312;}
+
+
+    td.label_en {font-size:24px;
+                 font-weight:bold;
+                 text-align:center;
+                 font-family:"Times New Roman";}
+
+    td.detail_en { font-size:16px;
+                   font-family:"Times New Roman";}
+
+    td.tk_en {font-size:10.5pt;
+              font-family:"Times New Roman";}
+   TD.menu2  
+{
+  FONT-SIZE: 9pt;
+    COLOR: #000000
+}
+
+  td.formtitlex { font-size: 12pt;
+                  background:#1b8362;
+                  font-weight:bold;
+                  color:#ffffff;
+                  height:30px;
+                  text-align: center;
+                 }
+
+/*--TD����ʽ���ڱ�����ӡ by wuxiaodong--*/
+    td.print_headtitle{font-size:20pt;
+              font-family:����_GB2312;
+              font-weight:bold;
+              text-align:center;
+              height:25px;
+              }
+    td.print_head {font-size:10pt;
+                 font-family:����_GB2312;
+                }
+
+    td.print_title { font-size:10pt;
+                  font-family:����_GB2312;
+                  text-align:left;}
+
+    td.print_title1 {font-size:10pt;
+               font-family:����_GB2312;}
+    td.print_title2 {font-size:10pt;
+               font-family:����_GB2312;
+               }
+
+    td.print_title3 {font-size:9pt;
+               font-family:����_GB2312;
+               text-align:center;
+               font-weight:bold;}
+    td.print_title4 {font-size:10pt;
+               font-family:����_GB2312;
+               text-align:center;}
+    td.print_content1 {font-size:9pt;
+               font-family:����_GB2312;
+                text-align:left;}
+
+    td.print_content2 {font-size:9pt;
+               font-family:����_GB2312;
+                text-align:center;}
+    td.print_content3 {font-size:8pt;
+               font-family:����_GB2312;
+                text-align:left;}
+    td.print_content4 {font-size:7pt;
+               font-family:����_GB2312;
+                text-align:left;}
+    td.print_content5 {font-size:8pt;
+               font-family:����_GB2312;
+                text-align:center;}
+    td.print_content6 {font-size:7pt;
+               font-family:����_GB2312;
+                text-align:center;}
+    td.print_content7 {font-size:10pt;
+               font-family:����_GB2312;
+                text-align:left;}
+    td.print_tail {font-size:10pt;
+                  font-family:����_GB2312;
+                  text-align:right;
+                   font-weight:bold;}
+   tr.print_height {
+                   height:35px;
+                    }
+   tr.print_headheight {
+                   height:25px;
+                    }
+                    
+   td.listtitle1 { font-size: 10pt;
+      		       background:#1b8362;
+                   font-weight:bold;
+                   color:#ffffff;
+                   height:30px;
+                   text-align: center; }
+                   
+/*--TR����ʽ--*/
+    tr.listtitle { font-size: 9pt;
+                   background:#1b8362;
+                   color:#ffffff;
+                   height:30px;
+                   text-align: center; }
+
+    tr.listodd { background-color: #F7F7F7;
+                 text-align: center;
+                 color: #000000 }
+
+    tr.red { 
+            
+            background-color: #ffffff;
+            color: red
+            }
+
+    tr.listeven { background-color: #F7F7F7;
+                  text-align: center;
+                  color: #000000 }
+
+    tr.delete { background-color: #ffffff;
+                  text-align: center;
+                  color: #AA0000 }
+
+    tr.listtrd { background-color: #ffffff;
+                  text-align: center;
+                  color: #000000 }
+
+    tr.common {   background-color: #f7f7f7;
+                  text-align: center;
+                  color: #000000 }
+
+ 
+
+  INPUT
+  {
+    font-size: 9pt;
+  }
+  INPUT.logon
+  {
+    font-size: 9pt;
+    border: #009966 1px solid;
+    background-color: #ffffff;
+    width:90%;
+    color:#000000
+  }
+  INPUT.common
+  {
+    font-size: 9pt;
+    border: #009966 1px solid;
+    background-color: #ffffff;
+    width:70%;
+    color:#000000
+  }
+  INPUT.common2
+  {
+    font-size: 9pt;
+    border: #009966 1px solid;
+    background-color: #ffffff;
+    color:#000000
+  }
+
+/*--INPUT��һ�������ֻ����ʽ����90%������9�ţ���ɫ���߿�ǳ��ɫ��������ɫ--*/
+  INPUT.readonly
+  {
+    font-size: 9pt;
+    width: 90%;
+    background-color: #ffffff;
+    background: ydjm;
+    color: #000000;
+    border: none
+   }
+    INPUT.readonlytop
+  {
+    font-size: 9pt;
+    width: 70%;
+    background: ydjm;
+    color: #000000;
+    border: none
+   }
+    INPUT.readonlytitleitem
+  {
+    font-size: 9pt;
+    width: 10%;
+    background: ydjm;
+    color: #000000;
+    border: none
+   }
+   INPUT.readonly2
+  {
+    font-size: 9pt;
+    background-color: #ffffff;
+    background: ydjm;
+    border: none;
+    color:#000000;
+    width:95%
+   }
+    INPUT.readonly2color
+  {
+    font-size: 9pt;
+    background-color: #ffffff;
+    background: ydjm;
+    border: none;
+    color:#1b8362;
+    width:95%
+   }
+   INPUT.readonly3
+  {
+    font-size: 9pt;
+    background-color: #ffffff;
+    background: ydjm;
+    color: #000000;
+    border: none
+   }
+    INPUT.readonly4
+  {
+    font-size: 9pt;
+    width: 45%;
+    background-color: #ffffff;
+    background: ydjm;
+    color: #000000;
+    border: none
+   }
+   INPUT.readonly9
+  {
+    font-size: 9pt;
+    width: 95%;
+    background-color: #ffffff;
+    background: ydjm;
+    color: #000000;
+    border: none
+   }
+
+/*--INPUT�Ĵ����������ʽ����90%����ɫ���߿�ǳ��ɫ��������ɫ--*/
+  INPUT.codecode,INPUT.codename
+  {
+    font-size: 9pt;
+    background-color: #ecfff9;
+    border: #009966 1px solid;
+    width:90%;
+    color:#009966
+  }
+  
+  INPUT.querycodecode,INPUT.querycodename
+  {
+    font-size: 9pt;
+    background-color: #ecfff9;
+    border: #009966 1px solid;
+    width:60%;
+    color:#009966
+  }
+
+  INPUT.codecode_two,INPUT.codename_two
+  {
+    font-size: 9pt;
+    background-color: #ecfff9;
+    border: #009966 1px solid;
+    width:45%;
+    color:#009966
+  }
+
+/*--INPUT�Ĳ�ѯ��ʽ����70%����ɫ���߿�ǳ��ɫ��������ɫ--*/
+  INPUT.query
+  {
+    font-size: 9pt;
+    border: #009966 1px solid;
+    background-color: #ffffff;
+    width:60%;
+    color:#000000
+  }
+
+/*--��ť��ʽ--*/
+   INPUT.button
+   {
+   color: #000000;
+	 background-image: url(http://100.250.128.5:7011/payment/images/BgButton.gif);
+	 text-align: center;
+	 height: 24px;
+	 width: 72px;
+	 border: none;
+   }
+/*--С��ť��ʽ--*/
+   INPUT.smallbutton
+   {
+   color: #000000;
+	 background-image: url(http://100.250.128.5:7011/payment/images/BgSmallButton.gif);
+	 text-align: center;
+	 height: 24px;
+	 width: 24px;
+	 border: none;
+   }
+ /*--����ť��ʽ--*/
+   INPUT.longbutton
+   {
+   color: #000000;
+	 background-image: url(http://100.250.128.5:7011/payment/images/BgLongButton.gif);
+	 text-align: center;
+	 height: 24px;
+	 width: 150px;
+	 border: none;}  
+   
+    input.common3 {background-color:#ffffff;
+                   border:1px #789AE2 solid;
+                   color:#000000;
+                   height:20px;
+                   width:85%;}
+    input { font-size: 10pt }
+
+
+    INPUT.common1
+{
+    FONT-SIZE: 9pt;
+    BORDER: #009966 1px solid;
+    BACKGROUND-COLOR: #ffffff;
+    width:90%;
+    color:#000000
+}
+
+    input.common4   { font-size: 9pt;
+                    border: #009966 1px solid;
+                    background-color: #ffffff;
+                    width: 45%px;
+                    color:#000000}
+
+    input.common5   { background-color: #ffffff;
+                     border: 1px #789AE2 solid;
+                     color:#000000;
+                     height: 20px;
+                     width: 70%px}
+    input.common6   { background-color: #ffffff;
+                     border: #009966 1px solid;
+                     color:#000000;
+                     height: 20px;
+                     width: 25%px}
+    input.small   { background-color: #ffffff;
+                     border: #009966 1px solid;
+                     color:#000000;
+                     width:50px}
+
+    input.readonlyOnly {
+                     background-color: #ffffff;
+                     color: #000000;
+                     BORDER-TOP-WIDTH: 1px;
+                     BORDER-TOP-STYLE: solid;
+                     BORDER-TOP-COLOR: #ffffff;
+                     BORDER-BOTTOM-WIDTH: 1px;
+                     BORDER-BOTTOM-STYLE: solid;
+                     BORDER-BOTTOM-COLOR: #ffffff;
+                     BORDER-RIGHT-STYLE: none;
+                     BORDER-LEFT-STYLE: none }
+    input.listodd { width: 200px;
+                    background-color: #ffffff;
+                    color: #800080;
+                    border-style: none;
+                    hight:100px }
+
+    input.listeven { width: 200px;
+                     background-color: #ffffff;
+                     color: #800080;
+                     border-style: none }
+
+    input.code { background-color: #FFF3D8;
+                 border: 1px #000000 solid;
+                 color:#000000;
+                 height: 20px;
+                 width: 160px}
+
+    input.codename { background-color:  #ecfff9;
+                     border: 1px #009966 solid;
+                     width: 110px;
+                     color:#009966}
+
+    input.keyvalue { width:200px;
+                     background-color: #ecfff9;
+                     color: white;
+                     border-style: none; 
+                     readonly:true
+                    }
+
+     input.formtitle { font-size: 9pt;
+                     font-weight: bold;
+                     background-color: #F0F0F0;
+                     text-align: center;
+                     color: #ffffff;
+                     BORDER-TOP-WIDTH: 1px;
+                     BORDER-TOP-STYLE: solid;
+                     BORDER-TOP-COLOR: #F0F0F0;
+                     BORDER-BOTTOM-WIDTH: 1px;
+                     BORDER-BOTTOM-STYLE: solid;
+                     BORDER-BOTTOM-COLOR: #F0F0F0;
+                     BORDER-RIGHT-STYLE: none;
+                     BORDER-LEFT-STYLE: none }
+    input.readonlycheckbox{
+                     background-color: #C0C0C0
+                     }
+    input.readonlyradio{
+                     background-color: #C0C0C0
+                     }
+    INPUT.caption
+                     {
+                      FONT-SIZE: 9pt;
+                      color:#ffffff;
+                      WIDTH: 50%;
+                      background: ydjm;
+                      border: none
+                     }
+
+
+  SELECT.common
+  {
+    font-size: 9pt;
+    width: 180px;
+    background-color: #ffffff;
+    color:#000000
+  }
+  SELECT.common4
+  {
+    font-size: 9pt;
+    width: 45%;
+    background-color: #ffffff;
+  }
+  SELECT.common5
+  {
+    font-size: 9pt;
+    width: 75%;
+    background-color: #ffffff;
+  }
+  SELECT.query
+  {
+    font-size: 9pt;
+    width: 60%;
+    background-color: #ffffff;
+  }
+/*--SELECT��tag��ʽ����20%������9�ţ���ɫ��������ɫ,����StringOption��DateOption��--*/
+  SELECT.tag
+  {
+    font-size: 9pt;
+    width: 20%;
+    border: #009966 1px solid;
+    background-color: #f1f1f1;
+  }
+
+/*--SELECT�Ĳ�ѯ��ʽ����70%������9�ţ���ɫ��������ɫ--*/
+  SELECT.query
+  {
+    font-size: 9pt;
+    border: #009966 1px solid;
+    background-color: #ffffff;
+    width: 60%;
+    color:#000000
+  }
+/*--SELECT�Ĳ�ѯ��ʽ����70%������9�ţ���ɫ��������ɫ--*/
+  SELECT.option
+  {
+    font-size: 9pt;
+    background-color: #ffffff;
+    width: 20%;
+    color:#000000
+  }
+
+
+/*-------------------------------------------------------------------------*/
+/*                           TEXTAREA��ʽ                                  */
+/*-------------------------------------------------------------------------*/
+/*--TEXTAREA�Ķ��������ͨ����ʽ����90%������9�ţ���ɫ��������ɫ���߿�ǳ��ɫ����80���м��160%--*/
+  TEXTAREA.common
+  {
+    font-size: 9pt;
+    border: #009966 1px solid;
+    width: 90%;
+    height:80px;
+    background-color: #ffffff;
+    line-height: 160%;
+    text-indent: 1cm;
+  }
+
+  TEXTAREA.readonly
+  {
+    background-color: #EEECFA;
+    color: #000000;
+    border-TOP-width: 1px;
+    border-TOP-STYLE: solid;
+    border-TOP-color: #EEECFA;
+    border-BOTTOM-width: 1px;
+    border-BOTTOM-STYLE: solid;
+    border-BOTTOM-color: #EEECFA;
+    border-RIGHT-STYLE: none;
+    border-LEFT-STYLE: none;
+    text-indent:1cm
+  }
+
+
+/*-------------------------------------------------------------------------*/
+/*                                IMG��ʽ                                  */
+/*-------------------------------------------------------------------------*/
+/*--IMG����ʽ--*/
+  IMG.button
+  {
+    cursor:hand;
+  }
+
+
+
+/*--�����ӵ�������ʽ(��ɫ����ɫ���»���)--*/
+  A:link
+  {
+  	font-size: 9pt;
+    color: #1a8462;
+    text-decoration: none
+  }
+  A:visited
+  {
+  	font-size: 9pt;
+    color: #1a8462;
+    text-decoration: none
+  }
+  A.active
+  {
+  	font-size: 9pt;
+    color: #1a8462;
+    text-decoration: none
+  }
+  
+  A.hover
+  {
+  	font-size: 9pt;
+    color: #339900;
+    text-decoration: underline
+  }
+
+
+/*--TABLE����ʽ--*/
+   table{  color:#000000;
+           font-size:9pt;}
+
+   table.common { width: 100%;
+                  font-size: 9pt;
+                  style-align: center;
+                  background-color: #ffffff;
+                 }
+
+/*add by jack 20050126 begin ���������*/
+    table.common1 { width: 100%;
+                  font-size: 9pt;
+                  style-align: center;
+                  background-color: #ffffff;
+                 }
+/*add by jack 20050126 end ���������*/
+
+    table.three { width: 70%;
+                  font-size: 9pt }
+
+    table.two { width: 60%;
+                font-size: 9pt }
+
+   table.menu2 { width: 100%;
+                 font-size: 9pt;
+                 color:#3B6690;
+                 background-color:#ffffff;
+                }
+
+    table.menu { width: 100%;
+                 font-size: 9pt}
+
+    table.sub { width: 95%;
+                font-size:9pt }
+
+    table.policy {width: 98%;
+                 border:0;
+                 cellpadding:0;
+                 cellspacing:0;}
+    table.policy1 {width: 75%;
+                 border:0;
+                 cellpadding:0;
+                 cellspacing:0;}
+
+/*--TEXTAREA����ʽ--*/
+    textarea { font-size: 9pt }
+    textarea.common3 { background-color: #ffffff;
+                       border: 1px #789AE2 solid;
+                       color:#000000;}
+    textarea.common  { background-color: #ffffff;
+                       border: 1px #000000 solid;}
+    textarea.common1 { background-color: #ffffff;
+                       border: 1px #009966 solid;
+                       color:#000000;}
+    textarea.inputtext {wrap:off;}
+    textarea.readonly { background-color: #ffffff;
+                     color: #000000;
+                     BORDER-TOP-WIDTH: 1px;
+                     BORDER-TOP-STYLE: solid;
+                     BORDER-TOP-COLOR: #ffffff;
+                     BORDER-BOTTOM-WIDTH: 1px;
+                     BORDER-BOTTOM-STYLE: solid;
+                     BORDER-BOTTOM-COLOR: #ffffff;
+                     BORDER-RIGHT-STYLE: none;
+                     BORDER-LEFT-STYLE: none }
+
+    textarea.readonlyWhite { background-color: #FFFFFF;
+                     color: #000000;
+                     BORDER-TOP-WIDTH: 1px;
+                     BORDER-TOP-STYLE: solid;
+                     BORDER-TOP-COLOR: #FFFFFF;
+                     BORDER-BOTTOM-WIDTH: 1px;
+                     BORDER-BOTTOM-STYLE: solid;
+                     BORDER-BOTTOM-COLOR: #FFFFFF;
+                     BORDER-RIGHT-STYLE: none;
+                     BORDER-LEFT-STYLE: none;
+                     FONT-SIZE: 11pt }
+
+/*--SELECT����ʽ--*/
+    select.common3 {width:85%;}
+    select { width: 160px;
+             background-color: #ffffff }
+
+    select.code{background-color: #ffffff;
+            color:#000000}
+    select.query { width: 40px;
+                   background-color: #ffffff;
+                   color:#000000}
+
+     select.logon
+  {
+    font-size: 9pt;
+    width:90%;
+    color:#4272C2
+  }
+ 
+
+/*--A����ʽ--*/
+
+    A.menu:link {text-decoration: none;color: #3B658D;}
+    A.menu:visited {text-decoration: none;color: #3B658D;}
+    A.menu:active {text-decoration: none;color: #3B658D;}
+    A.menu:hover {text-decoration: underline;color: 000000; }
+
+    A.check:link {text-decoration: none;color: rgb(100,0,255);}
+    A.check:visited {text-decoration: none;color: rgb(100,0,255);}
+    A.check:active {text-decoration: none;color: #714E00;}
+    A.check:hover {text-decoration: none;color: red; }
+
+    A:link {text-decoration: none;color: #1b8362;}
+    A:visited {text-decoration: none;color: #1b8362;}
+    A.active {text-decoration: none;color: #1b8362;}
+    A:hover {text-decoration: underline;color: #000000; }
+
+
+/*--IMG����ʽ--*/
+    IMG.button { cursor:hand }
+    IMG.buttonNexeStep { cursor:hand }/*--IMG����ʽ add by wuxiaodong 050118 reasion ϵͳ�д�����һ��ʱû��С����ʾ--*/
+
+
+/*--PRE����ʽ--*/
+    pre.tk_cn {font-size:10.5pt;
+               font-family:����_GB2312;}
+
+    pre.tk_en {font-size:10.5pt;
+               font-family:"Times New Roman";}
+
+/*--DIV��ʽ--*/
+  DIV.scrollbar{
+    OVERFLOW-y: auto;
+    OVERFLOW-x: auto;  
+    FONT-SIZE: 11pt; 
+    PADDING-BOTTOM: 0px; 
+    OVERFLOW: N; WIDTH: 100%; 
+    COLOR: blue; 
+    LINE-HEIGHT: 100%;  
+    PADDING-TOP: 0px; 
+    FONT-FAMILY: ����;  
+    LETTER-SPACING: 1pt;
+    HEIGHT: 350px; 
+    TEXT-ALIGN: left;
+    SCROLLBAR-FACE-COLOR:#ffffff;
+    SCROLLBAR-HIGHLIGHT-COLOR:#278c6c;
+    SCROLLBAR-SHADOW-COLOR:#278c6c;
+    SCROLLBAR-3DLIGHT-COLOR:#FFFFFF;
+    SCROLLBAR-ARROW-COLOR:#ffffff;
+    SCROLLBAR-TRACK-COLOR:#FFFFFF;
+    SCROLLBAR-DARKSHADOW-COLOR:#FFFFFF;
+  }
+  /*--DIV��ʽ--*/
+  DIV.Wscrollbar{
+    OVERFLOW-y: auto;
+    OVERFLOW-x: auto;  
+    FONT-SIZE: 11pt; 
+    PADDING-BOTTOM: 0px; 
+    OVERFLOW: N; WIDTH: 100%; 
+    COLOR: blue; 
+    LINE-HEIGHT: 100%;  
+    PADDING-TOP: 0px; 
+    FONT-FAMILY: ����;  
+    LETTER-SPACING: 1pt;
+    HEIGHT: 490px; 
+    TEXT-ALIGN: left;
+    SCROLLBAR-FACE-COLOR:#ffffff;
+    SCROLLBAR-HIGHLIGHT-COLOR:#278c6c;
+    SCROLLBAR-SHADOW-COLOR:#278c6c;
+    SCROLLBAR-3DLIGHT-COLOR:#FFFFFF;
+    SCROLLBAR-ARROW-COLOR:#ffffff;
+    SCROLLBAR-TRACK-COLOR:#FFFFFF;
+    SCROLLBAR-DARKSHADOW-COLOR:#FFFFFF;
+  }
+  DIV.Lscrollbar{
+    OVERFLOW-y: auto;
+    OVERFLOW-x: auto;  
+    FONT-SIZE: 11pt; 
+    PADDING-BOTTOM: 0px; 
+    OVERFLOW: N; WIDTH: 100%; 
+    COLOR: blue; 
+    LINE-HEIGHT: 100%;  
+    PADDING-TOP: 0px; 
+    FONT-FAMILY: ����;  
+    LETTER-SPACING: 1pt;
+    HEIGHT: 180px; 
+    TEXT-ALIGN: left;
+    SCROLLBAR-FACE-COLOR:#ffffff;
+    SCROLLBAR-HIGHLIGHT-COLOR:#278c6c;
+    SCROLLBAR-SHADOW-COLOR:#278c6c;
+    SCROLLBAR-3DLIGHT-COLOR:#FFFFFF;
+    SCROLLBAR-ARROW-COLOR:#ffffff;
+    SCROLLBAR-TRACK-COLOR:#FFFFFF;
+    SCROLLBAR-DARKSHADOW-COLOR:#FFFFFF;
+  }
+  DIV.Iscrollbar{
+    OVERFLOW-y: auto;
+    OVERFLOW-x: auto;  
+    FONT-SIZE: 11pt; 
+    PADDING-BOTTOM: 0px; 
+    OVERFLOW: N; WIDTH: 100%; 
+    COLOR: blue; 
+    LINE-HEIGHT: 100%;  
+    PADDING-TOP: 0px; 
+    FONT-FAMILY: ����;  
+    LETTER-SPACING: 1pt;
+    HEIGHT: 320px; 
+    TEXT-ALIGN: left;
+    SCROLLBAR-FACE-COLOR:#ffffff;
+    SCROLLBAR-HIGHLIGHT-COLOR:#278c6c;
+    SCROLLBAR-SHADOW-COLOR:#278c6c;
+    SCROLLBAR-3DLIGHT-COLOR:#FFFFFF;
+    SCROLLBAR-ARROW-COLOR:#ffffff;
+    SCROLLBAR-TRACK-COLOR:#FFFFFF;
+    SCROLLBAR-DARKSHADOW-COLOR:#FFFFFF;
+  }

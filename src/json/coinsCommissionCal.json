@@ -1,0 +1,42 @@
+{
+    "agencyFeeMainInfoReq": {
+        "agentRate": "20.00",
+        "agreementNo": "P02010000015-01",
+        "businessType": "CP",
+        "comCode": "00000001",
+        "currency": "USD",
+        "disPayFeeWay": "0",
+        "endDate": "2022-11-16",
+        "endorType": "",
+        "isRation": "0",
+		"isCoreCargo":"0",
+		"minPremium":"15.59",
+        "policyNo": "",
+         "coinsReqInfoList": [
+            {
+                "coinsCode": "00000001",
+                "coinsFlag": "1",
+                "flag": "1",
+                "coinsRate": "60.00"
+            },
+            {
+                "coinsCode": "0062",
+                "coinsFlag": "1",
+                "flag": "3",
+                "coinsRate": "40.00"
+            }
+        ],
+        "riskCode": "2611",
+        "startDate": "2021-11-17",
+        "transId": "NewInterf_0_3025fd0685ee4af28a8269327ab09dcb"
+    },
+    "reqHeader": {
+        "channelCode": "0",
+        "sign": "1",
+        "sysPassWord": "7777",
+        "sysUserCode": "0000049",
+        "transDate": "2021-10-29",
+        "transNo": "12344444",
+        "transTime": "10:33"
+    }
+}
