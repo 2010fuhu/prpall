@@ -148,8 +148,8 @@
                   }
                 }
                 //期次
-                obj.payNo = this.planInfoVoList.length;
-                obj.serialNo= this.planInfoVoList.length;
+                obj.payNo = this.payTimes;
+                obj.serialNo= this.planInfoVoList.length+1;
                 //add by hangang 20131224 辽宁按费出票 begin
                 // if(typeof fm.FeePrintFlag != "undefined" ){
                 //   if("1"==fm.FeePrintFlag.value&&("0,1,3".indexOf(fm.CoinsFlag.value)>-1)){
@@ -210,89 +210,7 @@
             },
             checkPlanFlag(){},
           //修改应缴金额后触发
-           // eslint-disable-next-line no-unused-vars
-           changePlanFee(index){
-            // let dbSumPremium1 = this.$uiCommon.replaced(this.$store.state.sumPremium1);
-            // let dbLeftPremium = 0;
-            // let dbSubPremium = 0;
-            // let intLeftCount = 0;
-            // let i = 0;
-            // //异常处理
-            // if(isNaN(dbSumPremium1))
-            //   dbSumPremium1 = 0;
-
-            // if(parseFloat(this.$uiCommon.replaced(this.planInfoVoList[index].planFee))==0) //应缴金额不能为0
-            // {
-            //   this.$alert('应缴金额不能为0！','缴费计划',{ type:'warning'})
-            //   this.planInfoVoList[index].planFee = this.$uiCommon.pointTwo(parseFloat(this.$uiCommon.replaced( this.$refs.planFee[index].oldValue)).toFixed(2));//modify by gengxiaobo 20071120 格式化前取消页面千分位符号
-            //   this.planInfoVoList[index].delinquentFee = this.$uiCommon.pointTwo(parseFloat(this.planInfoVoList[index].planFee).toFixed(2));
-            //   this.planInfoVoList[index].payRefFee = "0.00";
-            //   return false;
-            // }
-            // if(parseFloat(this.$uiCommon.replaced(this.planInfoVoList[index].planFee))>dbSumPremium1) //检验金额超过该币别的保费
-            // {
-            //   this.$alert("现"+ this.PrpPlanCurrencyName+"缴费已多于原计划"+(parseFloat(this.$uiCommon.replaced( this.planInfoVoList[index].planFee))-dbSumPremium1,2).toFixed(2)+"元",
-            //   '缴费计划',{ type:'warning'})
-            //   this.planInfoVoList[index].planFee = this.$uiCommon.pointTwo(parseFloat(this.$uiCommon.replaced(this.$refs.planFee[index].oldValue)).toFixed(2));
-            //   this.planInfoVoList[index].delinquentFee = this.$uiCommon.pointTwo(parseFloat(this.planInfoVoList[index].planFee).toFixed(2));
-            //   this.planInfoVoList[index].payRefFee = "0.00";
-            //   return false;
-            // }
-            // //向下求剩余的保费
-            // dbLeftPremium = dbSumPremium1;
-            // for(i=0;i<=index&&i<=this.planInfoVoList.length;i++)
-            // {
-            //   dbLeftPremium = dbLeftPremium-parseFloat(this.$uiCommon.replaced(this.planInfoVoList[i].planFee));//modify by gengxiaobo 20071120 计算前取消页面千分位符号    
-            // }
-            
-            
-            // //求缴费计划中剩余的条数
-            // intLeftCount = this.planInfoVoList.length-(index+1);
-            // //modify by gengxiaobo 20071120 格式化前取消页面千分位符号
-            // if(intLeftCount==0&&parseFloat(this.$uiCommon.replaced(this.planInfoVoList[index].planFee),10)!=parseFloat(this.$uiCommon.replaced(this.$refs.planFee[index].oldValue),10))
-            // {
-            //   this.$alert('最后一条缴费计划的应缴金额不能如此修改！','缴费计划',{ type:'warning'})
-            //   this.planInfoVoList[index].planFee = this.$uiCommon.pointTwo(parseFloat(this.$uiCommon.replaced(this.$refs.planFee[index].oldValue)).toFixed(2));//modify by gengxiaobo 20071120 格式化前取消页面千分位符号
-            //   this.planInfoVoList[index].delinquentFee = this.$uiCommon.pointTwo(parseFloat(this.planInfoVoList[index].planFee).toFixed(2));
-            //   this.planInfoVoList[index].payRefFee = "0.00";
-            //   return false;
-            // }
-            // //求平均值
-            // dbSubPremium = dbLeftPremium/intLeftCount;
-            // //格式化页面上的值
-            // for(i=0;i<=index;i++)
-            // {
-            //   //modify by gengxiaobo begin 20071120 格式化前取消页面千分位符号,格式化后除去修改域其他输入域格式化为千分位
-            //   if(i!=index)
-            //   {
-            //    this.planInfoVoList[i].planFee = this.$uiCommon.numberFormat( this.$uiCommon.pointTwo(parseFloat( this.$uiCommon.replaced(this.planInfoVoList[i].planFee)).toFixed(2)));
-            //   }
-            //   else
-            //   {
-            //      this.planInfoVoList[i].planFee = this.$uiCommon.pointTwo(parseFloat(this.$uiCommon.replaced( this.planInfoVoList[i].planFee)).toFixed(2));
-            //   }
-            //   //modify by gengxiaobo end 20071120 格式化前取消页面千分位符号,格式化后除去修改域其他输入域格式化为千分位
-            //   this.planInfoVoList[i].delinquentFee = this.$uiCommon.pointTwo(parseFloat(this.planInfoVoList[i].delinquentFee).toFixed(2));
-            //   this.planInfoVoList[i].payRefFee = "0.00";    
-            // }
-            // for(i=index+1;i<=this.planInfoVoList.length-1;i++)
-            // {
-            //   if(i==this.planInfoVoList.length-1) //最后一次的分摊保费为余额
-            //   {
-            //     this.planInfoVoList[i].planFee = this.$uiCommon.numberFormat(this.$uiCommon.pointTwo(dbLeftPremium.toFixed(2)));//modify by gengxiaobo 20071120 格式化千分位符号
-            //     this.planInfoVoList[i].delinquentFee  = this.$uiCommon.pointTwo(dbLeftPremium.toFixed(2));
-            //     this.planInfoVoList[i].payRefFee = "0.00";
-            //   }
-            //   else
-            //   {
-            //     dbLeftPremium = dbLeftPremium-(dbSubPremium.toFixed(2));
-            //     this.planInfoVoList[i].planFee = this.$uiCommon.numberFormat(this.$uiCommon.pointTwo(dbSubPremium.toFixed(2)));//modify by gengxiaobo 20071120 格式化千分位符号
-            //     this.planInfoVoList[i].delinquentFee  = this.$uiCommon.pointTwo(dbSubPremium.toFixed(2));
-            //     this.planInfoVoList[i].payRefFee = "0.00";
-            //   }
-            // }  
-            // return true;
-          },
+           changePlanFee(){},
           setOldValue(index){
             this.$refs.planFee[index].oldValue=this.$uiCommon.replaced(this.planInfoVoList[index].planFee);
 

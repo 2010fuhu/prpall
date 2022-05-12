@@ -201,17 +201,17 @@ export default{
             offeredRate(){
               this.$refs.mainReinsRef.offeredRate();
             },
-            initReinsCededInfoVo(){
+            // initReinsCededInfoVo(){
               
-              this.reinsCededInfoVo.oriCurrency=this.$store.state.currency1Fee
-              //原币币别不计算了 暂时没有找到实际得意义
-              this.reinsCededInfoVo.inAmount=this.$store.state.sumAmount1 
-              this.reinsCededInfoVo.inPremium=this.$store.state.sumPremium1 
-              this.reinsCededInfoVo.inDisPremium=this.$store.state.sumPremium1 
-              //coinsReinsRef
-              this.$refs.coinsReinsRef.insertCoinsReinsCi()
+            //   this.reinsCededInfoVo.oriCurrency=this.$store.state.currency1Fee
+            //   //原币币别不计算了 暂时没有找到实际得意义
+            //   this.reinsCededInfoVo.inAmount=this.$store.state.sumAmount1 
+            //   this.reinsCededInfoVo.inPremium=this.$store.state.sumPremium1 
+            //   this.reinsCededInfoVo.inDisPremium=this.$store.state.sumPremium1 
+            //   //coinsReinsRef
+            //   this.$refs.coinsReinsRef.insertCoinsReinsCi()
               
-            },
+            // },
             getJsonReinsBrokerList(){
               let list=[];
               for(let reinsBrokerInfoVo of this.reinsBrokerInfoVoList){
@@ -238,7 +238,9 @@ export default{
                   this.$alert('原保单不含税总保费不能为空','分入信息',{type:'warning'});  // ui框架的提示弹窗
                   return false
                 }else{
-                  let num1=parseFloat(this.$uiCommon.replaced(this.reinsCededInfoVo.inAmount,","))-parseFloat(this.$uiCommon.replaced(this.$store.state.sumAmount1,","))
+                  //获取保单的支付保额
+                  let sumAmount1=this.$store.state.refreshFlag=='1'?this.$store.state.sumAmount1:this.reinsCededInfoVo.inAmount
+                  let num1=parseFloat(this.$uiCommon.replaced(this.reinsCededInfoVo.inAmount,","))-parseFloat(this.$uiCommon.replaced(sumAmount1,","))
                   if(num1!=0){
                     this.$alert('分入保额与保单保额不一致!!!','分入信息',{type:'warning'});  // ui框架的提示弹窗
                     return false

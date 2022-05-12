@@ -71,7 +71,7 @@ class  insuredInfoVo{
 			insuredInfoList:{
 				handler(){
 				for(let i=0; i<this.insuredInfoList.length;i++){
-					this.insuredInfoList[i].serialNo=i+1;
+					this.insuredInfoList[i].serialNo=i+2
 				}
 				},
 				immediate: true

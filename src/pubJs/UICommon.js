@@ -1509,9 +1509,9 @@ export {
   setOnchangeOfTable,
   getPreDateFullDate,
   setTitle,//设置元素的title 
-  addevent, //设置页面元素,添加事件
-  deleteRowForPG,//删除一行数据的方法
-  insertRowForPG,//新增一行数据的方法
+  addevent, //设置页面元素,添加事件   普通批改
+  deleteRowForPG,//删除一行数据的方法 普通批改
+  insertRowForPG,//新增一行数据的方法 普通批改
   setReadonlyOfElement,// 
   trim,
   setColor

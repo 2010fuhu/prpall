@@ -38,6 +38,12 @@ const routes = [
       },
       {   
         
+        path: '/endorseCommonInputReins',
+        component: () => import('@/views/commonship/pg/UIEndorseCommonInput.vue'),
+      
+      },
+      {   
+        
         path: '/endorseText',
         component: () => import('@/views/commonship/pg/UIEndorseCommonInputText.vue'),
       

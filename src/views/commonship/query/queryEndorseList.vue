@@ -117,6 +117,22 @@ class undwrtInfoVo{
         this.valid='1'
     }
 }
+class deleteObj{
+    constructor(){
+       this.reqHeader={
+           transNo:"",
+           transDate:"",
+           transTime:"",
+           sysUserCode:"",
+           sysPassWord:"",
+           sign:"",
+           channelCode:""
+       },
+       this.endorseNo=""
+    }
+}
+
+
 export default {
     props: ['Conditionobj'],
     data(){
@@ -181,7 +197,14 @@ export default {
         },
         deleteEndorse(endorseNo){
             console.log('删除本条批改'+endorseNo)
-            OrderList.endorseDelete(endorseNo).then((res)=>{
+            let obj=new deleteObj()
+            obj.reqHeader.transNo=this.$uiCommon.uuid();        
+            obj.reqHeader.transDate=this.$uiCommon.getCurrentDate();
+            obj.reqHeader.transTime=this.$uiCommon.getCurrentDate();
+            obj.reqHeader.sysUserCode=this.$store.state.userCode;
+            obj.reqHeader.sign="0";
+            obj.endorseNo=endorseNo;
+            OrderList.endorseDelete(obj).then((res)=>{
                  if(res.data.errCode=='0000'){
                     this.$alert('删除成功！！！','批单信息',{type:'success' })
 				 }else{

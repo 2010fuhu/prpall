@@ -19,6 +19,7 @@ var Store =  new Vuex.Store({
       coinsFlag:'0',//联共保标志
       agriType:'0',
       channelType1:'',              //一级业务来源
+      refreshFlag:'0',              //刷新标志 正面点击过币别确定按钮
       refreshFlagReins:'0',         //刷新分入业务标志
       refreshFlagFee:'0',           //刷新币别标志
       refreshFlagAgri:'0',          //刷新涉农标志
@@ -44,26 +45,7 @@ var Store =  new Vuex.Store({
       underWriteFlag:'',//核保标志
       othFlag:'',//其他标志
       endroseContent:'',//批文内容
-      originalPolicy:{
-        mainInfoVo:{},
-        appliInfoVo:{},
-        itemKindInfoVos:[],
-        handlerInfoVos:[],
-        insuredInfoVos:[],
-        constructInfoVo:{},
-        guaranteeInfoVo:{},
-        guaranteeSubInfoVos:[],
-        performanceObligorInfoVos:[],
-        feeInfoVos:[],
-        planInfoVos:[],
-        engageInfoVos:[],
-        agentInfoVos:[],
-        subSidyInfoVos:[],
-        coinsInfoVos:[],
-        coinsDetailInfoVos:[],
-        reinsCededInfoVo:{},
-        reinsBrokerInfoVos:[]
-      }
+      
   },
    mutations:{
       //显式的更改state里的数据

@@ -59,6 +59,7 @@
  </div>
 </template>
 <script>
+import  check from '@/api/checkPolicy.js'
 import  comCodeInfo from '@/api/getusername.js'
 import  date from '@/utils/date.js'
 export default ({
@@ -74,6 +75,8 @@ export default ({
         }
     },
     mounted(){
+           debugger
+           console.log(this.$route)
            this.endorseDate=this.$uiCommon.getCurrentDate()
            this.validDate=this.$uiCommon.getNextDate()
            //需要调用接口获取
@@ -125,11 +128,82 @@ export default ({
               // let index=Sel.selectedIndex ;             
               // let ComCode= Sel.options[index].text;
               // console.log(ComCode)
-              //2.调用接口传递参数
-              this.$store.state.validDate=this.validDate
-              this.$store.state.validHour=this.validHour
-              this.$router.push({path:'/pgMain',query: { 'businessNo': this.policyNo,'bizType':'ENDORSE','comCode':this.comCode }})
-
+              let obj={
+                  reqHeader: {
+                      transNo: this.$uiCommon.uuid(), 
+                      transDate: this.$uiCommon.getCurrentDate(),
+                      transTime: this.$uiCommon.getCurrentDate(),
+                      sysUserCode: this.$store.state.userCode,
+                      sysPassWord: "",
+                      sign: "1",
+                      channelCode: "0"
+                  },
+                  policyNo: this.policyNo
+              }
+              this.checkPolicyData(obj).then(data=>{
+                  debugger
+                  //判断分入数据
+                  let businessNature=data.mainDTO.businessNature
+                  if(businessNature=='h'&&this.$route.path=='endorseCommonInput'){
+                    this.$alert(`保单${this.policyNo}为分入业务数据,请使用分入普通批单录入菜单！`,'普通批改录入',{type:'warning'})
+                     return  false  
+                  }else if(businessNature!='h'&&this.$route.path=='endorseCommonInputReins'){
+                     this.$alert(`保单${this.policyNo}为非分入业务,请使用普通批单录入菜单！`,'普通批改录入',{type:'warning'})
+                     return  false  
+                  }
+                  let  startDate = data.mainDTO.startDate; //起保日期
+                  var  compareResult =this.$uiCommon.compareFullDate(this.validDate,startDate);
+                  if(compareResult==-1){
+                    this.$alert(`批改生效日期${this.validDate}不能小于起保日期${startDate}！`,'普通批改录入',{type:'warning'})
+                    return  false
+                  }
+                  let endDate =  data.mainDTO.endDate; //终保日期
+                  compareResult = this.$uiCommon.compareFullDate(endDate,this.validDate);
+                  if(compareResult==-1){
+                    this.$alert(`批改生效日期${this.validDate}不能大于终保日期${endDate}！`,'普通批改录入',{type:'warning'})
+                    return  false
+                  }
+                  //该保单是否已经核保通过
+                  if(data.mainDTO.underWriteFlag!='1'&&data.mainDTO.underWriteFlag!='3'){
+                     this.$alert(`保单${this.policyNo}没有审批通过！`,'普通批改录入',{type:'warning'})
+                    return  false
+                  }
+                  //该保单是否已经退保
+                  if(data.mainDTO.othFlag.length>=3&&data.mainDTO.othFlag.charAt(2)=='1'){
+                    this.$alert(`保单${this.policyNo}已经退保！`,'普通批改录入',{type:'warning'})
+                    return  false
+                  }
+                  //该保单是否已经注销
+                  if(data.mainDTO.othFlag.length>=4&&data.mainDTO.othFlag.charAt(3)=='1'){
+                    this.$alert(`保单${this.policyNo}已经注销！`,'普通批改录入',{type:'warning'})
+                    return  false
+                  }
+                  // 该保单是否已经终止合同
+                  if(data.mainDTO.othFlag.length>=6&&data.mainDTO.othFlag.charAt(5)=='1'){
+                     this.$alert(`保单${this.policyNo}已经终止合同！`,'普通批改录入',{type:'warning'})
+                    return  false
+                  }
+                  //该保单是否存在没有审批完的批单
+                   if(data.headDTO.underwriteflag==null||(data.headDTO.underwriteflag!='1'&&data.headDTO.underwriteflag!='3')){
+                     this.$alert(`保单${this.policyNo}还存在没审批完毕的批单,无法再次进行批改！！`,'普通批改录入',{type:'warning'})
+                    return  false
+                  }
+        
+                  // //该保单在用户输入的批单生效日期后是否存在已经生效的批单
+                  compareResult=this.$uiCommon.compareFullDate(data.headDTO.validdate,this.validDate);
+                  if(compareResult==1){
+                     this.$alert(`输入的批单生效日期不能小于已经生效的批单日期！`,'普通批改录入',{type:'warning'})
+                    return  false
+                  }
+                  //2.调用接口传递参数
+                  this.$store.state.validDate=this.validDate
+                  this.$store.state.validHour=this.validHour
+                  this.$router.push({path:'/pgMain',query: { 'businessNo': this.policyNo,'bizType':'ENDORSE','comCode':this.comCode }})
+              }).catch(err=>{
+                 this.$alert(err,'普通批改录入',{type:'warning'})
+                 return  false
+              })
+      
            }else{
               this.$alert('批改生效日期应大于批改日期!!!','普通批改录入',{type:'warning'})
               return  false
@@ -140,8 +214,20 @@ export default ({
               this.policyNo=''
               this.validDate=''
               this.validHour=''
-        }
+        },
+          checkPolicyData(jsonObj){
+               return   new Promise((resolve,reject)=>{
+                  check.checkdata(jsonObj).then(res=>{
+                    if(res.data.resHeader.errCode=='0000'){
+                        debugger
+                        resolve(res.data)
+                    }else if(res.data.resHeader.errCode=='9999'){
+                        reject(res.data.resHeader.errMsg)
+                    }
 
+                })
+              })
+           },
     }
    
 })

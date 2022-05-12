@@ -1,1 +1,22 @@
-{}
+{
+
+        "mainInfoVo":{},
+        "appliInfoVo":{},
+        "itemKindInfoVos":[],
+        "handlerInfoVos":[],
+        "insuredInfoVos":[],
+        "constructInfoVo":{},
+        "guaranteeInfoVo":{},
+        "guaranteeSubInfoVos":[],
+        "performanceObligorInfoVos":[],
+        "feeInfoVos":[],
+        "planInfoVos":[],
+        "engageInfoVos":[],
+        "agentInfoVos":[],
+        "subSidyInfoVos":[],
+        "coinsInfoVos":[],
+        "coinsDetailInfoVos":[],
+        "reinsCededInfoVo":{},
+        "reinsBrokerInfoVos":[]
+    
+}

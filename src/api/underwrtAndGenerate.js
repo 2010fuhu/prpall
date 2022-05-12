@@ -15,18 +15,13 @@ export default {//投保单生成接口
         })
    },
    endorseGenerate(arg) {
-    let url=''
-    url='endorse/create'
     return request({
-    url,
+    url:'endorse/create',
     method:'post',
     data:JSON.stringify(arg)
     })
 },
    underwrt(arg) {//核保接口
-       console.log("核保接口请求报文 begin")
-       console.log(JSON.stringify(arg))
-       console.log("核保接口请求报文 end ")
        return request({
        baseURL:process.env.NODE_ENV === 'production'?process.env.VUE_APP_UNDERWRT:process.env.VUE_APP_BASE_API,
        url:`/underwrt`,

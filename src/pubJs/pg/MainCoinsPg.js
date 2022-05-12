@@ -171,25 +171,12 @@ export default{
               }
            } 
            //拿到总保额 和总保费
-            let sumAmount=this.$store.state.sumAmount1
-            let sumPremium=this.$store.state.sumPremium1
+            debugger
+            let sumAmount=this.$store.state.refreshFlag=='1'?  this.$store.state.sumAmount1:this.CoinsAmountsum
+            let sumPremium=this.$store.state.refreshFlag=='1'? this.$store.state.sumPremium1:this.CoinsPremiumsum
           //2 循环遍历为coinsDetailInfoVoList 明细赋值 
-           //
             let count =this.coinsDetailInfoVoList.length
             for (let i=0;i<count;i++){
-                //2.1判断从共与从联的情况   先计算我方的保额 保费
-                // let coinsDetail={
-                //      serialNo:'',
-                //      coinsCode:'',
-                //      coinsName:'',
-                //      coinsAmount:'0',
-                //      coinsPremium:'0',
-                //      agentFee:'0',
-                //      operateFee:'0',
-                //      middleCostFee:'0',
-                //      currency:this.$store.state.currency1Fee,
-                //      flag:''
-                // } 
                 if(this.coinsFlag=='2'||this.coinsFlag=='4'){
                     if(this.coinsInfoVoList[i].coinsType=='1'){
                       this.coinsDetailInfoVoList[i].coinsAmount=sumAmount;
@@ -197,7 +184,6 @@ export default{
                     }else{
                       this.coinsDetailInfoVoList[i].coinsAmount=(parseFloat(sumAmount)/parseFloat(this.coinsInfoVoList[0].coinsRate)*parseFloat(this.coinsInfoVoList[i].coinsRate)).toFixed(2);
                       this.coinsDetailInfoVoList[i].coinsPremium=(parseFloat(sumPremium)/parseFloat(this.coinsInfoVoList[0].coinsRate)*parseFloat(this.coinsInfoVoList[i].coinsRate)).toFixed(2);
-
                     }
                  //2.2判断主共与主联的情况   先计算我方的保额 保费
                 }else if(this.coinsFlag=='1'||this.coinsFlag=='3'){

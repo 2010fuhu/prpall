@@ -171,7 +171,7 @@ export default{
             this.CurrencyName=CurrencyName;
            //拿到总保额 和总保费
             let sumAmount=this.$store.state.sumAmount1
-            let sumPremium=this.$store.state.sumPremium1
+            let sumPremium= this.$store.state.sumPremium1
           //3  循环遍历为coinsDetailInfoVoList 明细赋值 
            //
             let count =this.coinsInfoVoList.length

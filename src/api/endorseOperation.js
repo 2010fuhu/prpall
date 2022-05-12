@@ -21,7 +21,6 @@ export default {
         })
     },
     findEndorseInfo(EndorseNo){//批单明细查询
-        console.log(EndorseNo)
         return request({
             url:`/endorse/findlist`,
             method: 'get',
@@ -33,12 +32,11 @@ export default {
     },
     endorseDelete(arg){//批单删除
         let url=`/endorse/delete` //
+        debugger
         return request({
             url,
             method: 'post',
-            params:{
-                arg
-            }
+            data:JSON.stringify(arg)
         })
     },
     endorseCencel(endorseNo){//批单撤单

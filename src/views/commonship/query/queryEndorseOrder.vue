@@ -208,8 +208,9 @@ export default {
 		queryData(val){
 		  return new Promise((resolve,reject)=>{
               OrderList.findEndorseWhereTotal(val).then((res)=>{
-               if(res.data.code=='9998'||res.data.code=='9999'){
-				   reject(res.data.msg)
+				const resHeader=res.data.resHeader
+               if(resHeader.errCode=='9998'||resHeader.errCode=='9999'){
+				   reject(resHeader.errMsg)
 				}else{
                    resolve()
 				}

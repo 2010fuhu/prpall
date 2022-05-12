@@ -1,4 +1,3 @@
-//import  {proposal} from '@/utils/ProposalGenerateReq.js'
 import  Address from '@/api/getselectaddressinfo.js'
    export default {
         name:'AppliInsured',

@@ -47,6 +47,21 @@
 </template>
 
 <script >
+import OrderList  from '@/api/endorseOperation.js'
+class deleteObj{
+    constructor(){
+       this.reqHeader={
+           transNo:"",
+           transDate:"",
+           transTime:"",
+           sysUserCode:"",
+           sysPassWord:"",
+           sign:"",
+           channelCode:""
+       },
+       this.endorseNo=""
+    }
+}
 export default ({
       data(){
         return{
@@ -60,10 +75,23 @@ export default ({
                this.$router.push({path: '/Save'})
           },
           previousForm(){//上一步 和取消方法
-              this.$router.go(-1)
+            let obj=new deleteObj()
+            obj.reqHeader.transNo=this.$uiCommon.uuid();        
+            obj.reqHeader.transDate=this.$uiCommon.getCurrentDate();
+            obj.reqHeader.transTime=this.$uiCommon.getCurrentDate();
+            obj.reqHeader.sysUserCode=this.$store.state.userCode;
+            obj.reqHeader.sign="0";
+            obj.endorseNo=this.$route.query.endorseNo;
+            OrderList.endorseDelete(obj).then((res)=>{
+                 if(res.data.errCode=='0000'){
+                     this.$router.go(-1)
+				 }else{
+					this.$alert('删除批单号失败，请联系管理员！！！','普通批单录入',{type:'error' })
+				 }
+			}).catch(()=>{})  
           },
           setDefaultText(){
-              this.endorseContent='121231231'
+              this.endorseContent=this.$route.query.endorseText
           }
           
       }

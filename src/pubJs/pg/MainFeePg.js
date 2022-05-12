@@ -13,6 +13,7 @@ class  feeInfoVo{
 		this.currency2=''//汇总币别代码
 		this.exchangeRate2=''//汇总币别兑换率
 		this.amount2=''//汇总
+		
 		this.premium2=''//汇总币别保费
 		this.exchangeRate1=''//支付币别兑换率
 		this.amount1=''//支付币别保额
@@ -63,6 +64,8 @@ export default ({
 		}
 	}, 
 	methods:{
+	
+
 		show(){this.isShow=!this.isShow },
 		initSelected(data){
 			this.currencyInfoVoList=data.currencyInfoVoList;
@@ -189,7 +192,6 @@ export default ({
 						// this.feeInfoVoList[index].premium2=parseFloat(this.$uiCommon.replaced(this.feeInfoVoList[index].premium2))+parseFloat(item.premium2);
 						// this.feeInfoVoList[index].amount1=parseFloat(this.$uiCommon.replaced(this.feeInfoVoList[index].amount1))+ parseFloat(item.amount1);
 						// this.feeInfoVoList[index].premium1=parseFloat(this.$uiCommon.replaced(this.feeInfoVoList[index].premium1))+parseFloat(item.premium1);
-
                         this.feeInfoVoList[index].amount=parseFloat(item.amount);
 						this.feeInfoVoList[index].premium=parseFloat(item.premium);
 						//this.feeInfoVoList[i].currency2=item.currency2
@@ -198,19 +200,20 @@ export default ({
 						this.feeInfoVoList[index].premium2=parseFloat(item.premium2);
 						this.feeInfoVoList[index].amount1=parseFloat(item.amount1);
 						this.feeInfoVoList[index].premium1=parseFloat(item.premium1);
-						if((parseFloat(this.$refs.amount[index].title)!=this.feeInfoVoList[index].amount)
-							||(parseFloat(this.$refs.premium[index].title)!=this.feeInfoVoList[index].premium)
-							||(parseFloat(this.$refs.amount2[index].title)!=this.feeInfoVoList[index].amount2)
-							||(parseFloat(this.$refs.premium2[index].title)!=this.feeInfoVoList[index].premium2)
-							||(parseFloat(this.$refs.amount1[index].title)!=this.feeInfoVoList[index].amount1)
-							||(parseFloat(this.$refs.premium1[index].title)!=this.feeInfoVoList[index].premium1)
-						){
-							this.feeInfoVoList[index].flag="U";
+						if(this.$refs.amount[index].title!=null&&this.$refs.amount[index].title!=''&&typeof (this.$refs.amount[index].title)!="undefined" ){
+							if((parseFloat(this.$refs.amount[index].title)!=this.feeInfoVoList[index].amount)
+								||(parseFloat(this.$refs.premium[index].title)!=this.feeInfoVoList[index].premium)
+								||(parseFloat(this.$refs.amount2[index].title)!=this.feeInfoVoList[index].amount2)
+								||(parseFloat(this.$refs.premium2[index].title)!=this.feeInfoVoList[index].premium2)
+								||(parseFloat(this.$refs.amount1[index].title)!=this.feeInfoVoList[index].amount1)
+								||(parseFloat(this.$refs.premium1[index].title)!=this.feeInfoVoList[index].premium1)){
+							    this.feeInfoVoList[index].flag="U";
 
-						}else{
-							this.feeInfoVoList[index].flag="";
+							}else{
+							  this.feeInfoVoList[index].flag="";
+							}
+
 						}
-
 
 					}else if(!oldfeeCurrency.has(item.currency)){
 						let obj=new feeInfoVo();
@@ -243,14 +246,28 @@ export default ({
 					 if(itemkindCurrency.indexOf(key)<0){
 						if(this.feeInfoVoList[value].flag=="I"){
                             indexNew.push(value)//这个是原有的itemkind列表中没有的 币别 且fee列表为新增 
-						}else if(this.feeInfoVoList[value].flag=="U"){
+						}else {
 							this.feeInfoVoList[value].amount=0.00;
 							this.feeInfoVoList[value].premium=0.00;
 							this.feeInfoVoList[value].amount2=0.00;
 							this.feeInfoVoList[value].premium2=0.00;
 							this.feeInfoVoList[value].amount1=0.00;
 							this.feeInfoVoList[value].premium1=0.00;
-						}
+							if(this.$refs.amount[value].title!=null&&this.$refs.amount[value].title!=''&&typeof (this.$refs.amount[value].title)!="undefined" ){
+								if((parseFloat(this.$refs.amount[value].title)!=this.feeInfoVoList[value].amount)
+									||(parseFloat(this.$refs.premium[value].title)!=this.feeInfoVoList[value].premium)
+									||(parseFloat(this.$refs.amount2[value].title)!=this.feeInfoVoList[value].amount2)
+									||(parseFloat(this.$refs.premium2[value].title)!=this.feeInfoVoList[value].premium2)
+									||(parseFloat(this.$refs.amount1[value].title)!=this.feeInfoVoList[value].amount1)
+									||(parseFloat(this.$refs.premium1[value].title)!=this.feeInfoVoList[value].premium1)){
+									this.feeInfoVoList[value].flag="U";
+	
+								}else{
+								  this.feeInfoVoList[value].flag="";
+								}
+	
+							}
+						} 
 					 }
 				})
 				for(let index  of indexNew){
@@ -266,10 +283,6 @@ export default ({
 					sumAmount2=parseFloat(sumAmount2)+parseFloat(item.amount2)
 
 				}
-				//sumAmount=parseFloat(sumAmount)+parseFloat(obj.amount)
-				//sumPremium=parseFloat(sumPremium)+parseFloat(obj.premium)
-				//this.$store.state.sumAmount=sumAmount.toFixed(2)
-				//this.$store.state.sumPremium=sumPremium.toFixed(2)
 				this.$store.state.sumPremium1=sumPremium1.toFixed(2)
 				this.$store.state.sumAmount1=sumAmount1.toFixed(2)
 				this.$store.state.sumPremium2=sumPremium2.toFixed(2)

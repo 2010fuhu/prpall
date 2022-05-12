@@ -30,7 +30,7 @@ module.exports = {
     runtimeCompiler: false,
     parallel: require('os').cpus().length > 1,
     lintOnSave: false, // 关闭格式检查
-    productionSourceMap: true, // 打包时不会生成 .map 文件，加快打包速度 
+    productionSourceMap: true, // 打包时不会生成 .map 文件，加快打包速度
     transpileDependencies: ["*"],
     configureWebpack: {
       //警告 webpack 的性能提示
