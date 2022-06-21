@@ -94,8 +94,19 @@ export default {
 
     },
     initMainConstructData(obj){
-      this.constructInfoVo=obj.constructInfoVo 
-    }
-
+      this.constructInfoVo=obj.endorseDataVo.constructInfoVo 
+      let org=obj.originDataVo.constructInfoVo
+      if(obj.originDataVo.constructInfoVo){
+          for(let key in org){
+              if(this.$refs[key]){
+                 this.$refs[key].title=org[key]
+                 if(org[key]!= this.constructInfoVo[key]&&org.flag=='U'){
+                   this.$uiCommon.setColor(this.$refs[key])
+                 }
+              }
+          }
+        }
+     
+    },
   }
 }

@@ -1,0 +1,12 @@
+{
+       "reqHeader":{
+            "transNo":"",
+            "transDate":"",
+            "transTime":"",
+            "sysUserCode":"",
+            "sysPassWord":"",
+            "sign":"",
+            "channelCode":""
+       },
+       "endorseNo":""
+}

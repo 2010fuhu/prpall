@@ -24,13 +24,20 @@ export default {
        changeDeductibleTextEngage(){},
        setRefreshFlagDeductibleTextZero(){},
        initMainDeductibleData(orderData){
-       let data =orderData.engageInfoVos.filter(item=>{
+       let data =orderData.endorseDataVo.engageInfoVos.filter(item=>{
                 return item.clauseCode=='TX001'
             })
-        console.log("-------------------------------------");    
-        console.log(data[0]);
-        console.log("-------------------------------------");  
+        let orgin =orderData.originDataVo.engageInfoVos.filter(item=>{
+          return item.clauseCode=='TX001'
+      })   
         this.engageInfoVo=data[0]
+        if(orgin.length){
+          console.log( this.$refs)
+          this.$refs.clauses.title=orgin[0].clauses
+          if(orgin[0].flag&&orgin[0].flag.indexOf('U')>=0){
+            this.$refs.clauses.className=`${this.$refs.clauses.className}u`
+          }
+        }
        }
     }
 }

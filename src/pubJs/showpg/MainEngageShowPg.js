@@ -38,10 +38,10 @@ import {showPage} from '@/pubJs/UICommon.js'
               this.clauseInfoVoList.forEach(item=>{
                  this.ClausesContextMap.set(item.clausecode, item.context)
 
-			  })
-		   },
+			        })
+		        },
             initEngageData(orderData){
-              let data=orderData.engageInfoVos.filter(ele=>{
+              let data=orderData.endorseDataVo.engageInfoVos.filter(ele=>{
                 return  ele.clauseCode!='TX001'
               }) 
               this.engageInfoVoList=data

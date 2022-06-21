@@ -55,7 +55,7 @@
 					readonly @blur="$uiCommon.checkFullDate($event);" >
 			</td>
 		</tr>
-		<tr id="trEndorDateValidDate" v-if="$route.path=='/pgMain'">
+		<tr id="trEndorDateValidDate" v-if="$route.path=='/pgMain'||$route.path=='/reinsPgMain'">
 			<td class="title" id="tdEndorDateTitle">
 				批改日期：
 			</td>

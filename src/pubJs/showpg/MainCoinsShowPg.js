@@ -20,7 +20,12 @@ export default{
       OperateFeesum:'',
       proportionFlag1:'0',// 手续计入方式
       billType:'0',//发票计入方式
-      billTypeDisabled:true 
+      billTypeDisabled:true,
+      chgCoinsAmountSum:0.00,
+      chgCoinsPremiumSum:0.00,
+      chgAgentFeeSum:0.00,
+      chgMiddleCostFeeSum:0.00,
+      chgOperateFeeSum:0.00,
       }
   },
     props:{
@@ -34,7 +39,6 @@ export default{
       //this.initCoinsdata()
   },
   updated(){
-    debugger
     if(this.isCoinschildShow){
       this.setReadOnly()
     }
@@ -42,13 +46,30 @@ export default{
 
   methods:{
       initMainCoinsData(orderData){
-          this.coinsInfoVoList=orderData.coinsInfoVos
-          this.coinsDetailInfoVoList=orderData.coinsDetailInfoVos
-          let currency=this.coinsInfoVoList[0].currency
-          this.billType= this.coinsInfoVoList[0].billType
+          this.coinsInfoVoList=orderData.endorseDataVo.coinsInfoVos
+          this.coinsDetailInfoVoList=orderData.endorseDataVo.coinsDetailInfoVos
+          let oldcoinsDetail= orderData.originDataVo.coinsDetailInfoVos
+          let oldcoinsDetailMap=new Map()
+          if(oldcoinsDetail.length>0){
+            oldcoinsDetail.forEach((item)=>{
+              this.chgCoinsAmountSum+=parseFloat(item.chgCoinsAmount)
+              this.chgCoinsPremiumSum+=parseFloat(item.chgCoinsPremium)
+              this.chgAgentFeeSum+=parseFloat(item.chgAgentFee)
+              this.chgMiddleCostFeeSum+=parseFloat(item.chgMiddleCostFee)
+              this.chgOperateFeeSum+=parseFloat(item.chgOperateFee)
+              oldcoinsDetailMap.set(item.coinsCode,item)
+            })
+          }
+          let currency=this.coinsDetailInfoVoList[0].currency
           this.billType= this.coinsInfoVoList[0].billType
           this.proportionFlag1=this.coinsInfoVoList[0].proportionFlag.substring(0,1)
+          debugger
+          this.$refs.proportionFlag1.title=this.coinsInfoVoList[0].proportionFlag.substring(0,1)=='0'?'份额计入':'全额计入'
+          this.$refs.billType.title=this.coinsInfoVoList[0].billType=='0'?'全额发票':'份额发票'
+
           let CurrencyName="";
+          debugger
+          console.log(currency)
           if(currency=="CNY"){
            CurrencyName="人民币";
           }else if(currency=="USD"){
@@ -79,33 +100,32 @@ export default{
           this.MiddleCostFeesum=MiddleCostFeesum
           this.coinsFlag=this.$store.state.coinsFlag
           this.asynConinsSelect()
-      },
-      // async initCoinsdata(){
-      //         this.coinsFlag=this.$store.state.coinsFlag
-      //         await  this.asynConinsSelect();
-      //           let coinsName="";
-      //           let chiefFlag="";
-      //           let serialNo='1';
-      //           let coinsType='1'
-      //           let coinsCode=this.$parent.$refs.MainHead.comCode;
-      //           this.$parent.$refs.MainHead.departmentInfoVoList.forEach((item)=>
-      //             { 
-      //               if(item.comcode==this.$parent.$refs.MainHead.comCode){
-      //                   coinsName=item.department;
-      //             }
-      //           })
-      //           if(this.coinsFlag=='1'||this.coinsFlag=='3'){
-      //             chiefFlag='1'
-      //             this.billTypeDisabled=false;
-                  
-      //           }else if(this.coinsFlag=='2'||this.coinsFlag=='4'){
-      //               chiefFlag='0'
-      //               this.billTypeDisabled=true;
-      //           }
-      //             this.coinsInfoVoList.push({serialNo,mainPolicyNo:'',coinsType,chiefFlag
-      //             ,coinsCode, coinsName,coinsRate:''})
+          this.$nextTick(()=>{
+            this.coinsDetailInfoVoList.forEach((item,index)=>{
+                  for(let key in item){
+                     if(this.$refs[key]){
+                       if(this.$refs[key][index]){
+                         this.$refs[key][index].title=oldcoinsDetailMap.get(item.coinsCode)? oldcoinsDetailMap.get(item.coinsCode)[key]:item[key]
+                         if(this.$refs[key][index].title!=item[key]){
+                            this.$refs[key][index].className=`${this.$refs[key][index].className}u`
+                         }
+                       }
+                     }
+                  }
+                  if(oldcoinsDetailMap.get(item.coinsCode)){
+                     let obj=oldcoinsDetailMap.get(item.coinsCode)
+                     this.$refs.chgCoinsAmount[index]=obj.chgCoinsAmount
+                     this.$refs.chgCoinsPremium[index]=obj.chgCoinsPremium
+                     this.$refs.chgAgentFee[index]=obj.chgAgentFee
+                     this.$refs.chgMiddleCostFee[index]=obj.chgMiddleCostFee
+                     this.$refs.chgOperateFee[index]=obj.chgOperateFee
 
-      // },
+                  }
+            })
+            this.setReadOnly()
+          })
+      },
+
       setReadOnly(){
         this.$uiCommon.setContainerReadonly(this.$refs.Coins,true)
       },

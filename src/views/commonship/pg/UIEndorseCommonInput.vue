@@ -75,8 +75,6 @@ export default ({
         }
     },
     mounted(){
-           debugger
-           console.log(this.$route)
            this.endorseDate=this.$uiCommon.getCurrentDate()
            this.validDate=this.$uiCommon.getNextDate()
            //需要调用接口获取
@@ -141,9 +139,8 @@ export default ({
                   policyNo: this.policyNo
               }
               this.checkPolicyData(obj).then(data=>{
-                  debugger
                   //判断分入数据
-                  let businessNature=data.mainDTO.businessNature
+                   let businessNature=data.mainDTO.businessNature
                   if(businessNature=='h'&&this.$route.path=='endorseCommonInput'){
                     this.$alert(`保单${this.policyNo}为分入业务数据,请使用分入普通批单录入菜单！`,'普通批改录入',{type:'warning'})
                      return  false  
@@ -184,21 +181,28 @@ export default ({
                     return  false
                   }
                   //该保单是否存在没有审批完的批单
-                   if(data.headDTO.underwriteflag==null||(data.headDTO.underwriteflag!='1'&&data.headDTO.underwriteflag!='3')){
-                     this.$alert(`保单${this.policyNo}还存在没审批完毕的批单,无法再次进行批改！！`,'普通批改录入',{type:'warning'})
-                    return  false
-                  }
-        
-                  // //该保单在用户输入的批单生效日期后是否存在已经生效的批单
-                  compareResult=this.$uiCommon.compareFullDate(data.headDTO.validdate,this.validDate);
-                  if(compareResult==1){
-                     this.$alert(`输入的批单生效日期不能小于已经生效的批单日期！`,'普通批改录入',{type:'warning'})
-                    return  false
+                  if(data.headDTO){
+                    if(data.headDTO.underwriteflag==null||(data.headDTO.underwriteflag!='1'&&data.headDTO.underwriteflag!='3')){
+                      this.$alert(`保单${this.policyNo}还存在没审批完毕的批单,无法再次进行批改！！`,'普通批改录入',{type:'warning'})
+                      return  false
+                    }
+          
+                    //该保单在用户输入的批单生效日期后是否存在已经生效的批单
+                    compareResult=this.$uiCommon.compareFullDate(data.headDTO.validdate,this.validDate);
+                    if(compareResult==1){
+                      this.$alert(`输入的批单生效日期不能小于已经生效的批单日期！`,'普通批改录入',{type:'warning'})
+                      return  false
+                    }
                   }
                   //2.调用接口传递参数
                   this.$store.state.validDate=this.validDate
                   this.$store.state.validHour=this.validHour
-                  this.$router.push({path:'/pgMain',query: { 'businessNo': this.policyNo,'bizType':'ENDORSE','comCode':this.comCode }})
+                  if(businessNature=='h'){
+                    this.$router.push({path:'/reinsPgMain',query: { 'businessNo': this.policyNo,'bizType':'ENDORSE','comCode':this.comCode }})
+
+                  }else if(businessNature!='h'){
+                     this.$router.push({path:'/pgMain',query: { 'businessNo': this.policyNo,'bizType':'ENDORSE','comCode':this.comCode }})
+                  }
               }).catch(err=>{
                  this.$alert(err,'普通批改录入',{type:'warning'})
                  return  false
@@ -219,9 +223,8 @@ export default ({
                return   new Promise((resolve,reject)=>{
                   check.checkdata(jsonObj).then(res=>{
                     if(res.data.resHeader.errCode=='0000'){
-                        debugger
                         resolve(res.data)
-                    }else if(res.data.resHeader.errCode=='9999'){
+                    }else{
                         reject(res.data.resHeader.errMsg)
                     }
 

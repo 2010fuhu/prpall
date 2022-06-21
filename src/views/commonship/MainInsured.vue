@@ -22,7 +22,7 @@
 					style="width:120px" maxlength="16"  ref="customerCode"   v-model="insuredShow.customerCode" >
 				<img  :src="imgUrl">
 				<input type="button" name="buttonAddInsuredCustomer" class="button"  alt="新增/查询" value="新增/查询"
-				 v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" @click="addInsuredCustomer('InsuredInsured')" >
+				 v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" @click="addInsuredCustomer('InsuredInsured')" >
 			</td>
 			<td class="title">客户名称：</td>
 			<td class="input">
@@ -202,10 +202,10 @@
 	<table id="PageTurn" class="common" cellpadding="3" cellspacing="1"  v-show="isShow">
 			<tr  class="common" >
 				<td>
-					<input type="button" name="button_Insured_Insert" class="button" alt="添加" value="添 加"  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" @click="Add()">
+					<input type="button" name="button_Insured_Insert" class="button" alt="添加" value="添 加"  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" @click="Add()">
 				</td>
 				<td>
-					<input type="button" name="button_Insured_Delete" class="button" alt="删除" value="删 除"   v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" @click="Remove(currentPage)">
+					<input type="button" name="button_Insured_Delete" class="button" alt="删除" value="删 除"   v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" @click="Remove(currentPage)">
 				</td>
 			</tr>
 			<tr class="common" id="PreviousNext">

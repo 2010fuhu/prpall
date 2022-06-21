@@ -5,7 +5,7 @@
    <table class="common" align="center">
     <tr>
      <td class="button">
-        <input class="longbutton" type="button" alt="返 回" value="返 回" onclick="parent.window.close();"/>
+        <input class="longbutton" type="button" alt="关 闭" value="关 闭" onclick="parent.window.close();"/>
       </td>
     </tr>
   </table>

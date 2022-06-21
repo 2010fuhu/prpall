@@ -33,9 +33,9 @@ export default ({
             underwrt.undwrtMainInfoReq.undwrtInfoReqList=[];
             if(arg=='1'){
                 let undwrtinfo=new undwrtInfoVo()
-                undwrtinfo.businessNo=this.$route.query.proposalNo
+                undwrtinfo.businessNo=this.$store.state.bizType=='ENDORSE'?this.$route.query.endorseNo:this.$route.query.proposalNo
                 undwrtinfo.comCode=this.$store.state.comCode
-                undwrtinfo.inKey=this.$route.query.proposalNo
+                undwrtinfo.inKey=this.$store.state.bizType=='ENDORSE'?this.$route.query.endorseNo:this.$route.query.proposalNo
                 undwrtinfo.makeCom=this.$store.state.comCode
                 undwrtinfo.riskCode=this.$store.state.riskCode
                 undwrtinfo.userCode=this.$store.state.userCode

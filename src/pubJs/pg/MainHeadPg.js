@@ -108,7 +108,7 @@ import  initBaseData from '@/api/initBaseData.js'
             if(this.$store.state.comCode.substring(0,2)=='31'){
               this.roadBranchInfoVoList=data.roadBranchInfoVoList
             }
-            if(this.$route.path=='/reinsMain'){
+            if(this.$route.path=='/reinsPgMain'){
                 for(let item of data.businessNatureInfoVoList){
                     if(item.businessnature=='h'){
                       this.businessNatureInfoVoList.push(item)

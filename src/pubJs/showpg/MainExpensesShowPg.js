@@ -5,6 +5,7 @@ import commissionCal from  '@/json/commissionCal.json'
 import {EventBus} from '@/utils/event-bus.js'
 	class agentInfoVo {
 	 constructor(){
+		this.flag=''
 		this.serialNo=''
 		this.transId=''
 		this.agentCode=''
@@ -18,6 +19,8 @@ import {EventBus} from '@/utils/event-bus.js'
 		this.AgentUserList=[]
 	  }
 	}
+	let orginMap=new Map()
+	let orginHandlerMap=new Map()
     export default { 
         name:'DeductibleText',
         data(){
@@ -52,43 +55,76 @@ import {EventBus} from '@/utils/event-bus.js'
            },
 		  async initExpernsesData(orderData){
 			   //1.初始化手续费信息
-			   if(orderData.mainInfoVo.channelType1=='92'||orderData.mainInfoVo.channelType1=='93'){
-					this.commissionRate=orderData.mainInfoVo.disRate
-					let agentData=orderData.agentInfoVos
+			   //
+			   let orginAgentData=orderData.originDataVo.agentInfoVos
+			   let agentData=orderData.endorseDataVo.agentInfoVos
+			   if(orginAgentData.length>0){
+				  this.$refs.commissionRate.title=orderData.endorseDataVo.originDataVo.disRate
+				  let orginSerialNo=0
+				  for(let orginitem of agentData){
+					let agentInfo=new agentInfoVo()
+					agentInfo.serialNo=++orginSerialNo;
+					agentInfo.transId=orginitem.transId
+					agentInfo.agentCode=orginitem.agentCode
+					agentInfo.agentName=orginitem.agentName
+					agentInfo.agreementNo=orginitem.agreementNo
+					agentInfo.disPayFeeWay=orginitem.disPayFeeWay	
+					agentInfo.commissionPercent=orginitem.commissionPercent
+					agentInfo.commissionPercentReal=orginitem.commissionPercent* (this.$refs.commissionRate.title)*0.01
+					agentInfo.commissionAmount=orginitem.commissionAmount
+					agentInfo.professionalNo=orginitem.professionalNo
+					agentInfo.flag=orginitem.flag
+					orginMap.set(agentInfo.agentCode,agentInfo)
+					}
+			   }
+			   if(agentData.length>0){
+					this.commissionRate=orderData.endorseDataVo.mainInfoVo.disRate
 					let serialNo=0
 					for(let item of agentData){
 						let agentInfo=new agentInfoVo()
-						agentInfo.serialNo=++serialNo;
+						agentInfo.serialNo=orginMap.get(item.agentCode)?orginMap.get(item.agentCode).serialNo: ++serialNo;
 						agentInfo.transId=item.transId
 						agentInfo.agentCode=item.agentCode
 						agentInfo.agentName=item.agentName
 						agentInfo.agreementNo=item.agreementNo
-						// if("1"==(item.disPayFeeWay)){
-						// 		agentInfo.disPayFeeWay="不含税";
-						// 	}else{
-						// 		agentInfo.disPayFeeWay="含税";
-						// 	}
 						agentInfo.disPayFeeWay=item.disPayFeeWay	
 						agentInfo.commissionPercent=item.commissionPercent
 						agentInfo.commissionPercentReal=item.commissionPercent* this.commissionRate*0.01
 						agentInfo.commissionAmount=item.commissionAmount
 						agentInfo.professionalNo=item.professionalNo
+						agentInfo.flag=orginMap.get(item.agentCode)?orginMap.get(item.agentCode).flag:''
 						agentInfo.AgentUserList.push({professionalNo:item.professionalNo,salesName:item.professionalName})
 						this.agentInfoVoList.push(agentInfo)
 						}
 					await this.getselectagentusernameinfo()	
 				}
 			    //2初始化河南绩效费用信息
-				if(orderData.mainInfoVo.comCode.substring(0,2)=='41'){
-                        if(orderData.handlerInfoVos.length>0){
-							if(orderData.handlerInfoVos[0].currency!=null&&orderData.handlerInfoVos[0].currency!=''){
+				if(orderData.endorseDataVo.mainInfoVo.comCode.substring(0,2)=='41'){
+					    if(orderData.originDataVo.handlerInfoVos.length>0){
+                            for(let orginitem of orderData.originDataVo.handlerInfoVos){
+								let count=0
+								let obj={
+									MaxPerCent:'',
+									AllPerformance_Flag:orginitem.flag,
+									PerformanceNo:++count,
+									EveryUserCode:orginitem.handlerCode,
+									EveryUserName:orginitem.handlerName,
+									PerformancePercent:orginitem.performanceRate,
+									PerformanceCurrency:orginitem.currency,
+									PerformanceFee:orginitem.performanceAmount
+								}
+							    orginHandlerMap.set(obj.handlerCode,obj)	
+							}
+						}
+                        if(orderData.endorseDataVo.handlerInfoVos.length>0){
+							if(orderData.endorseDataVo.handlerInfoVos[0].currency!=null&&orderData.endorseDataVo.handlerInfoVos[0].currency!=''){
 								this.AllPerformance_Data=[];
-								let val=orderData.handlerInfoVos
+								let val=orderData.endorseDataVo.handlerInfoVos
 								let count=0
 								for(var item of  val ){
 									let obj={
 										MaxPerCent:'',
-										AllPerformance_Flag:'',
+										AllPerformance_Flag:orginHandlerMap.get(item.handlerCode)?orginHandlerMap.get(item.handlerCode).AllPerformance_Flag:'',
 										PerformanceNo:++count,
 										EveryUserCode:item.handlerCode,
 										EveryUserName:item.handlerName,
@@ -102,6 +138,40 @@ import {EventBus} from '@/utils/event-bus.js'
 
 						}
 				}
+                this.$nextTick(()=>{
+					this.agentInfoVoList.forEach((item,index)=>{
+                           if(item.flag=='U'){
+                               for(let key in item ){
+								   if(this.$refs[key]){
+									   if(this.$refs[key][index]){
+										this.$refs[key][index].title=orginMap.get(item.agentCode)[key]
+										if(this.$refs[key][index].title!=item[key]){
+											this.$refs[key][index].className=`${this.$refs[key][index].className}u`
+										}
+									   }
+								   }
+							   }
+						   }
+
+					})
+					if(this.$refs.commissionRate.title){
+						if(this.$refs.commissionRate.title!=this.commissionRate){
+							this.$refs.commissionRate.className=`${this.$refs.commissionRate.className}u`
+						}
+					}
+					this.AllPerformance_Data.forEach( (item,index)=>{
+						if(item.AllPerformance_Flag){
+							for(let key1 in item){
+								if(this.$refs[key1]){
+									if(this.$refs[key1][index]){
+										this.$refs[key1][index].titlt=item[key1]
+									}
+								}
+						 	}
+						}
+					})
+				})
+
 		   },
            getPerformance(){//获取绩效费用
 		       if(this.$store.state.comCode.substring(0,2)=='41'){
@@ -302,7 +372,7 @@ import {EventBus} from '@/utils/event-bus.js'
 				    let usernameinfoArray=[];
 				    this.agentInfoVoList.forEach(item => {
 					      usernameinfoArray.push(this.getagentusernameSingle(item));
-						})
+					})
 				   Promise.all(usernameinfoArray).then(result=>{
                         for( let key in  this.agentInfoVoList){
                                for(let obj of result){

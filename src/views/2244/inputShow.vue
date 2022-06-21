@@ -142,12 +142,20 @@
     </tr>
   </table>
   <table class="common" cellpadding="3" cellspacing="0" >
-    <tr>
+    <tr v-if="$route.path=='/proposalShow'||$route.path=='/policyShow'">
         <td class="button" type="button" style="display:" >
           <input name="buttonViewTrace" class="button" type="button"  alt="核保意见" value="核保意见" @click="$uiCommon.viewTraceForUndwrt($store.state.proposalNo)"/>
         </td>
         <td class="button" type="button" >
-          <input name="buttonCancel" class="button" type="button"  alt="取消"  value="取 消" onclick="cancelForm();"/>
+          <input name="buttonCancel" class="button" type="button"  alt="取消"  value="取 消" @click="cancelForm();"/>
+        </td>    
+    </tr>
+    <tr v-else>
+        <td class="button" type="button" style="display:" >
+          <input name="buttonViewTrace" class="button" type="button"  alt="查看批文" value="查看批文" @click="$uiCommon.viewPtext($route.query.businessNo)"/>
+        </td>
+        <td class="button" type="button" >
+          <input name="buttonCancel" class="button" type="button"  alt="审批意见"  value="审批意见" @click="cancelForm();"/>
         </td>    
     </tr>          
   </table>           

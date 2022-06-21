@@ -45,16 +45,32 @@ export default {
         })
        }, 
        delGuarantee(index){
-           this.$uiCommon.deleteRowForPG(this,'guaranteeSubInfoVoList',index)
+           if(this.guaranteeSubInfoVoList[index].flag=='D'){
+              this.guaranteeSubInfoVoList[index].flag=''
+           }else if(this.guaranteeSubInfoVoList[index].flag=='I'){
+              this.guaranteeSubInfoVoList.splice(index, 1);
+           }else{
+              this.guaranteeSubInfoVoList[index].flag='D'
+           }
+           //this.guaranteeSubInfoVoList[index].flag='D'
+           //this.$uiCommon.deleteRowForPG(this,'guaranteeSubInfoVoList',index)
        },
 
        addGuarantee(){
-          this.$uiCommon.insertRowForPG(this,'guaranteeSubInfoVoList',{   
+          this.guaranteeSubInfoVoList.push({   
             serialNo:'',
             guaranteeType:'',
             guaranteeDesc:'',
-            guaranteeRate:''
+            guaranteeRate:'',
+            flag:'I'
           })
+          // this.$uiCommon.insertRowForPG(this,'guaranteeSubInfoVoList',{   
+          //   serialNo:'',
+          //   guaranteeType:'',
+          //   guaranteeDesc:'',
+          //   guaranteeRate:'',
+          //   flag:'I'
+          // })
        },
         checkStartDateForCermical(){
           if(this.guaranteeInfoVo.guaranteeStartDate==null||this.guaranteeInfoVo.guaranteeStartDate==''){

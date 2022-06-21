@@ -1078,6 +1078,11 @@ function viewTraceForUndwrt(businessNo)
   const{ href } = router.resolve({name:"viewTraceForUndwrt",query:{businessNo}});
   window.open(href,'核保信息','width=640,height=300,top=50,left=80,toolbar=0,location=0,directories=0,menubar=0,scrollbars=1.resizable=1,status=0');
 }
+function viewPtext(businessNo)
+{
+  const{ href } = router.resolve({name:"viewPtext",query:{businessNo}});
+  window.open(href,'查看批文','width=640,height=300,top=50,left=80,toolbar=0,location=0,directories=0,menubar=0,scrollbars=1.resizable=1,status=0');
+}
 
 function setReadonlyOfElement(iElement)
 { 
@@ -1505,6 +1510,7 @@ export {
   mathRound,
   uuid,
   viewTraceForUndwrt,
+  viewPtext,
   setContainerReadonly,
   setOnchangeOfTable,
   getPreDateFullDate,

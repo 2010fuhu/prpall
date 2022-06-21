@@ -17,13 +17,12 @@ export default {
       show(){this.isShow =!this.isShow;
       },
       initPeriodData(orderData){
-        console.log(orderData.mainInfoVo)
-        this.startDate=this.$uiCommon.replace(orderData.mainInfoVo.startDate,"/","-")
-        this.endDate=this.$uiCommon.replace(orderData.mainInfoVo.endDate,"/","-")
-        this.startHour=orderData.mainInfoVo.startHour
-        this.endHour=orderData.mainInfoVo.endHour
-        this.operateDate=orderData.mainInfoVo.operateDate
-        this.signDate=orderData.mainInfoVo.signDate
+        this.startDate=this.$uiCommon.replace(orderData.endorseDataVo.mainInfoVo.startDate,"/","-")
+        this.endDate=this.$uiCommon.replace(orderData.endorseDataVo.mainInfoVo.endDate,"/","-")
+        this.startHour=orderData.endorseDataVo.mainInfoVo.startHour
+        this.endHour=orderData.endorseDataVo.mainInfoVo.endHour
+        this.operateDate=orderData.endorseDataVo.mainInfoVo.operateDate
+        this.signDate=orderData.endorseDataVo.mainInfoVo.signDate
         this.intervalmonth1()
       },
         intervalmonth1(){

@@ -35,7 +35,7 @@
                       <td class="title">短期费率方式：</td>
                       <td class="input">
                         <select name="shortRateFlag" class="common3"  ref="shortRateFlag" description="短期费率方式"  v-model='kindMain.shortRateFlag'
-                          @change="calShortRate(index);$route.path=='/pgMain'&&calculatepremium()">
+                          @change="calShortRate(index);($route.path=='/pgMain'||$route.path=='/reinsPgMain')&&calculatepremium()">
                           <option value="0">不计</option>
                           <option value="1">按短期费率表</option>
                           <option value="4">按月计算</option>
@@ -47,8 +47,8 @@
                     <tr>
                       <td class="title">短期系数%：</td>
                       <td class="input">
-                        <input type="text" name="shortRate" class="common3"  ref="shortRate" maxlength="9" value="100" description="短期系数%"
-                         v-model="kindMain.shortRate" @keyup="$uiCommon.pressDecimals($event);" @blur="$uiCommon.checkDecimal($event,8,4,'','');" @change="$route.path=='/pgMain'&&calculatepremium()">
+                        <input type="text" name="shortRate" :class="kindMain.flag.charAt(0)=='I'?'commoni':kindMain.flag.charAt(0)=='D'?'commond':'common3'"   ref="shortRate" maxlength="9" value="100" description="短期系数%"
+                         v-model="kindMain.shortRate" @keyup="$uiCommon.pressDecimals($event);" @blur="$uiCommon.checkDecimal($event,8,4,'','');" @change="($route.path=='/pgMain'||$route.path=='/reinsPgMain')&&calculatepremium()">
                       </td>
                     </tr>
                     <tr>
@@ -61,31 +61,31 @@
                 </span>
               </td>
               <td>
-                    <select class="common" name="kindCode"   ref="kindCode" v-model="kindMain.kindCode">
+                    <select :class="kindMain.flag.charAt(0)=='I'?'commoni':kindMain.flag.charAt(0)=='D'?'commond':'common'"  name="kindCode"   ref="kindCode" v-model="kindMain.kindCode">
                       <!--<option :value="kindInfoVoData.kindcode" v-for=" kindInfoVoData,i in kindInfoVoList" :key="i"  >{{kindInfoVoData.kindcname}}</option>-->
                         <option value="2244001">农民工工资支付履约保证保险</option>
                     </select>
               </td>
               <td>
-                <input type="text" name="amount" ref="amount" class="common"
+                <input type="text" name="amount" ref="amount" :class="kindMain.flag.charAt(0)=='I'?'commoni':kindMain.flag.charAt(0)=='D'?'commond':'common'" 
                   maxlength="18" style="width:130px" description="保险金额" readonly  v-model.number="kindMain.amount" >
                 
               </td>
               <td>
-                 <select class="common" name="currency"  ref="currency" maxlength="3" description="币别代码" style="width:50%" v-model="kindMain.currency">
+                 <select :class="kindMain.flag.charAt(0)=='I'?'commoni':kindMain.flag.charAt(0)=='D'?'commond':'common'"  name="currency"  ref="currency" maxlength="3" description="币别代码" style="width:50%" v-model="kindMain.currency">
                       <option :value="currencyInfoVoData.currency" v-for=" currencyInfoVoData,i in currencyInfoVoList" :key="i"  >{{currencyInfoVoData.currencyname}}</option>
                     </select>
               </td>         
               <td>
-                <input type="text" name="rate" class="common" ref="rate"
+                <input type="text" name="rate" :class="kindMain.flag.charAt(0)=='I'?'commoni':kindMain.flag.charAt(0)=='D'?'commond':'common'"  ref="rate"
                   maxlength="9" style="width:60%" description="年费率"  v-model="kindMain.rate"
                   @keypress="$uiCommon.pressDecimal($event)"  
                   @blur="$uiCommon.checkDecimal($event,8,5,'','');"
-                  @change="$route.path=='/pgMain'&&calculatepremium()">
+                  @change="($route.path=='/pgMain'||$route.path=='/reinsPgMain')&&calculatepremium()">
               </td>
               
               <td>
-                <input type="text" name="premium" class="common" ref="premium" description="保险费"  readonly
+                <input type="text" name="premium" :class="kindMain.flag.charAt(0)=='I'?'commoni':kindMain.flag.charAt(0)=='D'?'commond':'common'" ref="premium" description="保险费"  readonly
                   maxlength="18" style="width:60%" v-model="kindMain.premium"/>
               </td>
               <td >

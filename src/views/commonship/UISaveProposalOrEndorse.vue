@@ -1,7 +1,9 @@
 <template>
   <div>
 		<tr>
-		    <td>投保单保存成功，投保单号是{{$route.query.proposalNo}}</td>
+		    <td v-if="$store.state.bizType=='ENDORSE'">批单保存成功，批单号是{{$route.query.endorseNo}}</td>
+		    <td v-else >投保单保存成功，投保单号是{{$route.query.proposalNo}}</td>
+		
 		</tr>
 		<tr>
 		    <td>

@@ -21,7 +21,7 @@
 						style="width:120px"  maxlength="16"  placeholder="请录入投保人代码"  v-validate="'required'"  v-model="appliInfoVo.customerCode">
 					<img :src="imgUrl">
 					<input type="button" name="buttonAddAppliInsuredCustomer" class="button"  alt="新增/查询" value="新增/查询"
-					v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'"	@click="changeCustomerFlag();addAppliInsuredCustomer('AppliInsured')">
+					v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'"	@click="changeCustomerFlag();addAppliInsuredCustomer('AppliInsured')">
 				</td>
 				<td class="title">
 					客户名称：
@@ -56,7 +56,7 @@
 						客户类型：
 					</td>
 					<td class="input">
-						<select name="AppliInsuredType"  ref="identifyNo" class="common"  v-model="appliInfoVo.insuredType"  description="客户类型" >
+						<select name="AppliInsuredType"  ref="insuredType" class="common"  v-model="appliInfoVo.insuredType"  description="客户类型" >
 							<option value='1'>个人客户</option>
 							<option value='2'>团体</option>
 							<option value='3'>虚拟客户</option>
@@ -252,7 +252,7 @@
 						企业资质：
 					</td>
 					<td class=input>
-					    <input  type="hidden"  name="businessDetail"   :value='appliInfoVo.businessDetail' />
+					    <input  type="hidden"  name="businessDetail" ref="businessDetail"  :value='appliInfoVo.businessDetail' />
 	                    <select class="common" name="qualification" ref="qualification" style="width:40%"  
 						 description="企业资质"  v-model='appliInfoVo.qualification'>
 						    <option value='' disabled>请选择</option>

@@ -14,15 +14,17 @@
 			<td class="title"> 反担保期限：</td>
 			<td class="input" >
 		      	<label>自</label>
-				<el-date-picker v-model="guaranteeInfoVo.guaranteeStartDate" type="date" :readonly='$route.path!="/main"&&$route.path!="/pgMain"' format="yyyy-MM-dd"   name="guaranteeStartDate" ref="guaranteeStartDate"
-					value-format="yyyy-MM-dd" placeholder="反担保起期" size="mini" @change="checkStartDateForCermical();addassuremonth();$route.path=='/pgMain'&&changeCorlor()"></el-date-picker>日起&nbsp;至
+				 <input  type='text' class="common4" ref="guaranteeStartDate" v-if="$route.path=='/proposalShow'||$route.path=='/endorseShow'||$route.path=='/policyShow'"  :value='guaranteeInfoVo.guaranteeStartDate'/>
+				<el-date-picker v-else v-model="guaranteeInfoVo.guaranteeStartDate" type="date"  format="yyyy-MM-dd"   name="guaranteeStartDate" ref="guaranteeStartDate"
+					value-format="yyyy-MM-dd" placeholder="反担保起期" size="mini" @change="checkStartDateForCermical();addassuremonth();($route.path=='/pgMain'||$route.path=='/reinsPgMain')&&changeCorlor()"></el-date-picker>日起&nbsp;至
 				<!-- <input class='common4'  name="guaranteeStartDate"  ref="guaranteeStartDate" v-model="guaranteeInfoVo.guaranteeStartDate" type="text" :readonly='$store.state.onlyStatus' 
 					placeholder="反担保起期"    @click="SelectDate($event,'yyyy-MM-dd');">日起&nbsp;至 -->
 			</td>
 			<td class="input"> 
-				<el-date-picker v-model="guaranteeInfoVo.guaranteeEndDate" type="date" :readonly='$route.path!="/main"&&$route.path!="/pgMain"' format="yyyy-MM-dd" name="guaranteeEndDate" ref="guaranteeEndDate"
+			    <input  type='text' class="common4" ref="guaranteeEndDate" v-if="$route.path=='/proposalShow'||$route.path=='/endorseShow'||$route.path=='/policyShow'"  :value='guaranteeInfoVo.guaranteeEndDate'/>
+				<el-date-picker v-else v-model="guaranteeInfoVo.guaranteeEndDate" type="date"  format="yyyy-MM-dd" name="guaranteeEndDate" ref="guaranteeEndDate"
 					value-format="yyyy-MM-dd" placeholder="反担保终期" size="mini" 
-					@blur="addassuremonth();checkDateMainConstruct('guaranteeEndDate');" @change="$route.path=='/pgMain'&&changeCorlorEnd()">
+					@blur="addassuremonth();checkDateMainConstruct('guaranteeEndDate');" @change="($route.path=='/pgMain'||$route.path=='/reinsPgMain')&&changeCorlorEnd()">
 				</el-date-picker>&nbsp;日&nbsp;止	
 				<!-- <input class='common4' name="guaranteeEndDate" ref="guaranteeEndDate" v-model="guaranteeInfoVo.guaranteeEndDate" type="text" :readonly='$store.state.onlyStatus'  
 					value-format="yyyy-MM-dd" placeholder="反担保终期"    @click="SelectDate($event,'yyyy-MM-dd');">&nbsp;日&nbsp;止					 -->
@@ -46,7 +48,7 @@
          <tr ref='guaranteeSubData' v-for="(Guarantee, index) in guaranteeSubInfoVoList" :key="index">
 		     <td class="title"  >反担保方式、种类及覆盖率：</td>
 	          <td colspan="3">
-				<select   class="common"   name="guaranteeType"   ref="guaranteeType"  v-model="Guarantee.guaranteeType" style="width:20%" >
+				<select   :class="Guarantee.flag=='I'?'commoni':Guarantee.flag=='D'?'commond':'common'"   name="guaranteeType"   ref="guaranteeType"  v-model="Guarantee.guaranteeType" style="width:20%" >
 					<option  value="" disabled>请选择</option>
 					<option  value="1">保证金</option>
 					<option  value="2">抵押</option>
@@ -55,19 +57,19 @@
 					<option  value="5">其他</option>
 				</select>
 				说明：
-				  <input   class="common" name="guaranteeDesc"   ref="guaranteeDesc"   v-model="Guarantee.guaranteeDesc" maxlength="200"  style="width:40%"/>
+				  <input  :class="Guarantee.flag=='I'?'commoni':Guarantee.flag=='D'?'commond':'common'"   name="guaranteeDesc"   ref="guaranteeDesc"   v-model="Guarantee.guaranteeDesc" maxlength="200"  style="width:40%"/>
 				<label>比率%</label>
-				 <input   class="common"  name="guaranteeRate"   ref="guaranteeRate" v-model="Guarantee.guaranteeRate"  maxlength="50" style="width:20%" description="比率%"
+				 <input  :class="Guarantee.flag=='I'?'commoni':Guarantee.flag=='D'?'commond':'common'"    name="guaranteeRate"   ref="guaranteeRate" v-model="Guarantee.guaranteeRate"  maxlength="50" style="width:20%" description="比率%"
 			       @keypress="$uiCommon.pressDecimal($event);"
                   @blur="$uiCommon.checkDecimal($event,8,4,'','')"/>
 	             <input class="button" type="button" name='buttionGuaranteeDelete'  style="float:right" 
-                  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'"	@click="delGuarantee(index);" alt="删除" value="删 除"   ref="Del">
+                  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'"	@click="delGuarantee(index);" alt="删除" value="删 除"   ref="Del">
 			  </td>
          </tr>
 		 <tr>
               <td colspan="4">
                 <input  id="buttionGuaranteeInsert" class="button"  type="button" style="float:right" name="buttionGuaranteeInsert"
-				v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'"  @click="addGuarantee();"   alt="新增" value="新 增"
+				v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'"  @click="addGuarantee();"   alt="新增" value="新 增"
                  ref="insert">
               </td>
 		  </tr>

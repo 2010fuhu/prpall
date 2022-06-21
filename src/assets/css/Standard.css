@@ -361,6 +361,8 @@ input.common32{ background-color: #ffffff;
                 
 input.common3{ width:70%;}
 input.common3u{ width:70%;background-color: #FFFF00;}
+input.common3i{ width:70%;background-color: #00F0F0;}
+input.common3d{ width:70%;background-color: #778899;}
 input.common4{}
 input.radio{}
 input.radiou{ background-color:  #FFFF00;}        
@@ -403,8 +405,7 @@ input.readonly2{ text-align: right;}
 input.readonly3 {width: 80%;
                 background: ydjm;
                 color: #000000;
-                border: none}
-               
+                border: none}             
 input.readonly4 {width:40%;
                 background: ydjm;
                 color: #000000;
@@ -656,6 +657,8 @@ select.common3u{
              width: 50%;
              background-color: yellow;
 }
+select.common3i{ width: 50%; background-color: #00F0F0;}   
+select.common3d{ width: 59%; background-color: #778899;}    
 select.query1 { width: 60%;}
 
 select.common4{ width: 70%;}

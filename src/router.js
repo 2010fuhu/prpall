@@ -114,7 +114,12 @@ const routes = [
       name:'viewTraceForUndwrt',
       component:  () => import('@/views/commonship/query/viewTraceForUndwrt.vue'),
      },
-
+      //查看批文
+      {
+        path:'/viewPtext',
+        name:'viewPtext',
+        component:  () => import('@/views/commonship/query/viewPtext.vue'),
+       },
 ] 
 
 //获取原型对象上的push函数

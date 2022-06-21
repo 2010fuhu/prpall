@@ -59,7 +59,6 @@ export default {
 
         },
         calAllPremium(){//将履约义务人的保险金额赋值给主线的保额
-           debugger
            this.$parent.$refs.MainItemkind.setAmount(this.limitAmount)
         },
        async addQueryMainLoanImg(){//查询履约义务人信息

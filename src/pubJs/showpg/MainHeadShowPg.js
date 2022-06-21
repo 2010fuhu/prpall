@@ -91,39 +91,40 @@ import  initBaseData from '@/api/initBaseData.js'
               this.isShow=this.$uiCommon.showPage(this.isShow);
           },
           async initMainHeadData(obj){//投保单保单查询 时候调用的方法
-            this.policySort=obj.mainInfoVo.policySort
-            this.language=obj.mainInfoVo.language
-            this.businesskind=obj.mainInfoVo.businessKind
-            this.coinsFlag=this.$store.state.coinsFlag=obj.mainInfoVo.coinsFlag
-            this.agriType=  this.$store.state.agriType=obj.mainInfoVo.agriType
-            this.shareHolderFlag=obj.mainInfoVo.shareHolderFlag
-            this.$store.state.proposalNo=obj.mainInfoVo.proposalNo
-            this.$store.state.policyNo=obj.mainInfoVo.policyNo
+
+            this.policySort=obj.endorseDataVo.mainInfoVo.policySort
+            this.language=obj.endorseDataVo.mainInfoVo.language
+            this.businesskind=obj.endorseDataVo.mainInfoVo.businessKind
+            this.coinsFlag=this.$store.state.coinsFlag=obj.endorseDataVo.mainInfoVo.coinsFlag
+            this.agriType=  this.$store.state.agriType=obj.endorseDataVo.mainInfoVo.agriType
+            this.shareHolderFlag=obj.endorseDataVo.mainInfoVo.shareHolderFlag
+            this.$store.state.proposalNo=obj.endorseDataVo.mainInfoVo.proposalNo
+            this.$store.state.policyNo=obj.endorseDataVo.mainInfoVo.policyNo
             //this.businessModeCode=obj.mainInfoVo.businessModeCode
-            this.channelType1=this.$store.state.channelType1=obj.mainInfoVo.channelType1
-            this.channelType2=obj.mainInfoVo.channelType2
-            this.agentCode=obj.mainInfoVo.agentCode
-            this.comCode=obj.mainInfoVo.comCode
-            this.roadBranchCode=obj.mainInfoVo.roadBranchCode
-            this.$store.state.underWriteFlag=obj.mainInfoVo.underWriteFlag
-            this.$store.state.othFlag=obj.mainInfoVo.othFlag
+            this.channelType1=this.$store.state.channelType1=obj.endorseDataVo.mainInfoVo.channelType1
+            this.channelType2=obj.endorseDataVo.mainInfoVo.channelType2
+            this.agentCode=obj.endorseDataVo.mainInfoVo.agentCode
+            this.comCode=obj.endorseDataVo.mainInfoVo.comCode
+            this.roadBranchCode=obj.endorseDataVo.mainInfoVo.roadBranchCode
+            this.$store.state.underWriteFlag=obj.endorseDataVo.mainInfoVo.underWriteFlag
+            this.$store.state.othFlag=obj.endorseDataVo.mainInfoVo.othFlag
             this.renewal=this.$store.state.othFlag.substring(0,1)=='2'?'续保':'非续保'
-            this.oldPolicyNo=obj.mainInfoVo.oldPolicyNo
+            this.oldPolicyNo=obj.endorseDataVo.mainInfoVo.oldPolicyNo
             await this.getselectbusinessinfo("1")
             await this.getselectbusinessinfo("2")
-            this.channelType3=obj.mainInfoVo.channelType3
+            this.channelType3=obj.endorseDataVo.mainInfoVo.channelType3
             if((this.channelType1=='91'&&this.channelType3.substring(0,2)!='05')||this.channelType1=='h'){
               console.log("")
             }else{
               await this.getselectagentinfo()
               if(this.channelType1=='92'||this.channelType1=='93'){
                 this.getselectagentAgreementNo()
-                this.agreementNo=obj.mainInfoVo.agreementNo
+                this.agreementNo=obj.endorseDataVo.mainInfoVo.agreementNo
               }
             }
             await this.getselecthandlerinfo(this.comCode,-1)
-            this.handlerCode=obj.mainInfoVo.handlerCode
-            this.handlerInfoVo=obj.handlerInfoVos
+            this.handlerCode=obj.endorseDataVo.mainInfoVo.handlerCode
+            this.handlerInfoVo=obj.endorseDataVo.handlerInfoVos
           },
     
           initOpitons(data){//初始化SELECTED 下拉框

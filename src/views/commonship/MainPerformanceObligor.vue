@@ -15,7 +15,7 @@
               <td class="centertitle" style="width:13%">统一社会信用代码 <img :src="imgUrl"></td>
               <td class="centertitle" style="width:10%">保险金额 <img :src="imgUrl"></td>
               <td class="centertitle" style="width:12%">履约义务人注册地址</td>
-              <td class="centertitle" style="width:10%"  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'"></td>
+              <td class="centertitle" style="width:10%"  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'"></td>
             </tr>
           </thead>
           <tfoot>
@@ -45,7 +45,7 @@
                 <td>
                   <input type="text" name="obligorAddress" ref='obligorAddress' class="common" style="width:100%" maxlength="50" size="100" readonly v-model="obligorAddress"   description="履约义务人注册地址">
                 </td>
-                <td class=kun id="tdbutton_MainLoanImg_Query"  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'">
+                <td class=kun id="tdbutton_MainLoanImg_Query"  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'">
                    <input type="button" name="button_MainLoanImg_Query"  ref='button_MainLoanImg_Query' id="button_MainLoanImg" class="button" alt="查询履约义务人信息" value="查询履约义务人信息" @click="addQueryMainLoanImg()">
                 </td>
             </tr>

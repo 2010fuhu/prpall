@@ -178,6 +178,7 @@ export default {
           },
           async copybinNoData(){
               let orderData= await this.callDataByBinNo()
+              console.log(orderData)
               if(orderData instanceof Object){
                  if(this.$route.path=='/reinsMain'&&orderData.mainInfoVo.channelType1!='h'){
                      this.$alert('非分入业务投保单或保单数据,请到投保管理投保单录入操作!!!','',{type:'warning'})

@@ -50,25 +50,23 @@
         </tr>  
        <tr>
 			<td class="title"  >工程计划期限：</td>
-			<td class="input" >
+			<td class="input">
 		      	<label>自</label>
-            <div ref="startFixDateDiv" >
-            <el-date-picker  ref="startFixDate"  v-model="constructInfoVo.startFixDate" type="date"  :readonly='$route.path!="/main"&&$route.path!="/pgMain"' format="yyyy-MM-dd" name="startFixDate" v-validate="'required'" 
-                value-format="yyyy-MM-dd" placeholder="工程起期" size="mini" 
-                @blur="checkStartDateForCermical();addassuremonth();" @change="$route.path=='/pgMain'&&changeCorlor()">
-            </el-date-picker> 日起&nbsp;至
-            </div>
+              <input  type='text' class="common4" ref="startFixDate" v-if="$route.path=='/proposalShow'||$route.path=='/endorseShow'||$route.path=='/policyShow'"  :value='constructInfoVo.startFixDate'/>
+              <el-date-picker   v-else ref="startFixDate"  v-model="constructInfoVo.startFixDate" type="date"   format="yyyy-MM-dd" name="startFixDate" v-validate="'required'" 
+                  value-format="yyyy-MM-dd" placeholder="工程起期" size="mini" 
+                  @blur="checkStartDateForCermical();addassuremonth();" @change="($route.path=='/pgMain'||$route.path!='/reinsPgMain')&&changeCorlor()">
+              </el-date-picker> 日起&nbsp;至
             <!-- <input type='text' name='startFixDate' class='common4' ref="startFixDate"  placeholder="工程起期"  v-model="constructInfoVo.startFixDate"
               :readonly='$store.state.onlyStatus' v-validate="'required'"   @click="SelectDate($event,'yyyy-MM-dd');"  />
             日起&nbsp;至 -->
       </td>
           <td class="input">
-          <div ref="endFixDateDiv">
-          <el-date-picker  ref="endFixDate" v-model="constructInfoVo.endFixDate" type="date"  :readonly='$route.path!="/main"&&$route.path!="/pgMain"' format="yyyy-MM-dd" name="endFixDate" v-validate="'required'" 
-                value-format="yyyy-MM-dd" placeholder="工程终期" size="mini" 
-                @blur="addassuremonth();checkDateMainConstruct('endFixDate');"  @change="$route.path=='/pgMain'&&changeCorlorEnd()">
-            </el-date-picker>&nbsp;日&nbsp;止
-          </div>
+            <input  type='text'   class="common4"  ref="endFixDate" v-if="$route.path=='/proposalShow'||$route.path=='/endorseShow'||$route.path=='/policyShow'"  :value='constructInfoVo.endFixDate'/>
+            <el-date-picker  v-else  ref="endFixDate" v-model="constructInfoVo.endFixDate" type="date"  format="yyyy-MM-dd" name="endFixDate" v-validate="'required'" 
+                  value-format="yyyy-MM-dd" placeholder="工程终期" size="mini" 
+                  @blur="addassuremonth();checkDateMainConstruct('endFixDate');"  @change="($route.path=='/pgMain'||$route.path!='/reinsPgMain')&&changeCorlorEnd()">
+              </el-date-picker>&nbsp;日&nbsp;止
             <!-- <input type='text' name='endFixDate' class='common4' ref="endFixDate"  placeholder="工程起期"  v-model="constructInfoVo.endFixDate"  
              :readonly='$store.state.onlyStatus'  v-validate="'required'"   @click="SelectDate($event,'yyyy-MM-dd')" />&nbsp;日&nbsp;止 -->
           </td>

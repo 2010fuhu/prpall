@@ -26,7 +26,6 @@ export default{
     watch:{
         sumPremium2:{
           handler(newVal) {
-            debugger
             if(this.$store.state.initStatus==1){
                 this.calculateSubSidyPremium(newVal)
             }

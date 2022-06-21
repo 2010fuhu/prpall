@@ -2,29 +2,12 @@ export default {
      name:'ItemKindMain',
      data(){
        return{
+         originMap: new Map(),
          isShow:false,
          isShortRate:false,
          imgUrl:require('@/assets/images/markMustInput.jpg'),
          currencyInfoVoList:[],//币别select option
-         itemKindInfoVoList:[
-             {
-               serialNo:'1',
-               calculateFlag:'Y',
-               mainsubFlg:'1',
-               shortRateFlag:'0',
-               ShortRateClassShow:false,
-               shortRate:'100',
-               kindCode:'2244001',
-               kindName:'农民工工资支付履约保证保险',
-               itemCode:'',
-               itemName:'',
-               amount:'',
-               premium:'',
-               currency:'CNY',
-               rate:'',
-               flag:''
-             }
-             ]
+         itemKindInfoVoList:[]
        }
      },
      created(){},
@@ -40,20 +23,50 @@ export default {
           this.currencyInfoVoList=data.currencyInfoVoList;
        },
        //查询业务下，初始化主险信息
-       // eslint-disable-next-line no-unused-vars
        initMainItemkindData(orderData){
-         console.log("进入MainItemkind.js")
-         console.log(orderData.itemKindInfoVos)
-         if(orderData.itemKindInfoVos){
-           orderData.itemKindInfoVos.forEach((item,index) => {
-                 for(let key in item){
-                     if(key in this.itemKindInfoVoList[index]){
-                       this.itemKindInfoVoList[index][key]=item[key]
-                     }
+         if(orderData.originDataVo.itemKindInfoVos){
+            for(let item  of orderData.originDataVo.itemKindInfoVos){
+              this.originMap.set(item.serialNo+item.kindCode,item)
+            }
+         }
+         if(orderData.endorseDataVo.itemKindInfoVos){
+           orderData.endorseDataVo.itemKindInfoVos.forEach((item) => {
+                 let obj={
+                  serialNo:item.serialNo,
+                  calculateFlag:item.calculateFlag,
+                  mainsubFlg:item.mainsubFlg,
+                  shortRateFlag:item.shortRateFlag,
+                  ShortRateClassShow:false,
+                  shortRate:item.shortRate,
+                  kindCode:item.kindCode,
+                  kindName:item.kindName,
+                  itemCode:item.itemCode,
+                  itemName:item.itemName,
+                  amount:item.amount,
+                  premium:item.premium,
+                  currency:item.currency,
+                  rate:item.rate,
+                  flag: this.originMap.get(item.serialNo+item.kindCode)?this.originMap.get(item.serialNo+item.kindCode).flag:''
                  }
-
+                 this.itemKindInfoVoList.push(obj)
            });
          }
+         this.$nextTick(()=>{
+            this.itemKindInfoVoList.forEach((item,index)=>{
+                if(item.flag!=''){
+                  for(let key in item){
+                        if(this.$refs[key]){
+                          if(this.$refs[key][index]){
+                            this.$refs[key][index].title= this.originMap.get(item.serialNo+item.kindCode)[key]
+                          }
+                          if(this.$refs[key][index].title&&item.flag.charAt(0)=='U'&&this.$refs[key][index].title!=item[key]){
+                            this.$refs[key][index].className=`${this.$refs[key][index].className}u`
+                          }
+                        }
+                  }
+                }
+            })
+        })
        },
        // eslint-disable-next-line no-unused-vars
        calShortRate(index){//选择短期费率方式，计算短期系数

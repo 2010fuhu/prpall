@@ -35,7 +35,7 @@
 					</td>
             	</tr>
             	<tr class=common>
-            		<td colspan=4   v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'">
+            		<td colspan=4   v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'">
 								<input type="button" name="button_Fee_Refresh" class="button" 
 								 alt="刷新" value="确 定" @click="getJfeeFlagOnly();" >
 						<font color="red">外币保单请注意填写兑换币别和兑换率！</font>

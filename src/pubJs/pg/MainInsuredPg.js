@@ -113,12 +113,13 @@ class  insuredInfoVo{
 			initInsuredData(data){
 			   try{
 					this.insuredInfoList=[];
-					console.log(data.insuredInfoVos)
 					for(let item of data.insuredInfoVos){
 						let org=new insuredInfoVo()
 						for(let key in item){
 							if(key in org){
-							  org[key]=item[key]
+							  //if(key !="flag"){
+							  	org[key]=item[key]
+							  //}
 							}
 						}
 						insuredInfoListOrg.push(org)
@@ -156,9 +157,12 @@ class  insuredInfoVo{
 				let i=this.currentPage;
 		        for (let key in this.insuredInfoList[i]){
                       if(key in value){
-						this.insuredInfoList[i][key]=value[key];
+						 if(key !="flag"){
+							this.insuredInfoList[i][key]=value[key];
+						 }	
 					  }
 				}
+				//this.insuredInfoList[i].flag=this.insuredShow.flag //从平台待会来的数据，flag标志还是当前页面上的flag 是I就是I 是U就是U 是空就是空
 				this.insuredShow=this.insuredInfoList[i]
 			},
              //新增表格

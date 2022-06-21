@@ -95,7 +95,6 @@
              
           },
           calShortRate(index){//选择短期费率方式，计算短期系数
-             debugger
              this.itemKindInfoVoList[index].shortRate = 
              this.$uiCommon.pointFour((this.$uiCommon.getShortRate(
              this.itemKindInfoVoList[index].shortRateFlag,

@@ -48,20 +48,7 @@
 
 <script >
 import OrderList  from '@/api/endorseOperation.js'
-class deleteObj{
-    constructor(){
-       this.reqHeader={
-           transNo:"",
-           transDate:"",
-           transTime:"",
-           sysUserCode:"",
-           sysPassWord:"",
-           sign:"",
-           channelCode:""
-       },
-       this.endorseNo=""
-    }
-}
+import endorseReq from '@/json/endorseReq.json'
 export default ({
       data(){
         return{
@@ -72,17 +59,17 @@ export default ({
       methods:{
           submitForm(){
               //1 调用接口
-               this.$router.push({path: '/Save'})
+               this.$router.push({path: '/Save',query: { endorseNo: this.$route.query.endorseNo } })
           },
           previousForm(){//上一步 和取消方法
-            let obj=new deleteObj()
-            obj.reqHeader.transNo=this.$uiCommon.uuid();        
-            obj.reqHeader.transDate=this.$uiCommon.getCurrentDate();
-            obj.reqHeader.transTime=this.$uiCommon.getCurrentDate();
-            obj.reqHeader.sysUserCode=this.$store.state.userCode;
-            obj.reqHeader.sign="0";
-            obj.endorseNo=this.$route.query.endorseNo;
-            OrderList.endorseDelete(obj).then((res)=>{
+            //let obj=new deleteObj()
+            endorseReq.reqHeader.transNo=this.$uiCommon.uuid();        
+            endorseReq.reqHeader.transDate=this.$uiCommon.getCurrentDate();
+            endorseReq.reqHeader.transTime=this.$uiCommon.getCurrentDate();
+            endorseReq.reqHeader.sysUserCode=this.$store.state.userCode;
+            endorseReq.reqHeader.sign="0";
+            endorseReq.endorseNo=this.$route.query.endorseNo;
+            OrderList.endorseDelete(endorseReq).then((res)=>{
                  if(res.data.errCode=='0000'){
                      this.$router.go(-1)
 				 }else{

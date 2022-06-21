@@ -189,7 +189,8 @@ export default {
           setOnly(){
             this.$uiCommon.setContainerReadonly(this.$el,true)
             this.$store.state.onlyStatus=true;
-          }
+          },
+          cancelForm(){}
   }
 }
   

@@ -59,7 +59,7 @@
     <tr v-if="$route.path=='/endorseShow'">
       <td class="title3">批单号：</td>
       <td class="input3">
-        <input type="text" name="EndorseNo" class="readonly3" readonly>
+        <input type="text" name="EndorseNo" class="readonly3" readonly  :value="$route.query.businessNo">
       </td>
       <td class="title3">&nbsp;</td>
       <td class="input3">&nbsp;</td>
@@ -217,6 +217,7 @@
 					</select>
         <img :src="imgUrl">
 	</td>
+  </tr>
     <tr style="display:none">
       <td id="tdCommerceNatureTitle" class="title3" style="display:none">业务性质：</td>
       <td style="display:none">
@@ -277,13 +278,13 @@
               <td class="centertitle" style="width:20%">归属业务员</td>
               <td class="centertitle" style="width:25%">执业证号</td>
               <td class="centertitle" style="width:25%">业绩分成比例%</td>
-              <td class="centertitle" style="width:10%"   v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" >操作</td>
+              <td class="centertitle" style="width:10%"   v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" >操作</td>
             </tr>
             </thead>
               <tbody  v-show="isShow"  >    
                 <tr class=common    v-for="(Handleritem, index) in handlerInfoVo" :key="index">           
                  <td align="center">
-                    <input class="common" name="ComName1" description="归属机构"  v-if="$route.path=='/proposalShow'||$route.path=='/policyShow'"   v-model="Handleritem.comName">
+                    <input class="common" name="ComName1" description="归属机构"  v-if="$route.path=='/proposalShow'||$route.path=='/policyShow'||$route.path=='/endorseShow'"   v-model="Handleritem.comName">
                     <select class="common" name="ComName1" description="归属机构" v-else   v-model="Handleritem.comCode" @change="getselecthandlerinfo(Handleritem.comCode,index)">
                         <!-- <option value="" v-bind:disabled="comName1Disable">请选择</option> -->
                         <option value="" disabled>请选择</option>
@@ -291,7 +292,7 @@
                     </select>
                  </td>  
                  <td>
-                      <input class="common" name="handlerCode1"  v-if="$route.path=='/proposalShow'||$route.path=='/policyShow'"  v-model="Handleritem.handlerName" description="归属业务员名称"  />
+                      <input class="common" name="handlerCode1"  v-if="$route.path=='/proposalShow'||$route.path=='/policyShow'||$route.path=='/endorseShow'"  v-model="Handleritem.handlerName" description="归属业务员名称"  />
                       <select class="common" name="handlerCode1" v-else v-model="Handleritem.handlerCode" description="归属业务员名称"  >
                         <option value="" disabled>请选择</option>
                         <option :value="Handler1CodeVo.handlerCode" v-for=" Handler1CodeVo,index in Handleritem.Handler1CodeVoList" :key="index"  >{{Handler1CodeVo.handlerName}}</option>
@@ -305,7 +306,7 @@
                      @keypress="$uiCommon.pressInteger($event);"
                      @blur="$uiCommon.checkDecimal1($event,17,2,'','',',',3);">
                  </td>  
-                  <td id="trHandlerDelete"   v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'">
+                  <td id="trHandlerDelete"   v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'">
                        <p align="right"><input type="button" name="button_Handler_Delete"  :class="$store.state.bizType=='ENDORSE'?'':'button'" 
                         value="删 除"  @click="delHandlerData(index)"></p>
                   </td>
@@ -315,7 +316,7 @@
                <tr id="trHandler">
                  <td id="trHandlerInsert" colspan="5" class=mei>
                   <p align="right"><input type="button" name="button_Handler_Insert" :class="$store.state.bizType=='ENDORSE'?'':'button'" 
-                     v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" value="新 增" @click="addHandlerData()"></p>
+                     v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" value="新 增" @click="addHandlerData()"></p>
                  </td>
                </tr>
               </tfoot>

@@ -32,10 +32,33 @@ export default {
        addassuremonth(){},
        // eslint-disable-next-line no-unused-vars
         checkDateMainConstruct(e){},
-        // eslint-disable-next-line no-unused-vars
         initMainLoanData(orderData){
-            this.guaranteeInfoVo=orderData.guaranteeInfoVo
-            this.guaranteeSubInfoVoList=orderData.guaranteeSubInfoVos
+            this.guaranteeInfoVo=orderData.endorseDataVo.guaranteeInfoVo
+            let  orgGuaranteeInfo=orderData.originDataVo.guaranteeInfoVo
+            for(let key in  orgGuaranteeInfo){
+                if(this.$refs[key]){
+                  this.$refs[key].title=orgGuaranteeInfo[key]
+                  if(orgGuaranteeInfo[key]!=this.guaranteeInfoVo[key]&&orgGuaranteeInfo.flag=='U'){
+                    this.$uiCommon.setColor(this.$refs[key])
+                  }
+                }
+            }
+           
+            // this.guaranteeSubInfoVoList=orderData.endorseDataVo.guaranteeSubInfoVos
+            // let  orgGuaranteeSubInfo=orderData.originDataVo.guaranteeSubInfoVos
+            // orgGuaranteeSubInfo.forEach((item,index)=>{
+            //    for(let orgkey in item){
+            //      if(this.$refs[orgkey][index]){
+            //         this.$refs[orgkey][index].title=item[orgkey]
+            //         if()
+            //      }
+
+            //    }
+            // })
+            // this.$nextTick(()=>{
+            //   for()
+            // })
+
         }
     }   
    

@@ -77,17 +77,61 @@ export default{
             },
             initMainReinsData(orderData){
                this.getselectcoinscodeinfo()
-               let coinsInfoVos=orderData.coinsInfoVos;
-               this.coinsInfoVoList=coinsInfoVos
-               this.reinsBrokerInfoVoList=orderData.reinsBrokerInfoVos
-               let reinsCededInfoVo=orderData.reinsCededInfoVo
-               for(let key in reinsCededInfoVo){
-                 if(key in  this.reinsCededInfoVo){
-                    this.reinsCededInfoVo[key]=reinsCededInfoVo[key]
-                 }
+               this.coinsInfoVoList=orderData.endorseDataVo.coinsInfoVos;//这个不做处理
+               this.reinsBrokerInfoVoList=orderData.endorseDataVo.reinsBrokerInfoVos
+               let oldReinsBrokerList=orderData.originDataVo.reinsBrokerInfoVos;
+               let oldReinsBrokerMap=new Map()
+               if(oldReinsBrokerList.length>0){
+                oldReinsBrokerList.forEach((item)=>{
+                  oldReinsBrokerMap.set(item.serialNo,item)
+                })
                }
-               this.reinsCededInfoVo.reinsBill=orderData.mainInfoVo.othFlag.substring(19,20)
-            },
+               let reinsCededInfoVo=orderData.endorseDataVo.reinsCededInfoVo
+               let orginReinsCededInfo=orderData.originDataVo.reinsCededInfoVo
+               this.$nextTick(()=>{
+                for(let key in reinsCededInfoVo){
+                  if(key in  this.reinsCededInfoVo){
+                     this.reinsCededInfoVo[key]=reinsCededInfoVo[key]?reinsCededInfoVo[key]:''
+                  }
+                
+                  if(key in orginReinsCededInfo&&orginReinsCededInfo.flag){
+                       if( this.$refs[key]){
+                          this.$refs[key].title=orginReinsCededInfo[key]?orginReinsCededInfo[key]:''
+                          if(this.$refs[key].title!=this.reinsCededInfoVo[key]){
+                            this.$refs[key].className=`${this.$refs[key].className}u`
+                          }
+                       }else if(this.$refs.mainReinsRef.$refs[key]) {
+                          this.$refs.mainReinsRef.$refs[key].title=orginReinsCededInfo[key]?orginReinsCededInfo[key]:''
+                          if(this.$refs.mainReinsRef.$refs[key].title!=this.reinsCededInfoVo[key]){
+                            this.$refs.mainReinsRef.$refs[key].className=`${this.$refs.mainReinsRef.$refs[key].className}u`
+                          }
+                       }
+                  }else{
+                       if(this.$refs[key]){
+                          this.$refs[key].title=orginReinsCededInfo[key]?orginReinsCededInfo[key]:''
+                       }else if(this.$refs.mainReinsRef.$refs[key]){
+                          this.$refs.mainReinsRef.$refs[key].title=this.reinsCededInfoVo[key]
+                       }
+                  }
+                }
+                if(oldReinsBrokerList.length>0){
+                    this.coinsInfoVoList.forEach((item,index)=>{
+                        if(oldReinsBrokerMap.get(item.serialNo)){
+                            for(let key in item){
+                              if(this.$refs[key]){
+                                    if(this.$refs[key][index]){
+                                        this.$refs[key][index].title=oldReinsBrokerMap.get(item.serialNo)[key]
+                                        if(this.$refs[key][index].title!=item[key]){
+                                            this.$refs[key][index].className=`${this.$refs[key][index].className}u`
+                                        }
+                                    }
+                              }
+                            }
+                        }
+                    })
+                }
+              })
+              },
             offeredRate(){},
             insertReinsBroker(){
                this.reinsBrokerInfoVoList.push({

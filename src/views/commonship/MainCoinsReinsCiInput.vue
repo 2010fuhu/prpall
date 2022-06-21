@@ -13,7 +13,7 @@
               <td class="centertitle" width="10%">承保份额%</td>
               <td class="centertitle" width="10%">是否是分出公司</td>
               <td class="centertitle" width="15%">&nbsp;</td>
-              <td class="centertitle" width="8%" v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" >&nbsp;</td>
+              <td class="centertitle" width="8%" v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" >&nbsp;</td>
             </tr>
           </thead>
           <tbody>
@@ -48,14 +48,14 @@
             	<input type="button" name="button_AddCoinsReinsInfo_Insert"  class="longbutton" style="display:none;"
                         alt="分出公司详细信息" value="分出公司详细信息" @click="addCoinsReinsInfo()">
             </td>
-            <td  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" >
+            <td  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" >
               <p align="right"><input type="button" name="button_CoinsReinsCi_Delete" class="button" alt="删除" value="删 除" 
                 @click="deleteCoinsReinsCi(index)"></p>
             </td>
           </tr>
           </tbody>
              <tfoot>
-            <tr v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" >
+            <tr v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" >
               <td colspan="6">
                 <p align="right"><input type="button" name="button_CoinsReinsCi_Insert" class="button" alt="新增" value="新 增"
                   @click="insertCoinsReinsCi()"></p>

@@ -10,7 +10,7 @@
                 <input type="text" name="outPolicyNo" ref="outPolicyNo" style="width:25%" maxlength="22" class="common" v-validate="'required'"  v-model="reinsCededInfoVo.outPolicyNo">
                 <img :src="imgUrl">
               </td>
-              <td v-if="$route.path=='/pgMain'">
+              <td v-if="$route.path=='/pgMain'||$route.path=='/reinsPgMain'||$route.path=='/endorseShow' ">
                 原批单号码/分出公司批单号码：
                 <input type="text" name="outEndorseNo"  ref="outEndorseNo" style="width:25%" maxlength="21" class="common" v-model="reinsCededInfoVo.outEndorseNo">
                 <img :src="imgUrl">
@@ -42,7 +42,7 @@
                 <td class="centertitle" width="15%">经纪费</td>
                 <td class="centertitle" width="10%">经纪费增值税%</td>
                 <td class="centertitle" width="15%">经纪费增值税</td>
-                <td class="centertitle" width="5%" v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" >&nbsp;</td>
+                <td class="centertitle" width="5%" v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" >&nbsp;</td>
               </tr>
             </thead>
             <tbody>
@@ -78,14 +78,14 @@
                    v-model="reinsBrokerInfoVo.reinsBrokerAddedTaxFee"
                   @change="inDisPremium1();">
                 </td>
-                <td v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" >
+                <td v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" >
                   <p align="right"><input type="button" name="button_ReinsBroker_Delete" class="button" alt="删除" value="删 除" 
                     @click="deleteReinsBroker(index);inDisPremium1();"></p>
                 </td>
                 </tr>
                 </tbody>
             <tfoot>
-              <tr v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" >
+              <tr v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" >
                 <td colspan="12">
                   <p align="right"><input type="button" name="button_ReinsBroker_Insert" class="button" alt="新增" value="新 增"
                     @click="insertReinsBroker()"></p>
@@ -143,11 +143,11 @@
                   <td colspan="2">
                     <table class="common" border="0">
                       <tr>
-                        <td v-show="$route.path!='/proposalShow'&&$route.path!='/policyShow'" >
+                        <td v-show="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" >
                           <p align="left"><input type="button" name="buttonSubmit" class="button" alt="确定" value="确 定" @click="okCallback();"></p>
                         </td>
                         <td>&nbsp;</td>
-                        <td width="50%"  v-show="$route.path!='/pgMain'">
+                        <td width="50%"  v-show="$route.path!='/pgMain'&&$route.path!='/reinsPgMain'">
                           <p align="center"><input type="button" name="buttonCancel" class="button" alt="取消" value="取 消" @click="cancelCallback()"></p>
                         </td>
                       </tr>

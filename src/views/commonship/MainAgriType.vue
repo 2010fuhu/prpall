@@ -12,14 +12,14 @@
                 <td class="centertitle" width="27%">保费来源</td>
                 <td class="centertitle" width="20%">保费比例(%)</td>
                 <td class="centertitle" width="25%">保费金额</td>
-                <td class="centertitle" width="13%"   v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" >&nbsp;</td>
+                <td class="centertitle" width="13%"   v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" >&nbsp;</td>
               </tr>
             </thead>
             <tbody>
              <tr ref="subSidyData"  v-for="(SubSidyInfoVo, index) in subSidyInfoVoList" :key="index" >
               <td>
                 <input type="hidden" name="flag" description="涉农险信息批改标志" :value='SubSidyInfoVo.flag'>
-                <input type="text" name="serialNo" ref="serialNo" class="readonly" style="width:100%" description="涉农险信息页面显示序号" v-model="SubSidyInfoVo.serialNo">
+                <input type="text" name="serialNo" ref="serialNo" class="readonly" style="width:100%" description="涉农险信息页面显示序号" v-model="SubSidyInfoVo.c">
               </td>
               <td>
                 <select name="subSidySort"  ref="subSidySort" class="common" style="width:100%" description="保费来源"   v-validate="'required'" v-model="SubSidyInfoVo.subSidySort" @change="checkSubSidySort(index)">
@@ -44,14 +44,14 @@
                 <input type="text" name="subSidyPremium"  ref="subSidyPremium"  :class="SubSidyInfoVo.flag=='U'?'common3u':'common3'" style="width:99%" description="保费金额"  v-validate="'required'"   v-model="SubSidyInfoVo.subSidyPremium"
                 @keypress="$uiCommon.pressDecimal($event)">
               </td>
-              <td  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" >
+              <td  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" >
                 <p align="right"><input type="button" name="button_SubSidy_Delete" class="button" alt="删除" value="删 除" @click="deleteSubSidy(index)"></p>
               </td>
             </tr>
             
             </tbody>
             <tfoot>
-              <tr  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'"  >
+              <tr  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'"  >
                 <td colspan="6">
                   <p align="right"><input type="button" name="button_SubSidy_Insert" class="button" alt="新增" value="新 增"
                     @click="insertSubSidy()"></p>

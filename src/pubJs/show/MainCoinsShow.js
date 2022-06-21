@@ -20,7 +20,12 @@ export default{
       OperateFeesum:'',
       proportionFlag1:'0',// 手续计入方式
       billType:'0',//发票计入方式
-      billTypeDisabled:true 
+      billTypeDisabled:true,
+      chgCoinsAmountSum:0.00,
+      chgCoinsPremiumSum:0.00,
+      chgAgentFeeSum:0.00,
+      chgMiddleCostFeeSum:0.00,
+      chgOperateFeeSum:0.00,
       }
   },
     props:{
@@ -44,7 +49,6 @@ export default{
           this.coinsInfoVoList=orderData.coinsInfoVos
           this.coinsDetailInfoVoList=orderData.coinsDetailInfoVos
           let currency=this.coinsInfoVoList[0].currency
-          this.billType= this.coinsInfoVoList[0].billType
           this.billType= this.coinsInfoVoList[0].billType
           this.proportionFlag1=this.coinsInfoVoList[0].proportionFlag.substring(0,1)
           let CurrencyName="";
@@ -79,7 +83,6 @@ export default{
           this.coinsFlag=this.$store.state.coinsFlag
           this.asynConinsSelect()
           this.setReadOnly()
-
       },
       // async initCoinsdata(){
       //         this.coinsFlag=this.$store.state.coinsFlag

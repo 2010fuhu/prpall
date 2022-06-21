@@ -13,7 +13,8 @@
       <td class="input2" >
         <input type="hidden" name="DeductibleText_Flag"  v-model="DeductibleText_Flag" description="每次事故绝对免赔文本信息的批改标志">
         <p align="left">
-        <textarea name="deductibleClauses" class="codecode" maxlength="300"  
+        <!-- class="codecode"-->
+        <textarea name="deductibleClauses" class="common" ref="clauses" maxlength="300"  
         v-model="engageInfoVo.clauses"   v-validate="'required'"
         @change="changeDeductibleTextEngage();setRefreshFlagDeductibleTextZero()" >
         </textarea>

@@ -89,9 +89,12 @@ import  Address from '@/api/getselectaddressinfo.js'
 			},
 			async initAppliInsuredData(data){
 				//this.appliInfoVo.customerCName=data.appliInfoVo.customerCName
-				for(let key in data.appliInfoVo){//这个是JSON 对象 投保人对象的属性遍历
+				for(let key in data.endorseDataVo.appliInfoVo){//这个是JSON 对象 投保人对象的属性遍历
 					if(key in this.appliInfoVo){
-						this.appliInfoVo[key]=data.appliInfoVo[key]||''
+						this.appliInfoVo[key]=data.endorseDataVo.appliInfoVo[key]||''
+					}
+					if(this.$refs[key]){
+						this.$refs[key].title=data.originDataVo.appliInfoVo[key]||''
 					}
 				}
 				if(this.appliInfoVo.address1!=null&&this.appliInfoVo.address1!=''){
@@ -100,7 +103,15 @@ import  Address from '@/api/getselectaddressinfo.js'
 				if(this.appliInfoVo.address2!=null&&this.appliInfoVo.address2!=''){
 			    	await this.getselectaddressinfo(this.appliInfoVo.address2,'address2')
 				}
-				this.getInsuredAddress()	
+				//this.getInsuredAddress()
+				if(data.originDataVo.appliInfoVo.flag=="U"){
+					for(let appliRef in this.appliInfoVo){
+						if(this.$refs[appliRef]&&this.$refs[appliRef].title!=this.$refs[appliRef].value){
+							this.$refs[appliRef].className='commonu'
+						}
+					}  
+				}
+					
 			},
 			getselectaddressinfo(arg,value){
 				// eslint-disable-next-line no-unused-vars
@@ -118,30 +129,6 @@ import  Address from '@/api/getselectaddressinfo.js'
 						}  
 					})
 				})
-			},
-			getInsuredAddress(){
-				let Address1=''
-				let Address2=''
-				let Address3=''
-                for(let item of this.addressInfoVoList ){
-					if(this.appliInfoVo.address1==item.addressCode){
-						Address1=item.addressName;
-						break
-					}
-				}
-				for(let item of this.address2InfoVoList ){
-					if(this.appliInfoVo.address2==item.addressCode){
-						Address2=item.addressName;
-						break
-					}
-				}
-				for(let item of this.address3InfoVoList ){
-					if(this.appliInfoVo.address3==item.addressCode){
-						Address3=item.addressName;
-						break
-					}
-				}
-				this.appliInfoVo.insuredAddress=`${Address1+Address2+Address3+this.appliInfoVo.address4}`
 			},
         },
   }

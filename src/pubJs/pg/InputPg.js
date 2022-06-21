@@ -189,15 +189,6 @@ export default {
               originalPolicy.reinsCededInfoVo=orderDataOrigin.reinsCededInfoVo
               originalPolicy.reinsBrokerInfoVos=orderDataOrigin.reinsBrokerInfoVos
               console.log(originalPolicy)
-              if(orderData instanceof Object){
-                 if(this.$route.path=='/reinsMain'&&orderData.mainInfoVo.channelType1!='h'){
-                     this.$alert('非分入业务投保单或保单数据,请到投保管理投保单录入操作!!!','',{type:'warning'})
-                     return false;
-                 }else if(this.$route.path=='/Main'&&orderData.mainInfoVo.channelType1=='h'){
-                     this.$alert('分入业务投保单或保单,请到分入投保管理操作!!!','',{type:'warning'})
-                     return false;
-                 }
-              }
               //初始化页面得数据
               this.$store.state.refreshFlagFee='1';//点击币别标志刷新成1
               await  this.$refs.MainHead.initMainHeadData(orderData)
@@ -311,7 +302,7 @@ export default {
                       if(res.data.resHeader.errCode=='0000'){
                         resolve({endorseNo:res.data.endorseNo,endorseText:res.data.endorseText})
                       }else if(res.data.resHeader.errCode=='9999'){
-                        reject(res.data.resHeader.errMsg)
+                        reject("保单生成失败!!!")
                       }
                   })
 
@@ -429,7 +420,8 @@ export default {
                  serialNo:item.serialNo,
                  mainsubFlag:'1',
                  calculateFlag:item.calculateFlag,
-                 flag:item.flag,
+                 //flag:item.flag,
+                 flag:" 1",
                  kindCode:item.kindCode,
                  kindName:item.kindName,
                  currency:item.currency,
@@ -443,7 +435,7 @@ export default {
                    if(olditem.kindCode==obj1.kindCode&&(obj1.flag!="D"&&obj1.flag!="I")){
                       for(let itemkey in olditem){
                           if(olditem[itemkey]!=null&&olditem[itemkey]!=obj1[itemkey]){
-                              obj1.flag='U'; 
+                              obj1.flag='U1'; 
                               endorseType+=`05,`;
                               break;
                           }
@@ -611,7 +603,6 @@ export default {
                   }
               }
             }  
-            debugger
             //组织履约义务人信息
             let performanceObligorOld=originalPolicy.performanceObligorInfoVos 
             obj.infoData.performanceObligorInfoVos=JSON.parse(JSON.stringify(originalPolicy.performanceObligorInfoVos ))
@@ -752,7 +743,6 @@ export default {
                     for(let index=0;index< obj.infoData.coinsDetailInfoVos.length;index++){
                       if(coinsDetailInfo.coinsCode==obj.infoData.coinsDetailInfoVos[index].coinsCode
                         &&obj.infoData.coinsDetailInfoVos[index].flag!='D'&&obj.infoData.coinsDetailInfoVos[index].flag!='I'){
-                        debugger
                         for(let coinsDetailKey in coinsDetailInfo ){
                           if(coinsDetailInfo[coinsDetailKey]!=null&&coinsDetailKey!='flag'){
                             if(coinsDetailInfo[coinsDetailKey]!=obj.infoData.coinsDetailInfoVos[index][coinsDetailKey]){
@@ -846,9 +836,13 @@ export default {
             console.log(JSON.stringify(obj))
             console.log("-----------------生成的批单JSON对象end----------------")
             return obj
-       },
-           
-        }     
+       }, 
+    },
+    // //eslint-disable-next-line no-unused-vars
+    // beforeRouteLeave(to, from, next){
+    //   from.meta.keepAlive = false
+    //   next()
+    // }
   }
 
   

@@ -39,7 +39,9 @@ import {EventBus} from '@/utils/event-bus.js'
 				payCurrency:'CNY',
 				sumPremium:0
 			},
-			handlerInfoVo:[]//要通过这个获取归属机构数组
+			handlerInfoVo:[],//要通过这个获取归属机构数组
+			//原itemkind list
+			originfeeInfoList:[]
           }
         },
 		computed:{
@@ -77,6 +79,7 @@ import {EventBus} from '@/utils/event-bus.js'
 			this.commissionRate=''
 			this.commissionRateOrg=''
 			this.AllPerformance_Data=[]
+			this.originfeeInfoList=JSON.parse(JSON.stringify(orderData.feeInfoVos))
 				if(orderData.mainInfoVo.channelType1=='92'||orderData.mainInfoVo.channelType1=='93'){
 					this.commissionRate=orderData.mainInfoVo.disRate
 					let agentData=orderData.agentInfoVos
@@ -200,32 +203,46 @@ import {EventBus} from '@/utils/event-bus.js'
                commissionCal.agencyFeeMainInfoReq.disPayFeeWay=this.agentInfoVoList[0].disPayFeeWay;
                commissionCal.agencyFeeMainInfoReq.startDate=this.$store.state.startDate;
                commissionCal.agencyFeeMainInfoReq.endDate=this.$store.state.endDate;
-               commissionCal.agencyFeeMainInfoReq.endorType='';
+               commissionCal.agencyFeeMainInfoReq.endorType='05';
                commissionCal.agencyFeeMainInfoReq.isRation='0'
                commissionCal.agencyFeeMainInfoReq.isCoreCargo='0'
                commissionCal.agencyFeeMainInfoReq.minPremium='0'
-               commissionCal.agencyFeeMainInfoReq.policyNo=''
+               commissionCal.agencyFeeMainInfoReq.policyNo=this.$store.state.policyNo
                commissionCal.agencyFeeMainInfoReq.riskCode=this.$store.state.riskCode;
                commissionCal.agencyFeeMainInfoReq.transId=this.agentInfoVoList[0].transId;
-               //生成kindInfoVoList JSON数据
+               //生成kindInfoVoList JSON数据 JSON.parse(JSON.stringify(this.$refs.MainItemkind.itemKindInfoVoList))
                let kindList= this.$parent.$refs.MainItemkind.kindInfoListGenerate()
 			   let exchangeRate1Map=new Map();
+			   let oriSumPremium1=0;
+			   let newSumPremium1=0;
+			   let feeInfoVoList=JSON.parse(JSON.stringify(this.$parent.$refs.MainFee.feeInfoVoList))
 			   let currency1Fee=this.$parent.$refs.MainFee.currency1Fee
-			   for(let item of this.$parent.$refs.MainFee.feeInfoVoList){
+			   for(let item of feeInfoVoList){
 				   exchangeRate1Map.set(item.currency+"-"+item.currency1,item.exchangeRate1) 
+				   newSumPremium1=parseFloat(this.$uiCommon.replaced(item.premium1))
 			   }
                console.log(exchangeRate1Map.get("CNY-CNY"));
+			  
+			   this.originfeeInfoList.forEach(item=>{
+				  oriSumPremium1+=item.premium1
+			   })
+			   if(parseFloat(newSumPremium1)==parseFloat(oriSumPremium1)){
+                   return false
+			   }
 			   let kindInfoVoList=[];
-			   for (let kinditem of kindList){
-                      let obj={ 
-						"chgPremium":"",//批改得时候使用chgPremium
+			   kindList.forEach((kinditem,index)=>{
+					let obj={ 
+						"chgPremium":kinditem.flag=="I"?kinditem.premium:(parseFloat(this.$uiCommon.replaced(kinditem.premium)
+						-this.$uiCommon.replaced(this.$parent.$refs.MainItemkind.$refs.premium[index].title))),
+						//批改得时候使用chgPremium
 						"currency": kinditem.currency,
 						"exchangeRate":exchangeRate1Map.get(kinditem.currency+"-"+currency1Fee)==null?'1.0000':exchangeRate1Map.get(kinditem.currency+"-"+currency1Fee),
 						"kindCode":kinditem.kindCode,
 						"premium": this.$uiCommon.replaced(kinditem.premium)
 					}
 					kindInfoVoList.push(obj);
-			   }
+			   })
+
 			   commissionCal.agencyFeeMainInfoReq.kindInfoVoList=kindInfoVoList;
 			//组织reqHeader对象
 				commissionCal.reqHeader.channelCode='0';
@@ -244,7 +261,7 @@ import {EventBus} from '@/utils/event-bus.js'
 					 for(let resultindex in agentInfoVoList ){
                         if(agentInfoVoList[resultindex].agentCode==this.agentInfoVoList[index].agentCode){
 							let title =parseFloat(this.$uiCommon.replaced(this.$refs.commissionAmount[index].title))
-							this.agentInfoVoList[index].commissionAmount=agentInfoVoList[resultindex].agencyFee
+							this.agentInfoVoList[index].commissionAmount=parseFloat(this.$uiCommon.replaced(this.agentInfoVoList[index].commissionAmount))+parseFloat(agentInfoVoList[resultindex].chgAgencyFee)
 							let value=parseFloat(this.$uiCommon.replaced(this.agentInfoVoList[index].commissionAmount))
 							if(title!=value){
 								this.$refs.commissionAmount[index].className='commonu'
@@ -260,6 +277,7 @@ import {EventBus} from '@/utils/event-bus.js'
 				}
 				EventBus.$emit('AgentInfo',this.agentInfoVoList)
 				EventBus.$emit('AgentInfoRate',this.commissionRate)
+				return true;
            },
 		   agencyfee(val){
               let commissionCal=val;

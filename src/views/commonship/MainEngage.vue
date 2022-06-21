@@ -14,11 +14,11 @@
 						<td class="centertitle" width="25%">序号</td>
 						<td class="centertitle" width="25%">特约名称</td>
 						<td class="centertitle" width="25%">特约内容</td>
-						<td class="centertitle" width="25%" v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" >&nbsp;</td>
+						<td class="centertitle" width="25%" v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" >&nbsp;</td>
 					</tr>
 				</thead>
 				<tfoot>
-					<tr  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'">
+					<tr  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'">
 						<td colspan="5"  align="right" class=mei>
 							<input type="button" name="button_Engage_Insert" class="button" alt="新增" value="新 增" @click="insertEngage()" ref="button_Engage_Insert">
 						</td>
@@ -57,7 +57,7 @@
 								</table>
 							</span>	
 						</td>
-						<td  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'">  
+						<td  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'">  
 							<p align="right"><input type="button" name="button_Engage_Delete" class="button" alt="删除" value="删 除"
 								@click="deleteEngage(index)"></p>
 						</td>

@@ -171,7 +171,6 @@ export default{
               }
            } 
            //拿到总保额 和总保费
-            debugger
             let sumAmount=this.$store.state.refreshFlag=='1'?  this.$store.state.sumAmount1:this.CoinsAmountsum
             let sumPremium=this.$store.state.refreshFlag=='1'? this.$store.state.sumPremium1:this.CoinsPremiumsum
           //2 循环遍历为coinsDetailInfoVoList 明细赋值 

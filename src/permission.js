@@ -13,11 +13,11 @@
     store.state.userCode=typeof(to.query.userCode)=='undefined'?(store.state.userCode==''?'':store.state.userCode):to.query.userCode
     store.state.riskCode=typeof(to.query.riskcode)=='undefined'?(store.state.riskCode==''?'':store.state.riskCode):to.query.riskcode
     store.state.comCode=typeof(to.query.comCode)=='undefined'?(store.state.comCode==''?'':store.state.comCode):to.query.comCode
-    if(to.path=='/main'&&from.path=='/'){
+    if((to.path=='/reinsMain'||to.path=='/main')&&from.path=='/'){
         global.show=''
         global.path='tbcbpg'
         store.state.certiType='I'
-    }else if(to.path=='/pgMain'){
+    }else if(to.path=='/pgMain'||to.path=='/reinsPgMain'){
         global.show='Pg'
         global.path='pg'
         //store.state.comCode='41000000'

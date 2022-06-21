@@ -1,5 +1,5 @@
 import initBaseData  from '@/api/initBaseData' 
-import Order  from '@/api/queryOrderList' 
+import Order  from '@/api/endorseOperation' 
 import MainHead from '@/views/commonship/MainHead.vue'
 import AppliInsured from '@/views/commonship/MainAppliInsured.vue'
 import MainInsured from '@/views/commonship/MainInsured.vue'
@@ -16,9 +16,9 @@ import MainExpernses from '@/views/commonship/MainExpenses.vue'
 import MainCoins from '@/views/commonship/MainCoins.vue'
 import MainReins from '@/views/commonship/MainReins.vue'
 import MainAgriType from '@/views/commonship/MainAgriType.vue'
-
+import endorseReq from '@/json/endorseReq.json'
 export default {
-  name: 'proposalno',
+  name: 'endorseShow',
   components: {
     MainHead,
     AppliInsured,
@@ -103,8 +103,10 @@ export default {
             // this.arbitraryBoardList=data.arbitraryBoardList//仲裁方式
             // this.$refs.MainTail.initSelected(data)
             let orderData=await this.initOrderData()
+            //orderData=endroseTest
+            console.log(orderData)
             this.binNo=this.$route.query.businessNo
-            let comCode=orderData.mainInfoVo.comCode
+            let comCode=orderData.originDataVo.mainInfoVo.comCode
             let data =await this.fetchData(comCode)
             console.log("接口调用成功开始初始化工作")
             this.$refs.MainHead.initOpitons(data);
@@ -127,24 +129,20 @@ export default {
             this.$refs.MainPlan.initMainPlanData(orderData)
             this.$refs.MainEngage.initEngageData(orderData)
             this.$refs.MainExpernses.initExpernsesData(orderData)
-            this.obj=orderData.mainInfoVo
-            debugger
+            this.obj=orderData.endorseDataVo.mainInfoVo
             if(this.obj.argueSolution=='2'){
                this.argueShow=true
             }
-            // if(this.$store.state.agriType=='1'){
-            //   this.isAgriShow=true;
-            //   this.$refs.MainAgri.initMainAgriData(orderData)
-            // }
+            if(this.$store.state.agriType=='1'){
+              this.$refs.MainAgri.initMainAgriData(orderData)
+            }
              if(this.$store.state.coinsFlag!='0'){
-              this.isCoinsShow=true;
               console.log(this.isCoinschildShow)
               this.$refs.MainCoins.initMainCoinsData(orderData)
             }
-            // if(this.$store.state.channelType1=='h'){
-            //   this.isReinsShow=true
-            //   this.$refs.MainReins.initMainReinsData(orderData)
-            // }
+            if(this.$store.state.channelType1=='h'){
+              this.$refs.MainReins.initMainReinsData(orderData)
+            }
             this.$nextTick(() => {//拿到后端数据
             this.setOnly()
             //设置只读
@@ -168,39 +166,33 @@ export default {
           },
           initOrderData(){
               return  new Promise((resolve,reject)=>{
-                console.log("投保单查询单号----")
+                console.log("批单查询单号----")
                 console.log(this.$route.query.businessNo)
-                console.log("投保单查询单号----")
-                if(this.$route.query.bizType=='proposal'){
-                    Order.findProposalInfo(this.$route.query.businessNo).then(res => {
-                      let data=res.data;
-                      if(res.status==200){
-                          resolve(data)
-                      }else{
-                          reject("调用投保单号查询报错")
-                      }
-                    }).catch((err)=>{
-                          console.log(err)
-                    })
-                  }else if(this.$route.query.bizType=='policy'){
-                    Order.findPolicyInfo(this.$route.query.businessNo).then(res => {
-                      let data=res.data;
-                      if(res.status==200){
-                          resolve(data)
-                      }else{
-                          reject("调用投保单号查询报错")
-                      }
-                    }).catch((err)=>{
-                          console.log(err)
-                    })
-                  }    
+                console.log("批单查询单号----")
+                endorseReq.reqHeader.transNo=this.$uiCommon.uuid();        
+                endorseReq.reqHeader.transDate=this.$uiCommon.getCurrentDate();
+                endorseReq.reqHeader.transTime=this.$uiCommon.getCurrentDate();
+                endorseReq.reqHeader.sysUserCode=this.$store.state.userCode;
+                endorseReq.reqHeader.sign="0";
+                endorseReq.endorseNo=this.$route.query.businessNo;
+                Order.findEndorseInfo(endorseReq).then(res => {
+                  let data=res.data;
+                  if(res.status==200){
+                      resolve(data)
+                  }else{
+                      reject("调用批单明细查询报错")
+                  }
+                }).catch((err)=>{
+                      console.log(err)
+                })  
             })
           },
           setOnly(){
             
             this.$uiCommon.setContainerReadonly(this.$el,true)
             this.$store.state.onlyStatus=true;
-          }
+          },
+          cancelForm(){}
   }
 }
   

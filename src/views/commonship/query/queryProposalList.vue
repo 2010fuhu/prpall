@@ -13,7 +13,7 @@
 			        <td class=centertitle>状态</td>
 			        <td class=centertitle>核保信息</td> 
 			        <td class=centertitle>撤单</td>
-			        <td class=centertitle>修改
+			        <td class=centertitle>修改</td>
 					<td class=centertitle>删除</td>	
 				</tr>
 				<tr :class="index%2==0?'listodd':'listeven'" v-for="(item, index) in dataShow" :key="index" >
@@ -249,7 +249,6 @@ export default({
 		 underwrtF(obj){
             return new Promise((resolve,reject)=>{
                 underwrApi.underwrt(obj).then((res)=>{
-					debugger;
                     let data=res.data
 					if(data.resHeader.errCode=='000'){
 						resolve()

@@ -28,7 +28,7 @@
             </td>
             <!-- 批单号 -->
             <td width="15%">
-               <router-link :to="{path:'/endorseShow',query:{'endorseNo': item.endorseNo }}">{{item.endorseNo}}</router-link>
+               <router-link :to="{path:'/endorseShow',query:{'businessNo': item.endorseNo }}">{{item.endorseNo}}</router-link>
             </td>
             <!-- 保单号 -->
             <td width="15%">{{item.policyNo}}</td>
@@ -101,6 +101,7 @@
 import OrderList  from '@/api/endorseOperation.js'
 import underwrApi from '@/api/underwrtAndGenerate.js'
 import underwrt from '@/json/underwrt.json'
+import endorseReq from '@/json/endorseReq.json'
 class undwrtInfoVo{
     constructor(){
         this.businessID=0,
@@ -117,22 +118,6 @@ class undwrtInfoVo{
         this.valid='1'
     }
 }
-class deleteObj{
-    constructor(){
-       this.reqHeader={
-           transNo:"",
-           transDate:"",
-           transTime:"",
-           sysUserCode:"",
-           sysPassWord:"",
-           sign:"",
-           channelCode:""
-       },
-       this.endorseNo=""
-    }
-}
-
-
 export default {
     props: ['Conditionobj'],
     data(){
@@ -184,12 +169,9 @@ export default {
             console.log("撤销批改"+endorseNo)
             // let userCode=this.$store.state.userCode
             OrderList.endorseCencel(endorseNo).then((res)=>{
-                // debugger
                  if(res.data.resHeader.errCode=='0000'){
-                    //  debugger
                     this.$alert('撤销成功！！！','批单信息',{type:'success' })
 				 }else{
-                    //  debugger
 					this.$alert('撤销失败！！！','批单信息',{type:'error' })
 				 }
 			}).catch(()=>{})
@@ -197,14 +179,13 @@ export default {
         },
         deleteEndorse(endorseNo){
             console.log('删除本条批改'+endorseNo)
-            let obj=new deleteObj()
-            obj.reqHeader.transNo=this.$uiCommon.uuid();        
-            obj.reqHeader.transDate=this.$uiCommon.getCurrentDate();
-            obj.reqHeader.transTime=this.$uiCommon.getCurrentDate();
-            obj.reqHeader.sysUserCode=this.$store.state.userCode;
-            obj.reqHeader.sign="0";
-            obj.endorseNo=endorseNo;
-            OrderList.endorseDelete(obj).then((res)=>{
+            endorseReq.reqHeader.transNo=this.$uiCommon.uuid();        
+            endorseReq.reqHeader.transDate=this.$uiCommon.getCurrentDate();
+            endorseReq.reqHeader.transTime=this.$uiCommon.getCurrentDate();
+            endorseReq.reqHeader.sysUserCode=this.$store.state.userCode;
+            endorseReq.reqHeader.sign="0";
+            endorseReq.endorseNo=endorseNo;
+            OrderList.endorseDelete(endorseReq).then((res)=>{
                  if(res.data.errCode=='0000'){
                     this.$alert('删除成功！！！','批单信息',{type:'success' })
 				 }else{
@@ -298,9 +279,7 @@ export default {
         submitForm(){//提交核批功能方法
 		    if(this.checked.length>0){
                 underwrt.undwrtMainInfoReq.undwrtInfoReqList=[];
-                debugger
 				this.checked.forEach((item)=>{
-                    debugger
 					let undwrtinfo=new undwrtInfoVo()
 					undwrtinfo.businessNo=item
 					undwrtinfo.comCode=this.$store.state.comCode
@@ -317,19 +296,15 @@ export default {
 				underwrt.reqHeader.transTime=this.$uiCommon.getCurrentTime()
 				underwrt.reqHeader.transNo=this.$uiCommon.uuid()
 				this.underwrtF().then((data)=>{
-                    debugger
 					if(data.resHeader.errCode=='000'){
-                        debugger
 						this.$alert('提交核保成功!!!','提交核保',{ type:'success'})
 						return true
 					}else{
-                        debugger
 						this.$alert('提交核保失败!!!','提交核保',{ type:'error'})
 						return false
 					}
 				})
 			}else{
-                debugger
 				this.$alert('没有勾选投保单号或投保单非普通新保状态!!!','提交核保',{ type:'warning'})
 				return false;
 			}

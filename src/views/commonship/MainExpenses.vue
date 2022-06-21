@@ -6,8 +6,8 @@
 			<td class="formtitle"  colspan=4>
 				<img id="ExpensesImg" name="ExpensesImg" style="cursor:hand" src="@/assets/images/butCollapse.gif" @click="show($event)">
 				费用信息 
-				 <input type="button" name="button_Agent_information" class="button" alt="获取费用信息" value=" 获取费用信息 "  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" @click="getAllCommissionAmount();"> 
-				 手续费率%<input type="text" name="Agent_information" class="common" style="width:20%" maxlength="9" v-model="commissionRate" @keypress="$uiCommon.pressDecimal($event)" @blur="$uiCommon.checkDecimal($event,8,4,'0','100')" @change='getAgentFeeRate()'>
+				 <input type="button" name="button_Agent_information" class="button" alt="获取费用信息" value=" 获取费用信息 "  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" @click="getAllCommissionAmount();"> 
+				 手续费率%<input type="text" name="Agent_information" class="common" style="width:20%" maxlength="9"  ref='commissionRate' v-model="commissionRate" @keypress="$uiCommon.pressDecimal($event)" @blur="$uiCommon.checkDecimal($event,8,4,'0','100')" @change='getAgentFeeRate()'>
 			</td>
 		</tr>
 		<tr>
@@ -33,27 +33,27 @@
 								<tr ref="agentData" class="common"  v-for="(Agent,index) in agentInfoVoList" :key="index">
 								    <td>
 										<input type="hidden" name="CommissionType" class="readonly" readonly style="width:100%;" description="手续费类型">
-										<input type="hidden" name="flag" description="批改标志"  :value="Agent.flag" >
-										<input type="hidden" name="transId" class="readonly" readonly style="width:100%;" :value="Agent.transId" description="手续费计算ID">
-										<input type="text"   name="serialNo" class="readonly" readonly style="width:100%;" :value="Agent.serialNo" description="序号">
+										<input type="hidden" name="flag"      ref='flag'  description="批改标志"  :value="Agent.flag" >
+										<input type="hidden" name="transId"   ref='transId'  class="readonly" readonly style="width:100%;" :value="Agent.transId" description="手续费计算ID">
+										<input type="text"   name="serialNo"  ref='serialNo'  class="readonly" readonly style="width:100%;" :value="Agent.serialNo" description="序号">
 									</td>
 									<td>
-										<input type="text" name="agentCode" class="common3" style="width:100%;"  :value="Agent.agentCode" description="代理人代码" readonly>
+										<input type="text" name="agentCode"   ref='agentCode'  class="common3" style="width:100%;"  :value="Agent.agentCode" description="代理人代码" readonly>
 									</td>
 									<td>
-										<input type="text" name="agentName" class="common3" style="width:100%"   :value="Agent.agentName" description="代理人名称" readonly>
-										<input type="hidden" name="agreementNo" class="common3"  :value="Agent.agreementNo" description="代理人名称" readonly>
+										<input type="text" name="agentName"    ref='agentName'  class="common3" style="width:100%"   :value="Agent.agentName" description="代理人名称" readonly>
+										<input type="hidden" name="agreementNo" ref='agreementNo' class="common3"  :value="Agent.agreementNo" description="代理人名称" readonly>
 									</td>
 									<td>
-								     	<input type="text" name="disPayFeeWay" class="common3" style="width:100%"  v-if="Agent.disPayFeeWay=='0'" value="含税" description="手续费计算方式" readonly>
-										<input type="text" name="disPayFeeWay" class="common3" style="width:100%"  v-else value="不含税" description="手续费计算方式" readonly>
+								     	<input type="text" name="disPayFeeWay"  ref='disPayFeeWay' class="common3" style="width:100%"  v-if="Agent.disPayFeeWay=='0'" value="含税" description="手续费计算方式" readonly>
+										<input type="text" name="disPayFeeWay"  ref='disPayFeeWay'  class="common3" style="width:100%"  v-else value="不含税" description="手续费计算方式" readonly>
 
 									</td>
 									<td>
-										<input type="text" name="commissionPercent" class="common3" readonly style="width:100%"  :value="Agent.commissionPercent"  description="手续费分成比例" >
+										<input type="text" name="commissionPercent" ref='commissionPercent' class="common3" readonly style="width:100%"  :value="Agent.commissionPercent"  description="手续费分成比例" >
 									</td>
 									<td>
-										<input type="text" name="commissionPercentReal" class="common3" readonly style="width:100%" description="手续费率分成比例"   :value="Agent.commissionPercentReal">      
+										<input type="text" name="commissionPercentReal"  ref='commissionPercentReal' class="common3" readonly style="width:100%" description="手续费率分成比例"   :value="Agent.commissionPercentReal">      
 									</td>
 									<td>
 										<input type="text" name="commissionAmount"  ref='commissionAmount'  class="common3" readonly style="width:100%" description="手续费金额" :value="Agent.commissionAmount">
@@ -67,7 +67,7 @@
 								</tr>
 							</tbody>
 							<tfoot>
-								<tr class="common"  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'" >
+								<tr class="common"  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'" >
 									<td id="tdbutton_AllAgent_Insert" colspan="8">
 										<p align="right">
 											<input type="button" name="button_Agent_Insert" class="smallbutton" alt="新增" value="+"  @click="getAllAgent();">
@@ -134,7 +134,7 @@
 		<tr>
 			<td class="formtitle"  colspan=4>
 			<img id="PerformanceImg" name="PerformanceImg" style="cursor:hand" src="@/assets/images/butCollapse.gif" @click="show($event)">绩效费用信息
-			<input type="button" name="button_Performance_information"  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'"  
+			<input type="button" name="button_Performance_information"  v-if="$route.path!='/proposalShow'&&$route.path!='/policyShow'&&$route.path!='/endorseShow'"  
 			  :class="isButtonPerformance?'':'button'" :disabled="isButtonPerformance" alt="获取绩效费用信息" value=" 获取绩效费用信息 "   @click="getPerformance()">
             <main-performance-input  v-if="isPerformanceparentShow" v-bind:PerformanceArgs="PerformanceArgs"    @closePerformanceChild="closePerformanceChild" ></main-performance-input>
 			</td>
@@ -163,9 +163,9 @@
 									<td><input type="text" name="PerformanceNo" class="common3" style="width:100%;" description="序号"  	   readonly   :value="Performance.PerformanceNo"></td>
 									<td><input type="text" name="EveryUserCode" class="common3" style="width:100%;" description="业务员代码" 	readonly   :value="Performance.EveryUserCode"></td>
 									<td><input type="text" name="EveryUserName" class="common3" style="width:100%" description="业务员名称"   	readonly   :value="Performance.EveryUserName"></td>
-									<td><input type="text"  name="PerformancePercent" ref="PerformancePercent" class="common3" style="width:100%" description="绩效费率%" readonly  :value="Performance.PerformancePercent"></td>
+									<td><input type="text"  name="PerformancePercent" ref="PerformancePercent" :class="Performance.AllPerformance_Flag=='U'?'common3u':'common3'" style="width:100%" description="绩效费率%" readonly  :value="Performance.PerformancePercent"></td>
 									<td><input type="text" name="PerformanceCurrency" ref="PerformanceCurrency" class="common3"  style="width:100%" description="币别" 	readonly  :value="Performance.PerformanceCurrency"></td>
-									<td><input type="text" name="PerformanceFee"  	  ref="PerformanceFee" class="common3"  style="width:100%" description="绩效金额"   	readonly  :value="Performance.PerformanceFee"></td>
+									<td><input type="text" name="PerformanceFee"  	  ref="PerformanceFee" :class="Performance.AllPerformance_Flag=='U'?'common3u':'common3'"   style="width:100%" description="绩效金额"   	readonly  :value="Performance.PerformanceFee"></td>
 								</tr>          
 							</tbody>
 							<tfoot>

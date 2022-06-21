@@ -62,8 +62,8 @@ class  insuredInfoVo{
 			initOpitons(data){//初始化 select 下拉框options
                 this.addressInfoVoList=data.addressInfoVoList;//省份下拉框初始化
 			},
-			initInsuredData(data){
-				for(let item of data.insuredInfoVos){
+			initInsuredData(data){//
+				for(let item of data.endorseDataVo.insuredInfoVos){
 					this.insuredInfoList.push(item)
 				}
 				this.insuredShow=this.insuredInfoList[this.currentPage]
