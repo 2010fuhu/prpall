@@ -62,12 +62,53 @@ class  insuredInfoVo{
 			initOpitons(data){//初始化 select 下拉框options
                 this.addressInfoVoList=data.addressInfoVoList;//省份下拉框初始化
 			},
-			initInsuredData(data){//
-				for(let item of data.endorseDataVo.insuredInfoVos){
-					this.insuredInfoList.push(item)
-				}
+			initInsuredData(orderData){
+				let list=[];
+				let obj={};
+				let endorseData =orderData.endorseDataVo.insuredInfoVos;
+				let originData  =orderData.originDataVo.insuredInfoVos;
+				let originMap=new Map()
+				let originMap1=new Map()
+				let endorseMap=new Map()
+				endorseData.forEach((item)=>{
+					endorseMap.set(item.customerCode,item.flag)
+				  })
+				originData.forEach((item)=>{
+				  originMap.set(item.customerCode,item.flag)
+				  originMap1.set(item.customerCode,item)
+				})
+				list.push(...endorseData,...originData)
+				list=list.reduce((newArr, next)=>{
+				  obj[next.customerCode] ? "" : (obj[next.customerCode] = true && newArr.push(next))
+				  return  newArr
+				},[])
+				list.forEach((item,index)=>{
+				  if(originMap.get(item.customerCode)){
+					list[index].flag=originMap.get(item.customerCode)=="U"?'U':originMap.get(item.customerCode)=="D"&&!endorseMap.get(item.customerCode)?'D':''
+				  }else{
+					list[index].flag='I'
+				  }
+				})
+				this.insuredInfoList= list.sort(this.$uiCommon.compare("serialNo")) 
 				this.insuredShow=this.insuredInfoList[this.currentPage]
 				this.pageNum=this.insuredInfoList.length
+				this.$nextTick(()=>{
+					this.insuredInfoList.forEach((item,index)=>{
+						if(item.flag!='I'&&item.flag!='D'){
+							let historyData=originMap1.get(item.customerCode)
+							for(let key in historyData){
+								if(this.$refs[key]){
+									if(this.$refs[key][index]){
+										this.$refs[key][index].title=historyData[key]
+										if(this.$refs[key][index].title!=this.$refs[key][index].value){
+											this.$refs[key][index].className='commonu'
+										}    
+									}
+								}
+							}
+						}
+					})
+				})
 				console.log(`this.pagenum${this.pageNum}`)
 			},
             // 下一页
@@ -89,6 +130,5 @@ class  insuredInfoVo{
 				this.currentPage = --i
             },
 			checkIdentifyNumber(){}, 
-			//checkIdentifyNumber 
        }
     })

@@ -68,14 +68,14 @@ class  insuredInfoVo{
 			}	
 		  },
 		  watch:{
-			insuredInfoList:{
-				handler(){
-				for(let i=0; i<this.insuredInfoList.length;i++){
-					this.insuredInfoList[i].serialNo=i+2
-				}
-				},
-				immediate: true
-			},
+			// insuredInfoList:{
+			// 	handler(){
+			// 	for(let i=0; i<this.insuredInfoList.length;i++){
+			// 		this.insuredInfoList[i].serialNo=i+2
+			// 	}
+			// 	},
+			// 	immediate: true
+			// },
 			'insuredShow.customerCode'(){
 				this.setColor('customerCode')
 			},
@@ -95,9 +95,9 @@ class  insuredInfoVo{
 			setColor(key){
 				if(this.$store.state.initStatus==1){
 					if(this.insuredShow.flag=='I'){
-						console.log()
+						return;
 					}else if(this.insuredShow.flag=='D'){
-						console.log()
+						return;
 					}else if(this.$refs[key]){
 						if(this.insuredShow[key]!=insuredInfoListOrg[this.currentPage][key]){
 							this.$refs[key].className='commonu'
@@ -155,21 +155,35 @@ class  insuredInfoVo{
             },
 			setCurrentPage(value){//根据平台带回的数据设置当前页被保险人数据
 				let i=this.currentPage;
-		        for (let key in this.insuredInfoList[i]){
-                      if(key in value){
-						 if(key !="flag"){
-							this.insuredInfoList[i][key]=value[key];
-						 }	
-					  }
-				}
-				//this.insuredInfoList[i].flag=this.insuredShow.flag //从平台待会来的数据，flag标志还是当前页面上的flag 是I就是I 是U就是U 是空就是空
-				this.insuredShow=this.insuredInfoList[i]
+
+				if(value.customerCode){
+					let person=this.insuredInfoList.find(item=>item.customerCode==value.customerCode)
+					if(person){
+						this.$alert("被保人数据中有相同的数据!",'被保险人信息',{type:'warning'});
+						return
+					}
+				}else{
+					for (let key in this.insuredInfoList[i]){
+						if(key in value){
+							if(key !="flag"){
+								this.insuredInfoList[i][key]=value[key];
+							}	
+						}
+					}
+					//this.insuredInfoList[i].flag=this.insuredShow.flag //从平台待会来的数据，flag标志还是当前页面上的flag 是I就是I 是U就是U 是空就是空
+					this.insuredShow=this.insuredInfoList[i]
+				}	
 			},
-             //新增表格
+            //新增表格
 			Add() {
-				let insurdeObj=new insuredInfoVo()
-				insurdeObj.flag="I"
-				this.insuredInfoList.push(insurdeObj);
+				let serialNoList=[]
+				this.insuredInfoList.forEach((item)=>{
+					serialNoList.push(item.serialNo)
+				})
+				let insuredObj=new insuredInfoVo()
+				insuredObj.flag="I"
+				insuredObj.serialNo=Math.max(...serialNoList)+1
+				this.insuredInfoList.push(insuredObj);
 				// 循环页面
 				this.pageNum = Math.ceil(this.insuredInfoList.length ) || 1;//计算有多少页数据，默认为1  
 				// 获取到数据后默认显示第一页内容

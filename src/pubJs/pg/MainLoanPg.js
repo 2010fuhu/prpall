@@ -1,3 +1,4 @@
+
 export default { 
     name:'MainLoan',
     data(){
@@ -57,8 +58,12 @@ export default {
        },
 
        addGuarantee(){
+          let serialNoList=[]
+          this.guaranteeSubInfoVoList.forEach((item)=>{
+              serialNoList.push(item.serialNo)
+          })
           this.guaranteeSubInfoVoList.push({   
-            serialNo:'',
+            serialNo:Math.max(...serialNoList)+1,
             guaranteeType:'',
             guaranteeDesc:'',
             guaranteeRate:'',
@@ -170,15 +175,15 @@ export default {
 
     },     
     //子组件中监听深度监听对象 
-    watch: {
-    guaranteeSubInfoVoList:{//监听保险期间的变化
-        handler:function () {
-           for(let i=0;i<this.guaranteeSubInfoVoList.length;i++){
-             this.guaranteeSubInfoVoList[i].serialNo=i+1;
-          }
-        },
-        immediate:false
-      },
+  //   watch: {
+  //   guaranteeSubInfoVoList:{//监听保险期间的变化
+  //       handler() {
+  //          for(let i=0;i<this.guaranteeSubInfoVoList.length;i++){
+  //            this.guaranteeSubInfoVoList[i].serialNo=i+1;
+  //         }
+  //       },
+  //       immediate:false
+  //     },
 
-   }
+  //  }
 }

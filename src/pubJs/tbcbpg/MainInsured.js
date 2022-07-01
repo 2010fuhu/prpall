@@ -116,12 +116,20 @@ class  insuredInfoVo{
             },
 			setCurrentPage(value){//根据平台带回的数据设置当前页被保险人数据
 				let i=this.currentPage;
-		        for (let key in this.insuredInfoList[i]){
-                      if(key in value){
-						this.insuredInfoList[i][key]=value[key];
-					  }
-				}
-				this.insuredShow=this.insuredInfoList[i]
+				if(value.customerCode){
+					let person=this.insuredInfoList.find(item=>item.customerCode==value.customerCode)
+					if(person){
+						this.$alert("被保人数据中有相同的数据!",'被保险人信息',{type:'warning'});
+						return
+					}
+				}else{
+					for (let key in this.insuredInfoList[i]){
+						if(key in value){
+							this.insuredInfoList[i][key]=value[key];
+						}
+					}
+					this.insuredShow=this.insuredInfoList[i]
+				}	
 			},
              //新增表格
 			Add() {

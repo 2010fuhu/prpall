@@ -41,12 +41,55 @@ import {showPage} from '@/pubJs/UICommon.js'
 			        })
 		        },
             initEngageData(orderData){
-              let data=orderData.endorseDataVo.engageInfoVos.filter(ele=>{
+              let list=[];
+              let obj={};
+              let originMap=new Map()
+              let originMap1=new Map()
+              let endorseMap=new Map()
+              let endorseData=orderData.endorseDataVo.engageInfoVos.filter(ele=>{
                 return  ele.clauseCode!='TX001'
               }) 
-              this.engageInfoVoList=data
+              let originData=orderData.originDataVo.engageInfoVos.filter(ele=>{
+                return  ele.clauseCode!='TX001'
+              })
+              endorseMap.forEach((item)=>{
+                endorseMap.set(item.clauseCode,item.flag)
+              })
+              originData.forEach((item)=>{
+                originMap.set(item.clauseCode,item.flag)
+                originMap1.set(item.clauseCode,item)
+              }) 
+              list.push(...endorseData,...originData)
+              list=list.reduce((newArr, next)=>{
+                obj[next.clauseCode] ? "" : (obj[next.clauseCode] = true && newArr.push(next))
+                return newArr
+              },[])
+              list.forEach((item,index)=>{
+                if(originMap.get(item.clauseCode)){
+                  list[index].flag=originMap.get(item.clauseCode)=='U'?'U':originMap.get(item.clauseCode)=='D'&&!endorseMap.get(item.clauseCode)?'D':''
+                }else{
+                  list[index].flag='I'
+                }
+              })
+              this.engageInfoVoList=list.sort(this.$uiCommon.compare("serialNo")) 
+              this.$nextTick(()=>{
+                this.engageInfoVoList.forEach((item,index)=>{
+                  if(item.flag!='I'&&item.flag!='D'){
+                    let historyData=originMap1.get(item.clauseCode)
+                    for(let engageKey in historyData){
+                        if(this.$refs[engageKey]){
+                            if(this.$refs[engageKey][index]){
+                                this.$refs[engageKey][index].title=historyData[engageKey]
+                                if(this.$refs[engageKey][index].title!=this.$refs[engageKey][index].value){
+                                  this.$refs[engageKey][index].className='commonu'
+                                }    
+                            }
+                        }
+                    }
+                  }
+                })
+              })
             },
-            selectClauseCode(){}
-		   
+            selectClauseCode(){}	   
         }
   }

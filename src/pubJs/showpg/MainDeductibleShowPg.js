@@ -29,10 +29,11 @@ export default {
             })
         let orgin =orderData.originDataVo.engageInfoVos.filter(item=>{
           return item.clauseCode=='TX001'
-      })   
-        this.engageInfoVo=data[0]
-        if(orgin.length){
-          console.log( this.$refs)
+       })
+        if(data) {
+          this.engageInfoVo=data[0]? data[0]:{serialNo:"1",clauseCode:'TX001',clauses:'',lineNo:'1',titleName:'',titleFlag:'', flag:''}
+        }
+        if(orgin[0]){
           this.$refs.clauses.title=orgin[0].clauses
           if(orgin[0].flag&&orgin[0].flag.indexOf('U')>=0){
             this.$refs.clauses.className=`${this.$refs.clauses.className}u`
