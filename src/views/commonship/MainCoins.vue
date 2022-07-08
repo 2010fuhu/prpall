@@ -167,7 +167,7 @@
                     <input type="text" name="operateFee" class="common"  style="width:50%"  description="联/共保各方出单费"  readonly  ref="operateFee"  @change="calOperateFeesum" v-model="coinsDetailInfoVo.operateFee">
                   </span>
                   <span id="spanChgOperateFee" v-show="$route.path=='/pgMain'||$route.path=='/endorseShow'">
-                    <br><input type="text" name="chgOperateFee"  ref='chgMiddleCostFee' class="common" readonly style="width:45%" description="联/共保各方出单费变化量" value=0.00> 
+                    <br><input type="text" name="chgOperateFee"  ref='chgOperateFee' class="common" readonly style="width:45%" description="联/共保各方出单费变化量" value=0.00> 
                   </span>
                 </td>
               </tr>

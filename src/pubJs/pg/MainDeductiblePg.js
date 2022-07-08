@@ -30,7 +30,14 @@ export default {
           let data =orderData.engageInfoVos.filter(item=>{
                   return item.clauseCode=='TX001'
               })
+        
           this.engageInfoVo=data[0]
+          for(let key in this.engageInfoVo){
+                if(this.$refs[key]){
+                  this.$refs[key].title=this.engageInfoVo[key]
+                }
+          }
+          this.$uiCommon.addevent(this,'engageInfoVo')
         },
        checkDeductibleInfo(){
           return new Promise((reslove)=>{

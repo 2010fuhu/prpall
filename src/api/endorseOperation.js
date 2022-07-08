@@ -16,7 +16,7 @@ export default {
     },
     findEndorseInfo(arg){//批单明细查询
         return request({
-            url:`/endorse/findinfo2`,
+            url:`/endorse/findinfo3`,
             method: 'post',
             data:JSON.stringify(arg)
         })    

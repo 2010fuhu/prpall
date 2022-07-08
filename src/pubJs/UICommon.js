@@ -1393,7 +1393,7 @@ function  setTitle(dom){//dom必须传入一个数组 设置 dom元素中元素�
 function  addevent(_that,str){// 传递vue示例 与 字符串(对象名 或者 数组名)
   let refs=_that.$refs
     try{
-      if(_that[str]){
+      if(_that[str]){ //this.itemKindInfoVoList =[] true,   this.itemKindInfoVoList  undeifned null   0
         if(_that[str].constructor === Array){
           for(let i=0; i<_that[str].length;i++){
             let item=_that[str][i]
@@ -1413,7 +1413,7 @@ function  addevent(_that,str){// 传递vue示例 与 字符串(对象名 或者 
                 refs[str].addEventListener("change", function(){ setColor(this)})
         }
       }else{
-            
+        //refs.qwe.age
             refs[str].addEventListener("change", function(){ setColor(this)})
       } 
   }catch{

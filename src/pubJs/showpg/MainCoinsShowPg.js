@@ -114,11 +114,11 @@ export default{
                   }
                   if(oldcoinsDetailMap.get(item.coinsCode)){
                      let obj=oldcoinsDetailMap.get(item.coinsCode)
-                     this.$refs.chgCoinsAmount[index]=obj.chgCoinsAmount
-                     this.$refs.chgCoinsPremium[index]=obj.chgCoinsPremium
-                     this.$refs.chgAgentFee[index]=obj.chgAgentFee
-                     this.$refs.chgMiddleCostFee[index]=obj.chgMiddleCostFee
-                     this.$refs.chgOperateFee[index]=obj.chgOperateFee
+                     this.$refs.chgCoinsAmount[index].title=obj.chgCoinsAmount
+                     this.$refs.chgCoinsPremium[index].title=obj.chgCoinsPremium
+                     this.$refs.chgAgentFee[index].title=obj.chgAgentFee
+                     this.$refs.chgMiddleCostFee[index].title=obj.chgMiddleCostFee
+                     this.$refs.chgOperateFee[index].title=obj.chgOperateFee
 
                   }
             })

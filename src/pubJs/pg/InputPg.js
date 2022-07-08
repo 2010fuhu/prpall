@@ -255,8 +255,8 @@ export default {
           //投保单保存 校验页面数据
           async checkProposalData(){
               let flag=true 
-              //await  this.$refs.MainHead.checkMainHead().then((msg)=>{flag=msg})
-              //if(!flag){return false}
+              await  this.$refs.MainHead.checkMainHead().then((msg)=>{flag=msg})
+              if(!flag){return false}
               await this.$refs.AppliInsured.checkAppliInsured().then( (msg)=>{flag=msg})
               if(!flag){return false}
               if(this.$refs.Insured.checkInsured()){return false}
@@ -292,7 +292,7 @@ export default {
                     return false
                  }
               }
-              return true
+              return flag
            },
            //投保单保存 调用接口方法 
            saveProposalorEndorse(jsonObj){
@@ -434,7 +434,7 @@ export default {
                for(let olditem of itemKindInfoVoOld){
                    if(olditem.kindCode==obj1.kindCode&&(obj1.flag!="D"&&obj1.flag!="I")){
                       for(let itemkey in olditem){
-                          if(olditem[itemkey]!=null&&olditem[itemkey]!=obj1[itemkey]){
+                          if(olditem[itemkey]!=null&&itemkey!='flag'&&olditem[itemkey]!=obj1[itemkey]){
                               obj1.flag='U1'; 
                               endorseType+=`05,`;
                               break;

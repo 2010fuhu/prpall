@@ -92,6 +92,8 @@ export default {
            obj.riskcode=this.$store.state.riskCode;
            obj.businesscode=this.businessCode;
            obj.customerCname=this.obligorName;
+           console.log("调用履约义务人查询接口请求JSON")
+           console.log(obj)
            return obj;
         },
         checkPerformanceObligor(){

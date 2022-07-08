@@ -171,6 +171,7 @@ import  initBaseData from '@/api/initBaseData.js'
                   await this.getselectagentinfo1()
                   if(this.channelType1=='92'){
                     this.getselectagentAgreementNo(1)
+                    this.agreementNo=obj.mainInfoVo.agreementNo
                   }
               }
               await this.getselecthandlerinfo(this.comCode,-1)

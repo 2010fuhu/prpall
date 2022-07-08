@@ -120,16 +120,16 @@ class  insuredInfoVo{
 					let person=this.insuredInfoList.find(item=>item.customerCode==value.customerCode)
 					if(person){
 						this.$alert("被保人数据中有相同的数据!",'被保险人信息',{type:'warning'});
-						return
-					}
-				}else{
-					for (let key in this.insuredInfoList[i]){
-						if(key in value){
-							this.insuredInfoList[i][key]=value[key];
+						return true;
+					}else{
+						for (let key in this.insuredInfoList[i]){
+							if(key in value){
+								this.insuredInfoList[i][key]=value[key];
+							}
 						}
-					}
-					this.insuredShow=this.insuredInfoList[i]
-				}	
+						this.insuredShow=this.insuredInfoList[i]
+					}	
+				}
 			},
              //新增表格
 			Add() {

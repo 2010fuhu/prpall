@@ -160,19 +160,19 @@ class  insuredInfoVo{
 					let person=this.insuredInfoList.find(item=>item.customerCode==value.customerCode)
 					if(person){
 						this.$alert("被保人数据中有相同的数据!",'被保险人信息',{type:'warning'});
-						return
-					}
-				}else{
-					for (let key in this.insuredInfoList[i]){
-						if(key in value){
-							if(key !="flag"){
-								this.insuredInfoList[i][key]=value[key];
-							}	
+						return true;
+					}else{
+						for (let key in this.insuredInfoList[i]){
+							if(key in value){
+								if(key !="flag"){
+									this.insuredInfoList[i][key]=value[key];
+								}	
+							}
 						}
-					}
-					//this.insuredInfoList[i].flag=this.insuredShow.flag //从平台待会来的数据，flag标志还是当前页面上的flag 是I就是I 是U就是U 是空就是空
-					this.insuredShow=this.insuredInfoList[i]
-				}	
+						//this.insuredInfoList[i].flag=this.insuredShow.flag //从平台待会来的数据，flag标志还是当前页面上的flag 是I就是I 是U就是U 是空就是空
+						this.insuredShow=this.insuredInfoList[i]
+					}	
+				}
 			},
             //新增表格
 			Add() {
