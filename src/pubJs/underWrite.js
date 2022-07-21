@@ -34,6 +34,8 @@ export default ({
             if(arg=='1'){
                 let undwrtinfo=new undwrtInfoVo()
                 undwrtinfo.businessNo=this.$store.state.bizType=='ENDORSE'?this.$route.query.endorseNo:this.$route.query.proposalNo
+                undwrtinfo.businessTable=this.$store.state.bizType=='ENDORSE'?'prppmain':'prptmain'
+                undwrtinfo.businessType=this.$store.state.bizType=='ENDORSE'?'E':'T'
                 undwrtinfo.comCode=this.$store.state.comCode
                 undwrtinfo.inKey=this.$store.state.bizType=='ENDORSE'?this.$route.query.endorseNo:this.$route.query.proposalNo
                 undwrtinfo.makeCom=this.$store.state.comCode

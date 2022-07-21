@@ -10,13 +10,16 @@
 						<select class=tag name="PolicyNoSign" v-model="obj.prpCmainQueryReq.policyNoSign">
 							<option value="=">=&nbsp;</option>
                             <option value="*">*&nbsp;</option>
-						</select><input name="PolicyNo" class="query" maxlength="22"  v-model="obj.prpCmainQueryReq.policyNo">
+						</select>
+						<input name="PolicyNo" class="query" maxlength="22"  v-model="obj.prpCmainQueryReq.policyNo">
+					</td>	
 					<td class=title>投保单号码：</td>
 					<td class="input">
 						<select class=tag name="ProposalNoSign"  v-model="obj.prpCmainQueryReq.proposalNoSign">
 							<option value="=">=&nbsp;</option>
                             <option value="*">*&nbsp;</option>
-						</select><input name="ProposalNo" class="query" maxlength="22" v-model="obj.prpCmainQueryReq.proposalNo">
+						</select>
+						<input name="ProposalNo" class="query" maxlength="22" v-model="obj.prpCmainQueryReq.proposalNo">
 					</td>
 				</tr>
 				<tr>
@@ -25,13 +28,15 @@
 						<select class=tag name="ContractNoSign" v-model="obj.prpCmainQueryReq.contractNoSign">
 							<option value="=">=&nbsp;</option>
                             <option value="*">*&nbsp;</option>
-						</select><input name="ContractNo"  class="query" maxlength="21" v-model="obj.prpCmainQueryReq.contractNo"></td>
+						</select>
+						<input name="ContractNo"  class="query" maxlength="21" v-model="obj.prpCmainQueryReq.contractNo"></td>
 					<td class=title>印刷号：</td>
 					<td class=input>
 						<select class=tag name="PrintNoSign"   v-model="obj.prpCmainQueryReq.printNoSign">
 							<option value="=">=&nbsp;</option>
                             <option value="*">*&nbsp;</option>
-						</select><input name="PrintNo" class="query" maxlength="21"  v-model="obj.prpCmainQueryReq.printNo">
+						</select>
+						<input name="PrintNo" class="query" maxlength="21"  v-model="obj.prpCmainQueryReq.printNo">
 					</td>
 				</tr>
 				<tr>
@@ -40,14 +45,16 @@
 						<select class=tag name="AppliCodeSign"   v-model="obj.prpCmainQueryReq.appliCodeSign">
 							<option value="=">=&nbsp;</option>
                             <option value="*">*&nbsp;</option>
-						</select><input name="AppliCode" class="query" maxlength="16"  v-model="obj.prpCmainQueryReq.appliCode">
+						</select>
+						<input name="AppliCode" class="query" maxlength="16"  v-model="obj.prpCmainQueryReq.appliCode">
 					</td>
 					<td class=title>投保人名称：</td>
 					<td class=input>
 						<select class=tag name="AppliNameSign" v-model="obj.prpCmainQueryReq.appliNameSign">
 							<option value="=">=&nbsp;</option>
                             <option value="*">*&nbsp;</option>
-						</select><input name="AppliName" class="query" maxlength="120" v-model="obj.prpCmainQueryReq.appliName">
+						</select>
+						<input name="AppliName" class="query" maxlength="120" v-model="obj.prpCmainQueryReq.appliName">
 					</td>
 				</tr>
 
@@ -57,7 +64,8 @@
 						<select class=tag name="InsuredCodeSign"  v-model="obj.prpCmainQueryReq.insuredCodeSign">
 							<option value="=">=&nbsp;</option>
                             <option value="*">*&nbsp;</option>
-						</select><input name="InsuredCode" class="query" maxlength="16"  v-model="obj.prpCmainQueryReq.insuredCode">
+						</select>
+						<input name="InsuredCode" class="query" maxlength="16"  v-model="obj.prpCmainQueryReq.insuredCode">
 					</td>
 					<td class=title>被保险人名称：</td>
 					<td class=input>
@@ -78,7 +86,8 @@
                             <option value=">=">&gt;=</option>
                             <option value="<=">&lt;=</option>
                             <option value=":">:&nbsp;</option>
-							</select><input name="StartDate"  v-model="obj.prpCmainQueryReq.startDate" class="query" maxlength="21" @keypress="$uiCommon.pressDatetime($event)" @blur="$uiCommon.checkBetweenDate($event);">
+							</select>
+							<input name="StartDate"  v-model="obj.prpCmainQueryReq.startDate" class="query" maxlength="21" @keypress="$uiCommon.pressDatetime($event)" @blur="$uiCommon.checkBetweenDate($event);">
 						</td>
 					<td class=title>终保日期：</td>
 					<td class=input>
@@ -89,7 +98,8 @@
                             <option value=">=">&gt;=</option>
                             <option value="<=">&lt;=</option>
                             <option value=":">:&nbsp;</option>
-						</select><input name="EndDate"     v-model="obj.prpCmainQueryReq.endDate" class="query" maxlength="21" @keypress="$uiCommon.pressDatetime($event)" @blur="$uiCommon.checkBetweenDate($event);">
+						</select>
+						<input name="EndDate"     v-model="obj.prpCmainQueryReq.endDate" class="query" maxlength="21" @keypress="$uiCommon.pressDatetime($event)" @blur="$uiCommon.checkBetweenDate($event);">
 					</td>
 				</tr>
 				<tr>
@@ -102,7 +112,8 @@
                             <option value=">=">&gt;=</option>
                             <option value="<=">&lt;=</option>
                             <option value=":">:&nbsp;</option>
-						</select><input name="SumAmount"  v-model="obj.prpCmainQueryReq.sumAmount" class="query" @keypress="$uiCommon.pressDecimal($event)">
+						</select>
+						<input name="SumAmount"  v-model="obj.prpCmainQueryReq.sumAmount" class="query" @keypress="$uiCommon.pressDecimal($event)">
 					</td>
 					<td class=title>总保险费：</td>
 					<td class=input>
@@ -113,7 +124,8 @@
                             <option value=">=">&gt;=</option>
                             <option value="<=">&lt;=</option>
                             <option value=":">:&nbsp;</option>
-						</select><input name="SumPremium"  v-model="obj.prpCmainQueryReq.sumPremium"  class="query" @keypress="$uiCommon.pressDecimal($event)">
+						</select>
+						<input name="SumPremium"  v-model="obj.prpCmainQueryReq.sumPremium"  class="query" @keypress="$uiCommon.pressDecimal($event)">
 					</td>
 				</tr>
 
@@ -123,13 +135,16 @@
 						<select class=tag name="MakeComSign"  v-model="obj.prpCmainQueryReq.makeComSign" >
 							<option value="=">=&nbsp;</option>
                             <option value="*">*&nbsp;</option>
-						</select><input name="MakeCom" class="query" maxlength="8"  v-model="obj.prpCmainQueryReq.makeCom" >
+						</select>
+						<input name="MakeCom" class="query" maxlength="8"  v-model="obj.prpCmainQueryReq.makeCom" >
+					</td>	
 					<td class=title>经办人代码：</td>
 					<td class=input>
 						<select class=tag name="HandlerCodeSign"  v-model="obj.prpCmainQueryReq.handlerCodeSign">
 							<option value="=">=&nbsp;</option>
                             <option value="*">*&nbsp;</option>
-						</select><input name="HandlerCode"   v-model="obj.prpCmainQueryReq.handlerCode" class="query" maxlength="10">
+						</select>
+						<input name="HandlerCode"   v-model="obj.prpCmainQueryReq.handlerCode" class="query" maxlength="10">
 					</td>
 				</tr>
 				<tr>

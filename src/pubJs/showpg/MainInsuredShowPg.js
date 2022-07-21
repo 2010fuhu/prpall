@@ -68,14 +68,14 @@ class  insuredInfoVo{
 				let endorseData =orderData.endorseDataVo.insuredInfoVos;
 				let originData  =orderData.originDataVo.insuredInfoVos;
 				let originMap=new Map()
-				let originMap1=new Map()
 				let endorseMap=new Map()
 				endorseData.forEach((item)=>{
-					endorseMap.set(item.customerCode,item.flag)
+					endorseMap.set(item.customerCode,item)
 				  })
 				originData.forEach((item)=>{
-				  originMap.set(item.customerCode,item.flag)
-				  originMap1.set(item.customerCode,item)
+
+				  originMap.set(item.customerCode,item)
+				  //originMap1.set(item.customerCode,item)
 				})
 				list.push(...endorseData,...originData)
 				list=list.reduce((newArr, next)=>{
@@ -84,7 +84,7 @@ class  insuredInfoVo{
 				},[])
 				list.forEach((item,index)=>{
 				  if(originMap.get(item.customerCode)){
-					list[index].flag=originMap.get(item.customerCode)=="U"?'U':originMap.get(item.customerCode)=="D"&&!endorseMap.get(item.customerCode)?'D':''
+					list[index].flag=originMap.get(item.customerCode).flag=="U"?'U':originMap.get(item.customerCode).flag=="D"&&!endorseMap.get(item.customerCode)?'D':''
 				  }else{
 					list[index].flag='I'
 				  }
@@ -95,7 +95,7 @@ class  insuredInfoVo{
 				this.$nextTick(()=>{
 					this.insuredInfoList.forEach((item,index)=>{
 						if(item.flag!='I'&&item.flag!='D'){
-							let historyData=originMap1.get(item.customerCode)
+							let historyData=originMap.get(item.customerCode)
 							for(let key in historyData){
 								if(this.$refs[key]){
 									if(this.$refs[key][index]){
@@ -109,7 +109,6 @@ class  insuredInfoVo{
 						}
 					})
 				})
-				console.log(`this.pagenum${this.pageNum}`)
 			},
             // 下一页
             nextPage() {

@@ -29,7 +29,7 @@ export default{
                 signedLine:'0.0000',//
                 inAmount:'10000',//分入保额
                 inPremium:'10000',//分入毛保费
-                exchangeFlag:'按比例',//费用计算方式
+                exchangeFlag:'1',//费用计算方式
                 commSignedLine:'0.0000',//手续费比例(signed)
                 commOfferedLine:'',//手续费比例(offered)
                 reinsCiCharges:'0.00',//分保手续费
@@ -59,13 +59,10 @@ export default{
                 type:Boolean
             }
         },
-        created(){
-           //this.getselectcoinscodeinfo()
-        },
         updated(){
-          if(this.isReinsChildShow){
-            this.setReadOnly()
-          }
+          // if(this.isReinsChildShow){
+          //   this.setReadOnly()
+          // }
 
         },
         methods:{
@@ -86,29 +83,31 @@ export default{
                   oldReinsBrokerMap.set(item.serialNo,item)
                 })
                }
-               let reinsCededInfoVo=orderData.endorseDataVo.reinsCededInfoVo
-               let orginReinsCededInfo=orderData.originDataVo.reinsCededInfoVo
+               let reinsCededInfoVo=JSON.parse(JSON.stringify(orderData.endorseDataVo.reinsCededInfoVo))
+               let orginReinsCededInfo=JSON.parse(JSON.stringify(orderData.originDataVo.reinsCededInfoVo))
+               reinsCededInfoVo.reinsBill=orderData.endorseDataVo.mainInfoVo.othFlag.substring(19,20)//获取新账单标识
+               orginReinsCededInfo.reinsBill=orderData.originDataVo.mainInfoVo.othFlag.substring(19,20)//获取原账单标识
                this.$nextTick(()=>{
                 for(let key in reinsCededInfoVo){
                   if(key in  this.reinsCededInfoVo){
-                     this.reinsCededInfoVo[key]=reinsCededInfoVo[key]?reinsCededInfoVo[key]:''
+                     this.reinsCededInfoVo[key]=reinsCededInfoVo[key]!=null&&typeof reinsCededInfoVo[key]!='undefined'?reinsCededInfoVo[key]:''
                   }
                 
                   if(key in orginReinsCededInfo&&orginReinsCededInfo.flag){
                        if( this.$refs[key]){
-                          this.$refs[key].title=orginReinsCededInfo[key]?orginReinsCededInfo[key]:''
+                          this.$refs[key].title=orginReinsCededInfo[key]!=null&&typeof orginReinsCededInfo[key]!='undefined'?orginReinsCededInfo[key]:''
                           if(this.$refs[key].title!=this.reinsCededInfoVo[key]){
                             this.$refs[key].className=`${this.$refs[key].className}u`
                           }
                        }else if(this.$refs.mainReinsRef.$refs[key]) {
-                          this.$refs.mainReinsRef.$refs[key].title=orginReinsCededInfo[key]?orginReinsCededInfo[key]:''
+                          this.$refs.mainReinsRef.$refs[key].title=orginReinsCededInfo[key]!=null&&typeof orginReinsCededInfo[key]!='undefined'?orginReinsCededInfo[key]:''
                           if(this.$refs.mainReinsRef.$refs[key].title!=this.reinsCededInfoVo[key]){
                             this.$refs.mainReinsRef.$refs[key].className=`${this.$refs.mainReinsRef.$refs[key].className}u`
                           }
                        }
                   }else{
                        if(this.$refs[key]){
-                          this.$refs[key].title=orginReinsCededInfo[key]?orginReinsCededInfo[key]:''
+                          this.$refs[key].title=orginReinsCededInfo[key]!=null&&typeof orginReinsCededInfo[key]!='undefined'?orginReinsCededInfo[key]:''
                        }else if(this.$refs.mainReinsRef.$refs[key]){
                           this.$refs.mainReinsRef.$refs[key].title=this.reinsCededInfoVo[key]
                        }
@@ -201,7 +200,7 @@ export default{
                   })
             },
             inDisPremium1(){
-              this.$refs.mainReinsRef.inDisPremium1();
+              //this.$refs.mainReinsRef.inDisPremium1();
             },
             async initReinsCededInfoVo(){
               this.reinsCededInfoVo.oriCurrency=this.$store.state.currency1Fee

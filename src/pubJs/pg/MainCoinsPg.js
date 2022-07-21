@@ -159,9 +159,9 @@ export default{
                         for(let res of result.coinsInfoResList){
                               if(res.coinsCode==this.coinsDetailInfoVoList[index].coinsCode){
                                       this.coinsDetailInfoVoList[index].agentFee=res.coinsFee
-                                      if(this.coinsDetailInfoVoList[index].agentFee!=this.$refs.agentFee[index].title){
+                                      if(parseFloat(this.coinsDetailInfoVoList[index].agentFee).toFixed(2)!=parseFloat(this.$refs.agentFee[index].title).toFixed(2)){
                                           this.$refs.agentFee[index].className='commonu'
-                                          this.$refs.chgAgentFee[index].value=this.coinsDetailInfoVoList[index].agentFee-this.$refs.agentFee[index].title
+                                          this.$refs.chgAgentFee[index].value=(parseFloat(this.coinsDetailInfoVoList[index].agentFee)-parseFloat(this.$refs.agentFee[index].title)).toFixed(2)
                                       }else{
                                           this.$refs.agentFee[index].className='readonly3'
                                       }
@@ -189,23 +189,19 @@ export default{
                     this.coinsDetailInfoVoList[i].coinsAmount=(parseFloat(sumAmount)*parseFloat(this.coinsInfoVoList[i].coinsRate)/100).toFixed(2);
                     this.coinsDetailInfoVoList[i].coinsPremium=(parseFloat(sumPremium)*parseFloat(this.coinsInfoVoList[i].coinsRate)/100).toFixed(2);
                 }
-                if(this.coinsDetailInfoVoList[i].coinsAmount!=this.$refs.coinsAmount[i].title){
+                if(parseFloat(this.coinsDetailInfoVoList[i].coinsAmount).toFixed(2)!=parseFloat(this.$refs.coinsAmount[i].title).toFixed(2)){
                   this.$refs.coinsAmount[i].className='commonu'
-                  this.$refs.chgCoinsAmount[i].value=this.coinsDetailInfoVoList[i].coinsAmount-this.$refs.coinsAmount[i].title
+                  this.$refs.chgCoinsAmount[i].value=(parseFloat(this.coinsDetailInfoVoList[i].coinsAmount)-parseFloat(this.$refs.coinsAmount[i].title)).toFixed(2)
                 }else{
                   this.$refs.coinsAmount[i].className='common3'
                 }
-                if(this.coinsDetailInfoVoList[i].coinsPremium!=this.$refs.coinsPremium[i].title){
+                if(parseFloat(this.coinsDetailInfoVoList[i].coinsPremium).toFixed(2)!=parseFloat(this.$refs.coinsPremium[i].title).toFixed(2)){
                   this.$refs.coinsPremium[i].className='commonu'
-                  this.$refs.chgCoinsPremium[i].value=this.coinsDetailInfoVoList[i].coinsPremium-this.$refs.coinsPremium[i].title
+                  this.$refs.chgCoinsPremium[i].value=(parseFloat(this.coinsDetailInfoVoList[i].coinsPremium)-parseFloat(this.$refs.coinsPremium[i].title)).toFixed(2)
 
                 }else{
                   this.$refs.coinsPremium[i].className='common3'
                 }
-                  //coinsDetail.serialNo=i+1;
-                  //coinsDetail.coinsCode=this.coinsInfoVoList[i].coinsCode;
-                  //coinsDetail.coinsName=this.coinsInfoVoList[i].coinsName;
-                  //this.coinsDetailInfoVoList.push(coinsDetail);
             }
            
             //3 计算合计
@@ -215,11 +211,11 @@ export default{
              let MiddleCostFeesum=0
              let OperateFeesum=0
              for(let item of this.coinsDetailInfoVoList){
-                   CoinsAmountsum=CoinsAmountsum+parseFloat(item.coinsAmount)
-                   CoinsPremiumsum=CoinsPremiumsum+parseFloat(item.coinsPremium)
-                   AgentFeesum=AgentFeesum+parseFloat(item.agentFee)
-                   OperateFeesum=OperateFeesum+parseFloat(item.operateFee)
-                   MiddleCostFeesum=MiddleCostFeesum+parseFloat(item.middleCostFee)
+                   CoinsAmountsum=parseFloat(CoinsAmountsum)+parseFloat(item.coinsAmount)
+                   CoinsPremiumsum=parseFloat(CoinsPremiumsum)+parseFloat(item.coinsPremium)
+                   AgentFeesum=parseFloat(AgentFeesum)+parseFloat(item.agentFee)
+                   OperateFeesum=parseFloat(OperateFeesum)+parseFloat(item.operateFee)
+                   MiddleCostFeesum=parseFloat(MiddleCostFeesum)+parseFloat(item.middleCostFee)
              } 
              this.CoinsAmountsum=CoinsAmountsum
              this.CoinsPremiumsum=CoinsPremiumsum
@@ -229,35 +225,34 @@ export default{
              //4计算尾插 
              if(this.coinsFlag=='1'||this.coinsFlag=='3'){
                if((parseFloat(this.CoinsAmountsum)-parseFloat(sumAmount))!=0){
-                       let chgAmount =parseFloat(this.CoinsAmountsum)-parseFloat(sumAmount)
+                       let chgAmount =(parseFloat(this.CoinsAmountsum)-parseFloat(sumAmount)).toFixed(2)
                        if(chgAmount>0){
-                         this.coinsDetailInfoVoList[0].coinsAmount=this.coinsDetailInfoVoList[0].coinsAmount-chgAmount
-                        
+                          this.coinsDetailInfoVoList[0].coinsAmount=(parseFloat(this.coinsDetailInfoVoList[0].coinsAmount)-parseFloat(chgAmount)).toFixed(2)
                         }else{
-                          this.coinsDetailInfoVoList[0].coinsAmount=this.coinsDetailInfoVoList[0].coinsAmount+chgAmount
+                          this.coinsDetailInfoVoList[0].coinsAmount=(parseFloat(this.coinsDetailInfoVoList[0].coinsAmount)+parseFloat(chgAmount)).toFixed(2)
                        }
                }
                if((parseFloat(this.CoinsPremiumsum)-parseFloat(sumPremium))!=0){
-                    let chgPremium =parseFloat(this.CoinsPremiumsum)-parseFloat(sumPremium)
+                    let chgPremium =(parseFloat(this.CoinsPremiumsum)-parseFloat(sumPremium)).toFixed(2)
                     if(chgPremium>0){
-                         this.coinsDetailInfoVoList[0].coinsPremium=this.coinsDetailInfoVoList[0].coinsPremium-chgPremium
+                         this.coinsDetailInfoVoList[0].coinsPremium=(parseFloat(this.coinsDetailInfoVoList[0].coinsPremium)-parseFloat(chgPremium)).toFixed(2)
                         }else{
-                          this.coinsDetailInfoVoList[0].coinsPremium=this.coinsDetailInfoVoList[0].coinsPremium+chgPremium
+                          this.coinsDetailInfoVoList[0].coinsPremium=(parseFloat(this.coinsDetailInfoVoList[0].coinsPremium)+parseFloat(chgPremium)).toFixed(2)
                        }
                }
-               if(this.coinsDetailInfoVoList[0].coinsAmount-this.$refs.coinsAmount[0].title!=0){
-                    this.$refs.chgCoinsAmount[0].value=this.coinsDetailInfoVoList[0].coinsAmount-this.$refs.coinsAmount[0].title     
+               if(parseFloat(this.coinsDetailInfoVoList[0].coinsAmount).toFixed(2)-parseFloat(this.$refs.coinsAmount[0].title).toFixed(2)!=0){
+                    this.$refs.chgCoinsAmount[0].value=(parseFloat(this.coinsDetailInfoVoList[0].coinsAmount)-parseFloat(this.$refs.coinsAmount[0].title)).toFixed(2)    
                 }
-                if(this.coinsDetailInfoVoList[0].coinsPremium-this.$refs.coinsPremium[0].title!=0){
-                   this.$refs.chgCoinsPremium[0].value=this.coinsDetailInfoVoList[0].coinsPremium-this.$refs.coinsPremium[0].title     
+                if(parseFloat(this.coinsDetailInfoVoList[0].coinsPremium).toFixed-parseFloat(this.$refs.coinsPremium[0].title).toFixed(2)!=0){
+                   this.$refs.chgCoinsPremium[0].value=(parseFloat(this.coinsDetailInfoVoList[0].coinsPremium)-parseFloat(this.$refs.coinsPremium[0].title)).toFixed(2)   
                 }
              }            
               //5计算 联共保  保额 保费，手续费 出单费，出单因子 合计的变化量
-              this.chgCoinsAmountSum= this.CoinsAmountsum- this.originalAmount
-              this.chgCoinsPremiumSum=this.CoinsPremiumsum- this.originalPremium
-              this.chgAgentFeeSum=this.AgentFeesum- this.originalAgentFee
-              this.chgMiddleCostFeeSum=this.MiddleCostFeesum- this.originalMiddleCostFee
-              this.chgOperateFeeSum=this.OperateFeesum- this.originalOperateFee
+              this.chgCoinsAmountSum= (parseFloat(this.CoinsAmountsum)- parseFloat(this.originalAmount)).toFixed(2)
+              this.chgCoinsPremiumSum=(parseFloat(this.CoinsPremiumsum)- parseFloat(this.originalPremium)).toFixed(2)
+              this.chgAgentFeeSum=(parseFloat(this.AgentFeesum)- parseFloat(this.originalAgentFee)).toFixed(2)
+              this.chgMiddleCostFeeSum=(parseFloat(this.MiddleCostFeesum)- parseFloat(this.originalMiddleCostFee)).toFixed(2)
+              this.chgOperateFeeSum=(parseFloat(this.OperateFeesum)- parseFloat(this.originalOperateFee)).toFixed(2)
               // 6刷新明细得标志
               this.reshFlagDetail = "1";
              

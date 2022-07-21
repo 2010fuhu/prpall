@@ -8,7 +8,7 @@
     </tr>
     <tr>
       <td class="input">
-        <pre>w俄方微风威风威风威风    </pre>
+        <pre>{{endorseText}}</pre>
       </td>
     </tr>
   </table>
@@ -21,3 +21,44 @@
   </table>
 </div>
 </template>
+<script>
+import endorseOperater from '@/api/endorseOperation.js'
+
+  export default{
+    data(){
+       return{
+        endorseText:''
+       }
+    },
+    mounted(){
+      if(this.$route.query.businessNo){
+        let obj={
+             reqHeader:{
+               transNo:this.$uiCommon.uuid(16,32),
+               transDate:this.$uiCommon.getCurrentDate(),
+               transTime:this.$uiCommon.getCurrentTime(),
+               sysUserCode:this.$store.state.userCode,
+               sign:'0',
+               channelCode:''
+             },
+             endorseNo:this.$route.query.businessNo
+        }
+        endorseOperater.findEndorseText(obj).then(res=>{
+          if(res.data.resHeader.errCode=='0000'){
+            this.endorseText=res.data.endorseText
+          }else{
+            this.$alert('批文查询失败','',{type:'warning'})
+          }
+        })
+      
+      }
+    }, 
+    methods:{
+        getEndorseText(endorseNo){
+            console.log(endorseNo)
+            
+        }
+    }
+  
+  }
+</script>

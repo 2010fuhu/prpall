@@ -362,6 +362,7 @@ export default ({
 				 if(this.$store.state.comCode.substring(0,2)=='41'){
 					      this.$store.state.refreshFlagPerformance='0'; 
 				 }
+				 this.$store.state.refreshFlag='1'
 
 			},
 			getJsonFeeInfoVoList(){

@@ -63,12 +63,10 @@ export default{
           let currency=this.coinsDetailInfoVoList[0].currency
           this.billType= this.coinsInfoVoList[0].billType
           this.proportionFlag1=this.coinsInfoVoList[0].proportionFlag.substring(0,1)
-          debugger
           this.$refs.proportionFlag1.title=this.coinsInfoVoList[0].proportionFlag.substring(0,1)=='0'?'份额计入':'全额计入'
           this.$refs.billType.title=this.coinsInfoVoList[0].billType=='0'?'全额发票':'份额发票'
 
           let CurrencyName="";
-          debugger
           console.log(currency)
           if(currency=="CNY"){
            CurrencyName="人民币";

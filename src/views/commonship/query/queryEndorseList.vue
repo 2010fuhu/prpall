@@ -175,10 +175,8 @@ export default {
 					this.$alert('撤销失败！！！','批单信息',{type:'error' })
 				 }
 			}).catch(()=>{})
-            console.log(endorseNo+"批改已撤销")
         },
         deleteEndorse(endorseNo){
-            console.log('删除本条批改'+endorseNo)
             endorseReq.reqHeader.transNo=this.$uiCommon.uuid();        
             endorseReq.reqHeader.transDate=this.$uiCommon.getCurrentDate();
             endorseReq.reqHeader.transTime=this.$uiCommon.getCurrentDate();
@@ -207,10 +205,6 @@ export default {
 					if (index > -1) {
 						this.checked.splice(index, 1);
 					}
-					//this.checked.slice(this.checked.findIndex(item => item === element.Proposalno), 1)
-					// if(this.checked.includes(element.Proposalno)){
-					// 	this.checked.remove(element.Proposalno)
-					// }
 				})
 			} 
         },
@@ -282,6 +276,8 @@ export default {
 				this.checked.forEach((item)=>{
 					let undwrtinfo=new undwrtInfoVo()
 					undwrtinfo.businessNo=item
+                    undwrtinfo.businessTable='prppmain'
+                    undwrtinfo.businessType='E'
 					undwrtinfo.comCode=this.$store.state.comCode
 					undwrtinfo.inKey=item
 					undwrtinfo.makeCom=this.$store.state.comCode

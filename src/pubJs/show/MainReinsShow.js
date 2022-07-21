@@ -29,7 +29,7 @@ export default{
                 signedLine:'0.0000',//
                 inAmount:'10000',//分入保额
                 inPremium:'10000',//分入毛保费
-                exchangeFlag:'按比例',//费用计算方式
+                exchangeFlag:'1',//费用计算方式
                 commSignedLine:'0.0000',//手续费比例(signed)
                 commOfferedLine:'',//手续费比例(offered)
                 reinsCiCharges:'0.00',//分保手续费

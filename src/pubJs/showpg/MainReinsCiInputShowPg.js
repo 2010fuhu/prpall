@@ -32,42 +32,41 @@ export default{
       },
       //修改后按费用更改计算分入净保费
        inDisPremium1(){
-          var dbReinsBrokerFee=0.00;
-          console.log(this.$parent)
-          //完整公式：分入净保费（境外经纪人）=不含税分入保费+增值税-再保手续费-出单费-（经纪费-经纪费增值税*附加税比例）
-          //		      分入净保费（境内经纪人）=不含税分入保费+增值税-再保手续费-出单费-(经纪费+经纪费增值税)
-          this.$parent.reinsBrokerInfoVoList.forEach((reinsBrokerInfoVo,index)=>{
-          this.$parent.calculateReinsBrokerFee(index);
-          this.$parent.calculateReinsBrokerAddedTaxFee(index);
-          if(this.$parent.coinsflag.get(reinsBrokerInfoVo.brokerCode)=="F"){//境外经纪人
-            dbReinsBrokerFee = dbReinsBrokerFee 
-            +parseFloat(this.$uiCommon.replaced(reinsBrokerInfoVo.brokerAgeFee,","))
-            -parseFloat(this.$uiCommon.replaced(reinsBrokerInfoVo.reinsBrokerAddedTaxFee,","))
-            *parseFloat(this.ReinsCededInfo.reinsBrokerExtraRate)/100
-          }else{
-            dbReinsBrokerFee = dbReinsBrokerFee 
-            + parseFloat(this.$uiCommon.replaced(reinsBrokerInfoVo.brokerAgeFee,","))
-            +parseFloat(this.$uiCommon.replaced(reinsBrokerInfoVo.reinsBrokerAddedTaxFee,","));
-          }
+        //   var dbReinsBrokerFee=0.00;
+        //   //完整公式：分入净保费（境外经纪人）=不含税分入保费+增值税-再保手续费-出单费-（经纪费-经纪费增值税*附加税比例）
+        //   //		      分入净保费（境内经纪人）=不含税分入保费+增值税-再保手续费-出单费-(经纪费+经纪费增值税)
+        //   this.$parent.reinsBrokerInfoVoList.forEach((reinsBrokerInfoVo,index)=>{
+        //   this.$parent.calculateReinsBrokerFee(index);
+        //   this.$parent.calculateReinsBrokerAddedTaxFee(index);
+        //   if(this.$parent.coinsflag.get(reinsBrokerInfoVo.brokerCode)=="F"){//境外经纪人
+        //     dbReinsBrokerFee = dbReinsBrokerFee 
+        //     +parseFloat(this.$uiCommon.replaced(reinsBrokerInfoVo.brokerAgeFee,","))
+        //     -parseFloat(this.$uiCommon.replaced(reinsBrokerInfoVo.reinsBrokerAddedTaxFee,","))
+        //     *parseFloat(this.ReinsCededInfo.reinsBrokerExtraRate)/100
+        //   }else{
+        //     dbReinsBrokerFee = dbReinsBrokerFee 
+        //     + parseFloat(this.$uiCommon.replaced(reinsBrokerInfoVo.brokerAgeFee,","))
+        //     +parseFloat(this.$uiCommon.replaced(reinsBrokerInfoVo.reinsBrokerAddedTaxFee,","));
+        //   }
 
 
-        })
-        if(this.ReinsCededInfo.transferFlag=="1"){
-          dbReinsBrokerFee=0.00;
-        }
-        //含税保费=不含税保费+增值税
-        var InPre=parseFloat(this.$uiCommon.replaced(this.ReinsCededInfo.noHaveTaxFee,","))
-               +parseFloat(this.$uiCommon.replaced(this.ReinsCededInfo.addedTaxRate,","));
-        //分入净保费=含税保费-（出单费+再保手续费+经纪费-经纪费增值税*附加税比例） 
-        var inDisPre=this.$uiCommon.pointTwo((InPre-(parseFloat(this.$uiCommon.replaced(this.ReinsCededInfo.billsFee,","))
-                      +parseFloat(this.$uiCommon.replaced(this.ReinsCededInfo.reinsCiCharges,","))
-                      +parseFloat(dbReinsBrokerFee)).toFixed(2)));
-          if (inDisPre<0){
-            this.ReinsCededInfo.inDisPremium="0.00";
-          }else{
-            this.ReinsCededInfo.inDisPremium=this.$uiCommon.numberFormat(inDisPre);
-            //this.ReinsCededInfo.inDisPremium=this.$uiCommon.numberFormat("345.66");   
-          }	
+        // })
+        // if(this.ReinsCededInfo.transferFlag=="1"){
+        //   dbReinsBrokerFee=0.00;
+        // }
+        // //含税保费=不含税保费+增值税
+        // var InPre=parseFloat(this.$uiCommon.replaced(this.ReinsCededInfo.noHaveTaxFee,","))
+        //        +parseFloat(this.$uiCommon.replaced(this.ReinsCededInfo.addedTaxRate,","));
+        // //分入净保费=含税保费-（出单费+再保手续费+经纪费-经纪费增值税*附加税比例） 
+        // var inDisPre=this.$uiCommon.pointTwo((InPre-(parseFloat(this.$uiCommon.replaced(this.ReinsCededInfo.billsFee,","))
+        //               +parseFloat(this.$uiCommon.replaced(this.ReinsCededInfo.reinsCiCharges,","))
+        //               +parseFloat(dbReinsBrokerFee)).toFixed(2)));
+        //   if (inDisPre<0){
+        //     this.ReinsCededInfo.inDisPremium="0.00";
+        //   }else{
+        //     this.ReinsCededInfo.inDisPremium=this.$uiCommon.numberFormat(inDisPre);
+        //     //this.ReinsCededInfo.inDisPremium=this.$uiCommon.numberFormat("345.66");   
+        //   }	
       },
       inDisPremium2(){},
       taxFeeRate(){

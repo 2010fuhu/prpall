@@ -45,15 +45,15 @@ export default {
       },
         mainLoanImgLimitMoney(){
          //录入保险金额时校验是否已经查询信报系统履约义务人信息
-          if(this.MainLoanImgNumberFlag=='0'){
-            this.$alert('请先点击【查询履约义务人信息】按钮','履约义务人',{type:'warning'})
-            this.limitAmount='';
-            return false;
-          }else{
+          // if(this.MainLoanImgNumberFlag=='0'){
+          //   this.$alert('请先点击【查询履约义务人信息】按钮','履约义务人',{type:'warning'})
+          //   this.limitAmount='';
+          //   return false;
+          // }else{
              this.limitAmount= this.$uiCommon.number_format(this.limitAmount,2)
              this.calAllPremium();
              
-          }
+         // }
         },
         calAllPremium(){//将履约义务人的保险金额赋值给主线的保额
            EventBus.$emit("LimitMoney", this.limitAmount);//发送消息给主线模块

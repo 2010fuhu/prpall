@@ -47,14 +47,12 @@ export default {
         let endorseData =orderData.endorseDataVo.guaranteeSubInfoVos;
         let originData  =orderData.originDataVo.guaranteeSubInfoVos;
         let originMap=new Map();
-        let originMap1=new Map();
         let endorseMap=new Map();
         endorseMap.forEach((item)=>{
-          endorseMap.set(item.serialNo,item.flag)
+          endorseMap.set(item.serialNo,item)
         })
         originData.forEach((item)=>{
-          originMap.set(item.serialNo,item.flag)
-          originMap1.set(item.serialNo,item)
+          originMap.set(item.serialNo,item)
         })
         list.push(...endorseData,...originData)
         list=list.reduce((newArr, next)=>{
@@ -63,7 +61,7 @@ export default {
         },[])
         list.forEach((item,index)=>{
           if(originMap.get(item.serialNo)){
-            list[index].flag=originMap.get(item.serialNo)=='U'?'U':originMap.get(item.serialNo)=='D'&&!endorseMap.get(item.serialNo)?'D':''
+            list[index].flag=originMap.get(item.serialNo).flag=='U'?'U':originMap.get(item.serialNo).flag=='D'&&!endorseMap.get(item.serialNo)?'D':''
           }else{
             list[index].flag='I'
           }
@@ -74,7 +72,7 @@ export default {
         this.$nextTick(()=>{
            this.guaranteeSubInfoVoList.forEach((item,index)=>{
                if(item.flag!='I'&&item.flag!='D'){
-                  let historyData=originMap1.get(item.serialNo)
+                  let historyData=originMap.get(item.serialNo)
                   this.$refs.guaranteeType[index].title=historyData.guaranteeType
                   this.$refs.guaranteeDesc[index].title=historyData.guaranteeDesc
                   this.$refs.guaranteeRate[index].title=historyData.guaranteeRate

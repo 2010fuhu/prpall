@@ -195,10 +195,6 @@ export default {
             obj.reqHeader.transTime=this.$uiCommon.getCurrentTime()
 			obj.reqHeader.sysUserCode=this.$store.state.userCode;
 			let JsonObj=JSON.parse(JSON.stringify(obj))
-			// tostring()方法
-			// JsonObj.prpPmainQueryReq.underWriteFlag=JsonObj.prpPmainQueryReq.underWriteFlag.toString()
-			// JsonObj.prpPmainQueryReq.endorType=JsonObj.prpPmainQueryReq.endorType.toString()
-			console.log("JsonObj",JsonObj)
 			this.queryData(JsonObj).then(()=>{
                  this.$router.push({name:'queryEndorseList',params:{Conditionobj: JsonObj}})
 			}).catch((err)=>{

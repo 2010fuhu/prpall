@@ -73,8 +73,9 @@
             }
         },
         watch:{
-          calculatepremium(val){//监听计算属性的变化，展示保费信息
-            this.itemKindInfoVoList[0].premium=this.$uiCommon.number_format(val,2);
+          // eslint-disable-next-line no-unused-vars
+          calculatepremium(newValue,oldValue){//监听计算属性的变化，展示保费信息
+            this.itemKindInfoVoList[0].premium=this.$uiCommon.number_format(newValue,2);
             this.$store.state.refreshFlagFee='0'
           },
           modifyShortRate:{//监听保险期间的变化

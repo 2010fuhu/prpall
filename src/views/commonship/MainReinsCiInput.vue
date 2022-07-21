@@ -105,7 +105,6 @@
 <script>
 let moduel=require(`@/pubJs/${global.path}/MainReinsCiInput${global.show}.js`)
 let MainReinsCiInput=moduel.default
-//import MainReinsCiInput from  '@/pubJs/MainReinsCiInput.js'
 export default {
   ...MainReinsCiInput
 }

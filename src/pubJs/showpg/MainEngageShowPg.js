@@ -44,7 +44,6 @@ import {showPage} from '@/pubJs/UICommon.js'
               let list=[];
               let obj={};
               let originMap=new Map()
-              let originMap1=new Map()
               let endorseMap=new Map()
               let endorseData=orderData.endorseDataVo.engageInfoVos.filter(ele=>{
                 return  ele.clauseCode!='TX001'
@@ -53,11 +52,10 @@ import {showPage} from '@/pubJs/UICommon.js'
                 return  ele.clauseCode!='TX001'
               })
               endorseMap.forEach((item)=>{
-                endorseMap.set(item.clauseCode,item.flag)
+                endorseMap.set(item.clauseCode,item)
               })
               originData.forEach((item)=>{
                 originMap.set(item.clauseCode,item.flag)
-                originMap1.set(item.clauseCode,item)
               }) 
               list.push(...endorseData,...originData)
               list=list.reduce((newArr, next)=>{
@@ -66,7 +64,7 @@ import {showPage} from '@/pubJs/UICommon.js'
               },[])
               list.forEach((item,index)=>{
                 if(originMap.get(item.clauseCode)){
-                  list[index].flag=originMap.get(item.clauseCode)=='U'?'U':originMap.get(item.clauseCode)=='D'&&!endorseMap.get(item.clauseCode)?'D':''
+                  list[index].flag=originMap.get(item.clauseCode).flag=='U'?'U':originMap.get(item.clauseCode).flag=='D'&&!endorseMap.get(item.clauseCode)?'D':''
                 }else{
                   list[index].flag='I'
                 }
@@ -75,7 +73,7 @@ import {showPage} from '@/pubJs/UICommon.js'
               this.$nextTick(()=>{
                 this.engageInfoVoList.forEach((item,index)=>{
                   if(item.flag!='I'&&item.flag!='D'){
-                    let historyData=originMap1.get(item.clauseCode)
+                    let historyData=originMap.get(item.clauseCode)
                     for(let engageKey in historyData){
                         if(this.$refs[engageKey]){
                             if(this.$refs[engageKey][index]){

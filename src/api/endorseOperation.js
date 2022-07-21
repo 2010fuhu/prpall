@@ -38,5 +38,13 @@ export default {
             endorseNo
         }
         })
+    },
+    findEndorseText(arg){
+        let url=`/endorse/textfind`
+        return request({
+            url,
+            method: 'post',
+            data:JSON.stringify(arg)
+        }) 
     }
 } 

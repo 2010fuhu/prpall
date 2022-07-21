@@ -75,8 +75,8 @@
           refreshPlan(){},
           checkPayTimes(){},
           refreshPlanByPayTimes(e) { 
-            let strStartDate = this.$store.state.validDate;
-            let strEndDate = this.$store.state.endDate;
+            let strStartDate = this.$store.state.validDate? this.$store.state.validDate:this.$uiCommon.getCurrentDate();
+            let strEndDate = this.$store.state.endDate?this.$store.state.endDate:this.$uiCommon.getCurrentDate();
             let intPayTimes = parseInt(e);
             let i = 0;
             strStartDate = strStartDate.replace(/-/g,"/");

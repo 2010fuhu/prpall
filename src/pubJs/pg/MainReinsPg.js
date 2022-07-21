@@ -93,7 +93,6 @@ export default{
             this.coinsInfoVoList=coinsInfoVos
             this.reinsBrokerInfoVoList=obj.proposalGenerateMainInfoReq.reinsBrokerInfoVoList
             let reinsCededInfoVo=obj.proposalGenerateMainInfoReq.reinsCededInfoVo
-            //this.isReinsChildShow=true;
             for(let key in reinsCededInfoVo){
               if(key in  this.reinsCededInfoVo){
                  this.reinsCededInfoVo[key]=reinsCededInfoVo[key]

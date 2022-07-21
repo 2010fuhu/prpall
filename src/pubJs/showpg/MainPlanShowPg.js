@@ -58,13 +58,13 @@
                       obj[key]=data[key]
                     }
                     obj.payRefFee=data.planFee-data.delinquentFee
-                    obj.flag=this.originMap.get(obj.serialNo)?this.originMap.get(obj.serialNo).flag:''
+                    obj.flag=this.originMap.get(obj.serialNo)?this.originMap.get(obj.serialNo).flag:obj.flag
                 }
                 this.planInfoVoList.push(obj)
               }
               this.$nextTick(()=>{
                 this.planInfoVoList.forEach((item,index)=>{
-                    if(item.flag!=''){
+                    if(item.flag!=''&&item.flag!=null){
                       for(let key in item){
                             if(this.$refs[key]){
                               if(this.$refs[key][index]){

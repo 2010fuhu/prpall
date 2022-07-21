@@ -31,7 +31,7 @@ var Store =  new Vuex.Store({
       startHour:'0',
       endHour:'24',
       validDate:'',        //批改生效日期
-      validHour:'',        //批改生效小时
+      validHour:'0',        //批改生效小时
       sumAmount:'10000.00',//原币保额
       sumPremium:'500.00', // 原币保费
       sumPremium1:'0',     //支付币别保费

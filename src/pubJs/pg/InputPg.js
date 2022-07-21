@@ -46,6 +46,7 @@ export default {
   
   data(){
           return{
+            
             isShow:false,
             isloading:false,
             isCoinsShow:false,
@@ -351,7 +352,7 @@ export default {
             obj.infoData.mainInfoVo.disRate=this.$store.state.refreshFlag=='1'? this.$uiCommon.replaced(this.$refs.MainExpernses.commissionRate):originalPolicy.mainInfoVo.disRate
             obj.infoData.mainInfoVo.currency=this.$store.state.currency2Fee
             obj.infoData.mainInfoVo.sumAmount=this.$store.state.refreshFlag=='1'? this.$uiCommon.replaced(this.$store.state.sumAmount2):originalPolicy.mainInfoVo.sumAmount
-            obj.infoData.mainInfoVo.sumPremium==this.$store.state.refreshFlag=='1'? this.$uiCommon.replaced(this.$store.state.sumPremium2):originalPolicy.mainInfoVo.sumPremium
+            obj.infoData.mainInfoVo.sumPremium=this.$store.state.refreshFlag=='1'? this.$uiCommon.replaced(this.$store.state.sumPremium2):originalPolicy.mainInfoVo.sumPremium
             obj.infoData.mainInfoVo.flag=""
             // let strOthFlag = "000000YY000000000000";
             // let strcheckLowestChargeValue=""//水险最低保费
@@ -713,7 +714,7 @@ export default {
             obj.infoData.subSidyInfoVos=[]
             if(this.$store.state.agriType=='1'&&this.isAgriShow){
               let subSidyInfoVos=originalPolicy.subSidyInfoVos
-              obj.infoData.subSidyInfoVoList=this.$refs.MainAgri.getJsonSubSidyInfoVoList()
+              obj.infoData.subSidyInfoVos=this.$refs.MainAgri.getJsonSubSidyInfoVoList()
               for(let subSidyInfo of subSidyInfoVos){
                 for(let index=0;index< obj.infoData.subSidyInfoVos.length;index++){
                   if(subSidyInfo.serialNo==obj.infoData.subSidyInfoVos[index].serialNo
@@ -782,6 +783,7 @@ export default {
               obj.infoData.reinsCededInfoVo.addedTaxFee=this.$uiCommon.replaced(this.$refs.MainReins.reinsCededInfoVo.addedTaxFee)
               obj.infoData.reinsCededInfoVo.noHaveTaxFee=this.$uiCommon.replaced(this.$refs.MainReins.reinsCededInfoVo.noHaveTaxFee)
               obj.infoData.reinsCededInfoVo.inDisPremium=this.$uiCommon.replaced(this.$refs.MainReins.reinsCededInfoVo.inDisPremium)
+              obj.infoData.reinsCededInfoVo.reinsCiCharges=this.$uiCommon.replaced(this.$refs.MainReins.reinsCededInfoVo.reinsCiCharges)
               obj.infoData.reinsCededInfoVo.businessNature='h'
               for(let reinsCededKey in reinsCededInfoVo){
                 if(reinsCededInfoVo[reinsCededKey]!=null&reinsCededKey!='flag'){
@@ -827,7 +829,7 @@ export default {
             }
             obj.infoData.endorseInfo.endorseType=endorseType;
             obj.infoData.endorseInfo.policyNo=this.$store.state.policyNo;
-            obj.infoData.endorseInfo.valiDate=this.$store.state.validDate;
+            obj.infoData.endorseInfo.valiDate= this.$store.state.validDate? this.$store.state.validDate:this.$uiCommon.getCurrentDate();
             obj.infoData.endorseInfo.valiHour=this.$store.state.validHour;
             obj.infoData.endorseInfo.comCode=obj.infoData.mainInfoVo.comCode;
             obj.infoData.endorseInfo.jfeeFlag=this.$store.state.nonCarJfeeflag;
