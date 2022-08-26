@@ -50,7 +50,8 @@ export default {
             editType:'NEW',//编辑类型 时投保单 还是批单
             binNo:'',
             MainRemark_Show:'',
-            judicalScope:"中华人民共和国管辖",
+            judicalCode:"01",
+            judicalScope:"",
             argueSolution:'1',
             arbitraryBoardList:[],
             argueShow:false,

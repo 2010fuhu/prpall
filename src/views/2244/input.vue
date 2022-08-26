@@ -107,7 +107,7 @@
       <table class="common" cellpadding="3" cellspacing="0">
         <tr v-if="$store.state.bizType=='ENDORSE'">
           <td class="button" type="button" width="45%">
-            <input type="button" name="buttonSave" class="button" alt="下一步" value="下一步" @click="nextform();">
+            <input  type="button" name="buttonSave"  alt="下一步" value="下一步" :class="!nextDisable?'button':''" :disabled="nextDisable" @click="nextform();">
           </td>
           <td class="button"></td>
           <td class="button" type="button" width="45%">
@@ -117,7 +117,7 @@
         <tr v-else>
             <td></td>
             <td align="center" >
-                <input name="buttonSave" class="button"  type="button" alt="保存" value="保  存" @click="submitForm1();">
+                <input   type="button" name="buttonSave" :class="!saveDisable?'button':''" :disabled="saveDisable"  alt="保存" value="保  存" @click="submitForm1();">
             </td>
              <td></td>
         </tr>

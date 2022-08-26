@@ -50,6 +50,7 @@ export default {
             isReinsChildShow:false,
             isAgriShow:false,
             isAgriChildShow:false,
+            saveDisable:false,
             editType:'NEW',//编辑类型 时投保单 还是批单
             binNo:''
           }
@@ -144,17 +145,24 @@ export default {
                 })
           },
           async submitForm1(){
+            this.saveDisable=true;
             let flag= await this.checkProposalData()
             //let flag=true
             if(flag){
                     let jsonObj= this.generateProposalJson()
-                    this.saveProposalorEndorse(jsonObj).then((proposalNo)=>{
-                    this.$router.push({path: '/Save',query: { proposalNo: proposalNo } })
-                }).catch((message)=>{
-                    this.$alert(message,'保存',{type:'warning'})
-                    return false 
-                })
+                    saveOrder.proposalGenerate(jsonObj).then((res)=>{
+                      if(res.data.resHeader.errCode=='000000'){
+                        this.$router.push({path: '/Save',query: { proposalNo: res.data.proposalGenerateMainInfoRes.proposalNo } })            
+                      }else if(res.data.resHeader.errCode=='999999'){
+                        this.$alert(res.data.resHeader.errMsg,'保存',{type:'warning'})                       
+                      }
+                  }).catch(()=>{
+                    
+                  }).finally(() => {
+                    this.saveDisable = false;
+                  })
             }else{
+              this.saveDisable=false;
                return false
             }
               
@@ -312,20 +320,6 @@ export default {
               }
               return true
            },
-           //投保单保存 调用接口方法 
-           saveProposalorEndorse(jsonObj){
-              //调用投保单保存接口
-              return   new Promise((resolve,reject)=>{
-                  saveOrder.proposalGenerate(jsonObj).then((res)=>{
-                      if(res.data.resHeader.errCode=='000000'){
-                        resolve(res.data.proposalGenerateMainInfoRes.proposalNo)
-                      }else if(res.data.resHeader.errCode=='999999'){
-                        reject(res.data.resHeader.errMsg)
-                      }
-                  })
-
-              })
-           },
            //保存组织JSON数据对象
            generateProposalJson(){
               let obj= ProposalGenerateReq
@@ -396,11 +390,14 @@ export default {
             //obj.proposalGenerateMainInfoReq.mainInfoVo.invoiceNumber=""
             obj.proposalGenerateMainInfoReq.mainInfoVo.payMode=this.$refs.MainPlan.PayType;
             obj.proposalGenerateMainInfoReq.mainInfoVo.payTimes=this.$refs.MainPlan.payTimes;
-            obj.proposalGenerateMainInfoReq.mainInfoVo.jfeeFlag=this.$store.state.nonCarJfeeflag
-            obj.proposalGenerateMainInfoReq.mainInfoVo.judicalScope=this.$refs.MainTail.judicalScope
-            obj.proposalGenerateMainInfoReq.mainInfoVo.argueSolution=this.$refs.MainTail.argueSolution
-            obj.proposalGenerateMainInfoReq.mainInfoVo.arbitBoardName=this.$refs.MainTail.arbitBoardName
-            obj.proposalGenerateMainInfoReq.mainInfoVo.remark=this.$refs.MainTail.remark
+            obj.proposalGenerateMainInfoReq.mainInfoVo.jfeeFlag=this.$store.state.nonCarJfeeflag;
+            obj.proposalGenerateMainInfoReq.mainInfoVo.judicalCode=this.$refs.MainTail.judicalCode;
+            let selectedIndex=this.$refs.MainTail.$refs.judicalCode.selectedIndex;
+            obj.proposalGenerateMainInfoReq.mainInfoVo.judicalScope=this.$refs.MainTail.$refs.judicalCode.options[selectedIndex].text;
+            //obj.proposalGenerateMainInfoReq.mainInfoVo.judicalScope=this.$refs.MainTail.judicalScope
+            obj.proposalGenerateMainInfoReq.mainInfoVo.argueSolution=this.$refs.MainTail.argueSolution;
+            obj.proposalGenerateMainInfoReq.mainInfoVo.arbitBoardName=this.$refs.MainTail.arbitBoardName;
+            obj.proposalGenerateMainInfoReq.mainInfoVo.remark=this.$refs.MainTail.remark;
             //组织itemkindinfo
             obj.proposalGenerateMainInfoReq.itemKindInfoVoList=[];
             for(let item of this.$refs.MainItemkind.itemKindInfoVoList){

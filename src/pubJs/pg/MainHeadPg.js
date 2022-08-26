@@ -368,20 +368,20 @@ import  initBaseData from '@/api/initBaseData.js'
         } ,
           //校验mainHead 数据是否录入
           checkMainHead(){//普通批单录入无需校验保单头信息
-            // return new Promise((resolve)=>{
-            //     if(this.checkPerforPercentage()){
-            //         this.$validator.validate().then(result => {
-            //           if (!result) {
-            //             this.$alert(this.errors.all()[0],'保单业务信息',{type:'warning'});  // ui框架的提示弹窗         
-            //             resolve(false);
-            //           }else{
-            //             resolve(true)
-            //           }
-            //         })
-            //     }else{
-            //       resolve(false);
-            //     }
-            //  })
+            return new Promise((resolve)=>{
+                if(this.checkPerforPercentage()){
+                    this.$validator.validate().then(result => {
+                      if (!result) {
+                        this.$alert(this.errors.all()[0],'保单业务信息',{type:'warning'});  // ui框架的提示弹窗         
+                        resolve(false);
+                      }else{
+                        resolve(true)
+                      }
+                    })
+                }else{
+                  resolve(false);
+                }
+             })
           },
           checkPerforPercentage(){
                if(this.handlerInfoVo.length<=0){

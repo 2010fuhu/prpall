@@ -22,7 +22,13 @@
       <input type="hidden" name="Tail_Flag" description="保单尾模块批改标志">
       <td id="tdJudicalScopeTitle" class="title" style="width:20%">司法管辖：</td>
       <td id="tdJudicalScopeInput" class="input" style="width:80%" colspan="3">
-        <input type="text" name="judicalScope" class="readonly3" readonly description="司法管辖" :value="obj.judicalScope">
+        <!--<input type="text" name="judicalScope" class="readonly3" readonly description="司法管辖" :value="obj.judicalScope">-->
+        <select name="judicalCode" class="common3" style="width:8%" description="司法管辖" :value="obj.judicalCode">
+            <option value="01" selected>中国境内(港、澳、台除外)</option>
+            <option value="02">中国境内(包含港、澳、台)</option>
+            <option value="03">世界范围(美、加除外)</option>
+            <option value="04">世界范围(包含美、加地区)</option>
+         </select>
       </td>
     </tr>
     <tr id="trArgueSolutionArbitBoardName">

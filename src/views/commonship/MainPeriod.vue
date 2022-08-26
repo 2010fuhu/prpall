@@ -32,7 +32,7 @@
 					&nbsp;日
 					<input type="text" name="endHour" class="common" style="width:20px" maxlength="2" v-model="endHour" description="终保小时"
 						 @keypress="$uiCommon.pressInteger($event);" @blur="$uiCommon.checkInteger($event,0,24);">
-					&nbsp;时止&nbsp;&nbsp;共
+					&nbsp;时止&nbsp;&nbsp;<img src="@/assets/images/markMustInput.jpg">共承保
 					<input type="text" name="IntervalMonth" class="common" style="width:5%" maxlength="10" v-model="IntervalMonth"  readonly >个月
 				</span>
             </td>

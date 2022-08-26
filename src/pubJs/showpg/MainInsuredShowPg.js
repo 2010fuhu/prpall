@@ -70,7 +70,7 @@ class  insuredInfoVo{
 				let originMap=new Map()
 				let endorseMap=new Map()
 				endorseData.forEach((item)=>{
-					endorseMap.set(item.customerCode,item)
+					endorseMap.set(item.customerCode,item) 
 				  })
 				originData.forEach((item)=>{
 

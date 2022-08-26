@@ -95,7 +95,6 @@ import  Address from '@/api/getselectaddressinfo.js'
 						this.appliInfoVo[key]=data.appliInfoVo[key]||''
 					}
 				}
-				console.log(this.appliInfoVo)
 				if(this.appliInfoVo.address1!=null&&this.appliInfoVo.address1!=''){
 			    	await this.getselectaddressinfo(this.appliInfoVo.address1,'address1')
 				}
@@ -103,12 +102,11 @@ import  Address from '@/api/getselectaddressinfo.js'
 			    	await this.getselectaddressinfo(this.appliInfoVo.address2,'address2')
 				}
 				this.$uiCommon.setTitle(this.$refs.AppliInsured.children)
-				this.$uiCommon.addevent(this,'appliInfoVo')	
+				this.$uiCommon.addevent(this,'appliInfoVo')					
 				this.getInsuredAddress()
 			},
 
 			async setAddressByPlatfrom(){
-				console.log( "调用的setaddressByPlatfrom 方法")
 				if(this.appliInfoVo.address1!=null&&this.appliInfoVo.address1!=''){
 					await this.getselectaddressinfo(this.appliInfoVo.address1,'address1')
 				}
@@ -118,14 +116,15 @@ import  Address from '@/api/getselectaddressinfo.js'
 				this.getInsuredAddress()
 			},
 			DatafromPlatform(val){
-				//let val=new appliInfoVo1();
 				console.log("将平台投保人的数据带回到承保系统")
 				console.log(val)
 				//遍历val 对象 给投保人页面赋值
 				for(let key in val){
-					
 					if(key in this.appliInfoVo){
 						this.appliInfoVo[key]=val[key]
+						if(this.$refs[key]&&key!='initAppliInsuredData'&&this.$refs[key].title!=this.appliInfoVo[key]){
+							this.$refs[key].className=`${this.$refs[key].className}u`
+						}
 					}
 				}
 				this.receiveFlag=!this.receiveFlag

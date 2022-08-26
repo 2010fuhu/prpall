@@ -41,6 +41,7 @@ export default {
     MainCoins,
     MainReins,
     MainAgriType,
+
   },
 
   
@@ -55,6 +56,7 @@ export default {
             isReinsChildShow:false,
             isAgriShow:false,
             isAgriChildShow:false,
+            nextDisable:false,
             editType:'NEW',//编辑类型 时投保单 还是批单
             binNo:''
           }
@@ -147,20 +149,26 @@ export default {
              //this.$router.replace({path:'/endorse'})
              this.$router.go(-1)
           },
-           nextform(){
-            //let flag= await this.checkProposalData()
-            let flag=true
+          async nextform(){
+            this.nextDisable=true;
+            let flag=await  this.checkProposalData()
             if(flag){
-                    let jsonObj= this.generateEndorseJson()
-                    this.saveProposalorEndorse(jsonObj).then((data)=>{
-                        this.$router.push({ path: '/endorseText',query:{endorseNo:data.endorseNo,endorseText:data.endorseText}})
-                        
-                }).catch((message)=>{
-                    this.$alert(message,'批单保存',{type:'warning'})
-                    return false 
-                })
+                let jsonObj= this.generateEndorseJson()
+                   saveOrder.endorseGenerate(jsonObj).then((res)=>{
+                    if(res.data.resHeader.errCode=='0000'){
+                      this.$router.push({ path: '/endorseText',query:{endorseNo:res.data.endorseNo,endorseText:res.data.endorseText}}) 
+                      this.nextDisable=false
+                    }else if(res.data.resHeader.errCode=='9999'){  
+                      this.$alert("保单生成失败!!!",'批单保存',{type:'warning'}) 
+                      this.nextDisable=false 
+                    }
+                  }).catch(()=>{
+                    this.nextDisable=false;
+                  })
             }else{
+               this.nextDisable=false;
                return false
+
             }
           },
           changeBizNoTitle(){  //选择是新保还是复制 还是续保等JS方法
@@ -303,7 +311,11 @@ export default {
                       if(res.data.resHeader.errCode=='0000'){
                         resolve({endorseNo:res.data.endorseNo,endorseText:res.data.endorseText})
                       }else if(res.data.resHeader.errCode=='9999'){
-                        reject("保单生成失败!!!")
+                        if(res.data.resHeader.errMsg){
+                           reject(res.data.resHeader.errMsg)
+                        }else{
+                           reject("保单生成失败!!!")
+                        }
                       }
                   })
 
@@ -398,7 +410,10 @@ export default {
             obj.infoData.mainInfoVo.payMode=this.$refs.MainPlan.PayType;
             obj.infoData.mainInfoVo.payTimes=this.$refs.MainPlan.payTimes;
             obj.infoData.mainInfoVo.jfeeFlag=this.$store.state.refreshFlag=='1'?this.$store.state.nonCarJfeeflag:originalPolicy.mainInfoVo.jfeeFlag
-            obj.infoData.mainInfoVo.judicalScope=this.$refs.MainTail.judicalScope
+            obj.infoData.mainInfoVo.judicalCode=this.$refs.MainTail.judicalCode
+            let selectedIndex=this.$refs.MainTail.$refs.judicalCode.selectedIndex;
+            obj.infoData.mainInfoVo.judicalScope=this.$refs.MainTail.$refs.judicalCode.options[selectedIndex].text;
+            //obj.infoData.mainInfoVo.judicalScope=this.$refs.MainTail.judicalScope
             obj.infoData.mainInfoVo.argueSolution=this.$refs.MainTail.argueSolution
             obj.infoData.mainInfoVo.arbitBoardName=this.$refs.MainTail.arbitBoardName
             obj.infoData.mainInfoVo.remark=this.$refs.MainTail.remark
@@ -508,11 +523,10 @@ export default {
                   }
             }
             //组织投保人信息模块
-            let appliInfoVoOld=originalPolicy.appliInfoVo
-            obj.infoData.appliInfoVo=originalPolicy.appliInfoVo
-            let  appliInfoVoNew =JSON.parse(JSON.stringify( this.$refs.AppliInsured.appliInfoVo)); 
+            obj.infoData.appliInfoVo=JSON.parse(JSON.stringify(originalPolicy.appliInfoVo));
+            let  appliInfoVoNew =JSON.parse(JSON.stringify(this.$refs.AppliInsured.appliInfoVo)); 
             for (let appliInfoKey in  obj.infoData.appliInfoVo){
-               if((appliInfoKey in appliInfoVoNew)){
+               if(appliInfoKey in appliInfoVoNew){
                 if(appliInfoKey=='capitalauThority'||appliInfoKey=='doBesinessIncome'){
                   obj.infoData.appliInfoVo[appliInfoKey]=this.$uiCommon.replaced(appliInfoVoNew[appliInfoKey])
                 }else{
@@ -520,8 +534,8 @@ export default {
                 }
                }
             }
-            for(let oldkey in appliInfoVoOld){
-              if(oldkey!='flag'&&appliInfoVoOld[oldkey]!= obj.infoData.appliInfoVo[oldkey]){
+            for(let oldkey in (originalPolicy.appliInfoVo)){
+              if(oldkey!='flag'&&originalPolicy.appliInfoVo[oldkey]!= obj.infoData.appliInfoVo[oldkey]){
                   obj.infoData.appliInfoVo.flag="U"
                   endorseType+=`60,`
                   break;

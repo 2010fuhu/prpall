@@ -317,7 +317,6 @@
 <script>
 let moduel=require(`@/pubJs/${global.path}/MainAppliInsured${global.show}.js`)
 let MainAppliInsured=moduel.default
-//import MainAppliInsured from '@/pubJs/MainAppliInsured.js'
 export default{
 	...MainAppliInsured
 }

@@ -1,7 +1,7 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 Vue.use(Vuex)
-var Store =  new Vuex.Store({
+export default new Vuex.Store({
   state:{
       //存放组件之间共享的数据
       initStatus:0,//用来控制初始化数据是否成功状态
@@ -78,4 +78,4 @@ var Store =  new Vuex.Store({
        //
    }
 });
-export default Store
+//export default Store

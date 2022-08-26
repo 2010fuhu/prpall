@@ -5,9 +5,15 @@
     <tr>
       <input type="hidden" name="Tail_Flag" description="保单尾模块批改标志">
       <td id="tdJudicalScopeTitle" class="page" colspan=4>
+        
         <label id="trJudicalScope">司法管辖：       
-              <input type="text" name="judicalScope" ref="judicalScope" class="common3" style="width:27%" maxlength="40" 
-               description="司法管辖"  v-model="judicalScope" @blur=$uiCommon.checkLength($event)>
+               <select  name="judicalCode" ref="judicalCode" class="common3" style="width:27%"   v-model="judicalCode" >
+                  <option value="01" selected>中国境内(港、澳、台除外)</option>
+                  <option value="02">中国境内(包含港、澳、台)</option>
+                  <option value="03">世界范围(美、加除外)</option>
+                  <option value="04">世界范围(包含美、加地区)</option>
+               </select>
+
         </label>
         <label id="trArgueSolution">
           <input type="hidden" name="flag" description="合同争议解决方式批改标志" :value='flag'>
@@ -123,7 +129,8 @@ export default{
         remark:'',
         flag:'',//批改过程的标志 普通批改录入 批改main表中的数据时，需要用到这个
         MainRemark_Show:'',
-        judicalScope:"中华人民共和国管辖",
+        judicalCode:"01",
+        judicalScope:"",
         argueSolution:'1',
         arbitraryBoardList:[],
         argueShow:false,
@@ -145,7 +152,8 @@ export default{
           this.arbitraryBoardList=data.arbitraryBoardList
       },
       initMainTailData(obj){
-        this.judicalScope=obj.mainInfoVo.judicalScope
+        this.judicalCode=obj.mainInfoVo.judicalCode
+        //this.judicalScope=obj.mainInfoVo.judicalScope
         this.argueSolution=obj.mainInfoVo.argueSolution
         if(obj.mainInfoVo.remark!=null){
            this.remark=obj.mainInfoVo.remark
@@ -156,12 +164,13 @@ export default{
         }
         if(this.$store.state.bizType=='ENDORSE'){
           this.$nextTick(()=>{
-            this.$refs.judicalScope.title=this.judicalScope
+            this.$refs.judicalCode.title=this.judicalCode
+            //this.$refs.judicalScope.title=this.judicalScope
             this.$refs.argueSolution.title=this.argueSolution
             this.$refs.arbitBoardName.title=this.arbitBoardName
             this.$refs.remark.title=this.remark
             this.$uiCommon.addevent(this,'remark')
-            this.$uiCommon.addevent(this,'judicalScope')
+            this.$uiCommon.addevent(this,'judicalCode')
             this.$uiCommon.addevent(this,'argueSolution')
             this.$uiCommon.addevent(this,'arbitBoardName')
           })

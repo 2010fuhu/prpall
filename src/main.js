@@ -15,6 +15,7 @@ import * as  uiCommon from '@/pubJs/UICommon.js'
   Vue.prototype.$uiCommon=uiCommon
   Vue.use(ElementUI);
   ///Vue.use(errorPlugin)
+  console.log(process.env)
   Vue.config.productionTip = false
   new Vue({
     router,

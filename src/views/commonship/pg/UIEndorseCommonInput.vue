@@ -197,12 +197,12 @@ export default ({
                   //2.调用接口传递参数
                   this.$store.state.validDate=this.validDate
                   this.$store.state.validHour=this.validHour
-                  // if(businessNature=='h'){
-                  //   this.$router.push({path:'/reinsPgMain',query: { 'businessNo': this.policyNo,'bizType':'ENDORSE','comCode':this.comCode }})
+                  if(businessNature=='h'){
+                    this.$router.push({path:'/reinsPgMain',query: { 'businessNo': this.policyNo,'bizType':'ENDORSE','comCode':this.comCode }})
 
-                  // }else if(businessNature!='h'){
+                  }else if(businessNature!='h'){
                      this.$router.push({path:'/pgMain',query: { 'businessNo': this.policyNo,'bizType':'ENDORSE','comCode':this.comCode }})
-                  //}
+                  }
               }).catch(err=>{
                  this.$alert(err,'普通批改录入',{type:'warning'})
                  return  false

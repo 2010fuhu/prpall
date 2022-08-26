@@ -198,7 +198,7 @@ class  insuredInfoVo{
 				let Address3=''
 				index1=this.$refs.address1.selectedIndex
 				if(index1!=0){
-					 Address1=Address1=this.$refs.address1.options[index1].text
+					 Address1=this.$refs.address1.options[index1].text
 				}
 				index2=this.$refs.address2.selectedIndex
 				if(index2!=0){

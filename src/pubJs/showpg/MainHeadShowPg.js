@@ -5,7 +5,7 @@ import  initBaseData from '@/api/initBaseData.js'
         data(){
           return{
             isShow:true,
-            riskName:'农民工工资履约保证保险',
+            riskName:'农民工工资支付履约保证保险',
             imgUrl:require('@/assets/images/markMustInput.jpg'),
             comCode:'',
             policySort:'1',//保单种类

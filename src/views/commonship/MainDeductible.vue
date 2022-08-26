@@ -26,6 +26,7 @@
 </template>
 <script>
 let moduel=require(`@/pubJs/${global.path}/MainDeductible${global.show}.js`)
+//let moduel=import(`@/pubJs/${global.path}/MainDeductible${global.show}.js`)
 let MainDeductible=moduel.default
 //import MainDeductible from '@/pubJs/MainDeductible.js'
 export default{

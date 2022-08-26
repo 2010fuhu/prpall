@@ -4,7 +4,7 @@ const request = axios.create({
     // /db.json >  通过 axios > /dev-api/db.json >  通过 代理转发（vue.config.js）》 http://localhost:8001/db.json
     // baseURL: '/dev-api', VUE_APP_SERVICE_URL
     baseURL:process.env.VUE_APP_BASE_API,
-    timeout: 10000, // 请求超时，5000毫秒
+    timeout: 15000, // 请求超时，5000毫秒
     headers: {
         'Cache-Control': 'no-cache'
     }
